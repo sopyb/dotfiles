@@ -66,10 +66,6 @@ nix.trustedUsers = [ "root" "@wheel" ];
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
-
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;

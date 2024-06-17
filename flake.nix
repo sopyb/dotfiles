@@ -16,10 +16,10 @@
 			url = "gitlab:doronbehar/nix-matlab";
 		};
 
-		spicetify-nix.url = "github:the-argus/spicetify-nix";
+		# spicetify-nix.url = "github:the-argus/spicetify-nix";
 	};
 
-  outputs = { self, nixpkgs, nix-matlab, nur, spicetify-nix, ... } @ inputs:
+  outputs = { self, nixpkgs, nix-matlab, nur, ... } @ inputs: #  spicetify-nix,
 	let
 		system = "x86_64-linux";
 		pkgs = import nixpkgs {
@@ -43,7 +43,6 @@
 
 				specialArgs = { 
 					inherit inputs pkgs;
-					# matlab = nix-matlab.defaultPackage.${system};
 				};
 			};
 		};
