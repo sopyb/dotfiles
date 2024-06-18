@@ -6,15 +6,13 @@
 {
   imports =
     [ 
-      ./hardware/nvidia_proprietary.nix
       ./hardware/amdgpu.nix
+      ./hardware/nvidia_proprietary.nix
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" "sdhci_pci" ];
-  boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.supportedFilesystems = [ "ntfs" ];
-  boot.extraModulePackages = [ ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/39b11b9c-6cd6-4726-b3f0-013afba27e5a";
