@@ -4,11 +4,11 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ 
-      ./hardware/amdgpu.nix
-      ./hardware/nvidia_proprietary.nix
-    ];
+  # imports =
+  #   [ 
+  #     ./hardware/amdgpu.nix
+  #     ./hardware/nvidia_proprietary.nix
+  #   ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" "sdhci_pci" ];
   boot.kernelModules = [ "kvm-amd" ];

@@ -23,6 +23,55 @@ nix.trustedUsers = [ "root" "@wheel" ];
   #     ./system/hw_cfg_victus.nix
   #   ];
 
+
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
+
+  systemd.tmpfiles.rules = [
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+  ];
+
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+
+    extraPackages = with pkgs; [
+      rocmPackages.clr.icd
+      amdvlk
+    ];
+
+    extraPackages32 = with pkgs; [
+      driversi686Linux.amdvlk
+    ];
+  };
+
+
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement = {
+      enable = true;
+      finegrained = true;
+    };
+    open = false;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    prime = {
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
+      intelBusId = "PCI:7:0:0";
+      nvidiaBusId = "PCI:1:0:0";	
+    };
+  };
+
+  services.xserver = {
+    enable = true;
+    videoDrivers = [ "nvidia" "amdgpu" ];
+  };
+
+
   # nixpkgs.config.allowUnfree = true;
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
