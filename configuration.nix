@@ -2,77 +2,10 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-
-
 { inputs, config, pkgs, options, lib, ... }:
 
 {
 nix.trustedUsers = [ "root" "@wheel" ];
-
-  # nixpkgs.overlays = [
-  #   (
-  #     final: prev: {
-  #       # Your own overlays...
-  #     }
-  #   )
-  # ] ++ flake-overlays;
-
-  # imports =
-  #   [
-  #     ./system/hw_cfg_victus.nix
-  #   ];
-
-
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
-
-  systemd.tmpfiles.rules = [
-    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
-  ];
-
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-
-    extraPackages = with pkgs; [
-      rocmPackages.clr.icd
-      amdvlk
-    ];
-
-    extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
-    ];
-  };
-
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement = {
-      enable = true;
-      finegrained = true;
-    };
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
-    prime = {
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
-      intelBusId = "PCI:7:0:0";
-      nvidiaBusId = "PCI:1:0:0";	
-    };
-  };
-
-  services.xserver = {
-    enable = true;
-    videoDrivers = [ "nvidia" "amdgpu" ];
-  };
-
-
-  # nixpkgs.config.allowUnfree = true;
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
@@ -256,16 +189,16 @@ nix.trustedUsers = [ "root" "@wheel" ];
     curl
     wget
     git
-	eza
+	  eza
     micro
-	killall
-	fastfetch
-	hyfetch
-	blahaj
-	ponysay
-	gnupg
+    killall
+    fastfetch
+    hyfetch
+    blahaj
+    ponysay
+    gnupg
 
-	podman
+	  podman
 
 # php tooling
     php83
@@ -274,7 +207,7 @@ nix.trustedUsers = [ "root" "@wheel" ];
     sqlcmd
 
 # java tooling
-	maven
+	  maven
     # jdk8_headless
     # jdk11_headless
     # jdk17_headless
@@ -315,16 +248,9 @@ nix.trustedUsers = [ "root" "@wheel" ];
   # nix.settings.trustedUsers = [ "root" "@wheel" ];
 
   programs = {
-    hyprland = {
-      # Install the packages from nixpkgs
-      enable = true;
-      # Whether to enable XWayland
-      xwayland.enable = true;
-    };
-  
-	adb.enable = true;
-  
-	noisetorch.enable = true;
+    adb.enable = true;
+    
+    noisetorch.enable = true;
   
   	nix-ld = {
   	  enable = true;
