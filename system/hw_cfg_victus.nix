@@ -8,6 +8,7 @@
     [ 
       ./hardware/amdgpu.nix
       ./hardware/nvidia_proprietary.nix
+      ./hardware/bluetooth.nix
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
