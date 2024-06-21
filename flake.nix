@@ -41,6 +41,7 @@
 		nixosConfigurations = {
 			alphicta = lib.nixosSystem {
 				inherit system;
+
 				modules = [ 
 					# To split into modules
 					./configuration.nix
@@ -60,8 +61,8 @@
 							extraSpecialArgs = home-manager-args;
 
 							users.sopy = {
-								imports = [
-									# ./home_manager/users/common.nix
+								imports = [ 
+									./home_manager/modules/system.nix
 								];
 							};
 						};

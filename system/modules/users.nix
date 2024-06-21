@@ -8,11 +8,6 @@
   options.sopy.users = { };
 
   config = {
-    security.sudo = {
-      enable = true;
-      wheelNeedsPassword = false;
-    };
-    
     programs = {
       zsh = {
         enable = true;
@@ -39,5 +34,11 @@
       extraGroups = [ "networkmanager" "wheel" "dialout" "plugdev" "adbusers" ];
       shell = pkgs.zsh;
     };
+
+    security.sudo = {
+      enable = true;
+      wheelNeedsPassword = false;
+    };
+    system.stateVersion = "23.09"; # Did you read the comment?
   };
 }
