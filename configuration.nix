@@ -15,7 +15,7 @@
   # Bootloader.
   # boot.loader.systemd-boot.enable = true;
   # boot.loader.efi.canTouchEfiVariables = true;
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;no
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -90,12 +90,12 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.defaultUserShell = pkgs.zsh;
+  # users.defaultUserShell = pkgs.zsh;
   users.users.sopy = {
-    isNormalUser = true;
-    useDefaultShell = true;
-    description = "sopy";
-    extraGroups = [ "networkmanager" "wheel" "dialout" "plugdev" "adbusers" ];
+    # isNormalUser = true;
+    # useDefaultShell = true;
+    # description = "sopy";
+    # extraGroups = [ "networkmanager" "wheel" "dialout" "plugdev" "adbusers" ];
     packages = with pkgs; [
       peaclock
       # config.nur.repos.nltch.spotify-adblock
