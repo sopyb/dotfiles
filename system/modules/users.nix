@@ -39,6 +39,5 @@
       enable = true;
       wheelNeedsPassword = false;
     };
-    system.stateVersion = "23.09"; # Did you read the comment?
   };
 }

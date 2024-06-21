@@ -1,5 +1,5 @@
 
-{ config, ... }:
+{ pkgs, ... }:
 
 {
   imports = [ ];
@@ -11,7 +11,6 @@
     };
     boot.kernelPackages = pkgs.linuxPackages_latest;
 
-    # Randomly decided the NixOS version should be here.
     system.stateVersion = "24.05";
   };
 }
