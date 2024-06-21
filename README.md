@@ -18,3 +18,11 @@ sudo nixos-rebuild switch --flake .#<hostname>
 ``` 
 
 You can update the pinned flake packages with `nix flake update`. 
+
+## Note to self...
+```bash
+git submodule init
+git submodule update
+```
+
+Initialize and update the submodule
