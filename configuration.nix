@@ -368,27 +368,27 @@ nix.trustedUsers = [ "root" "@wheel" ];
         zlib
       ];
     };     
-    # zsh = {
-    #   enable = true;
+    zsh = {
+      enable = true;
 
-	  # enableCompletion = true;
-	  # autosuggestions.enable = true;
+	  enableCompletion = true;
+	  autosuggestions.enable = true;
   
-    #   enableGlobalCompInit = false;
-   	#   syntaxHighlighting.enable = true;
-    # };
+      enableGlobalCompInit = false;
+   	  syntaxHighlighting.enable = true;
+    };
     
-    # direnv = {
-    #   enable = true;
-    #   package = pkgs.direnv;
-    #   silent = false;
-    #   loadInNixShell = true;
-    #   direnvrcExtra = "";
-    #   nix-direnv = {
-    #     enable = true;
-    #     package = pkgs.nix-direnv;
-    #   };
-    # };
+    direnv = {
+      enable = true;
+      package = pkgs.direnv;
+      silent = false;
+      loadInNixShell = true;
+      direnvrcExtra = "";
+      nix-direnv = {
+        enable = true;
+        package = pkgs.nix-direnv;
+      };
+    };
 
     htop = {
       enable = true;

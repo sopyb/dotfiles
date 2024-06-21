@@ -2,12 +2,17 @@
 
 {
   imports = [ 
-    ../../dotfiles_secrets/user/passwords.nix
+    ../../dotfiles_secrets/users/passwords.nix
   ];
 
   options.sopy.users = { };
 
   config = {
+    security.sudo = {
+      enable = true;
+      wheelNeedsPassword = false;
+    };
+    
     programs = {
       zsh = {
         enable = true;
@@ -19,25 +24,13 @@
         syntaxHighlighting.enable = true;
       };
 
-
-      direnv = {
-        enable = true;
-        package = pkgs.direnv;
-        silent = false;
-        loadInNixShell = true;
-        direnvrcExtra = "";
-        nix-direnv = {
-          enable = true;
-          package = pkgs.nix-direnv;
-        };
-      };
-
+      direnv.enable = true;
 
       htop = {
         enable = true;
         settings.show_cpu_temperature = 1;
       };
-    }
+    };
     
     users.users.sopy = {
       isNormalUser = true;
@@ -46,11 +39,5 @@
       extraGroups = [ "networkmanager" "wheel" "dialout" "plugdev" "adbusers" ];
       shell = pkgs.zsh;
     };
-
-    security.sudo = {
-      enable = true;
-      wheelNeedsPassword = false;
-    };
-
   };
 }

@@ -42,22 +42,34 @@
 			alphicta = lib.nixosSystem {
 				inherit system;
 				modules = [ 
-          ./system/hw_cfg_victus.nix
+					# To split into modules
 					./configuration.nix
+
+					# Modules
+          ./system/hw_cfg_victus.nix
+					./system/modules/common.nix
+
+					# NUR
 					nur.nixosModules.nur
+
+					# Home Manager
+					home-manager.nixosModules.home-manager {
+							home-manager = {
+							useGlobalPkgs = true;
+							useUserPackages = true;
+							extraSpecialArgs = home-manager-args;
+
+							users.sopy = {
+								imports = [
+									# ./home_manager/users/common.nix
+								];
+							};
+						};
+					}
 				];
 
-				home-manager.nixosModules.home-manager {
-					useGlobalPkgs = true;
-					useUserPackages = true;
-					extraSpecialArgs = home-manager-args;
-
-				};
-
-				specialArgs = { 
+				specialArgs = {
 					inherit inputs pkgs;
-					users.sopy = {
-						import = ./home-manager/sopy.nix;
 				};
 			};
 		};
