@@ -7,7 +7,7 @@
 
     nix = {
       settings = {
-        trustedUsers = [ "root" "@wheel" ];
+        trusted-users = [ "root" "@wheel" ];
       };
     };
   };
