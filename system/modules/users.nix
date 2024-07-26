@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   imports = [ 
@@ -20,11 +20,6 @@
       };
 
       direnv.enable = true;
-
-      htop = {
-        enable = true;
-        settings.show_cpu_temperature = 1;
-      };
     };
     
     users.users.sopy = {

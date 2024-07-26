@@ -1,6 +1,9 @@
 { lib, ... }:
 
 {
+  imports = [
+    ../programs/htop.nix
+  ]
 
   config = {
     home.stateVersion = "24.05";
