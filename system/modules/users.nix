@@ -31,7 +31,7 @@
       isNormalUser = true;
       useDefaultShell = true;
       description = "sopy";
-      extraGroups = [ "networkmanager" "wheel" "dialout" "plugdev" "adbusers" ];
+      extraGroups = [ "networkmanager" "wheel" "dialout" "plugdev" "adbusers" "gamemode" ];
       shell = pkgs.zsh;
     };
 

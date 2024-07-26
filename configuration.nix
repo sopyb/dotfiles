@@ -1,15 +1,11 @@
 
+
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 { inputs, config, pkgs, options, lib, ... }:
 
 {
-  # nix.trustedUsers = [ "root" "@wheel" ];
-
-  # hardware.xone.enable = true; # Stick died
-  hardware.xpadneo.enable = true;
-
   hardware.opentabletdriver.enable = true;
 
   # Bootloader.
@@ -27,7 +23,10 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
+  # Set your time zone.{
+    services.xserver.enable = true;
+    # services.xserver.displayManager.gdm.enable = true;
+    # services.xserver.desktopManager.gnome.enable = true;
   time.timeZone = "EET";
 
   # Select internationalisation properties.
@@ -47,15 +46,13 @@
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
-  
+
   environment.variables = lib.mkForce {
       QT_STYLE_OVERRIDE = "kvantum";
     };
  
-
-  services.displayManager.sddm.wayland.enable = true;
-  
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "ro";
@@ -68,8 +65,22 @@
     pkgs.android-udev-rules
   ];
 
+  # services.udev.extraRules = ''
+  # # PS5 DualSense controller over USB hidraw
+  # KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ce6", MODE="0660", TAG+="uaccess"
+  
+  # # PS5 DualSense controller over bluetooth hidraw
+  # KERNEL=="hidraw*", KERNELS=="*054C:0CE6*", MODE="0660", TAG+="uaccess"
+  
+  # # PS5 DualSense Edge controller over USB hidraw
+  # KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0df2", MODE="0660", TAG+="uaccess"
+  
+  # # PS5 DualSense Edge controller over bluetooth hidraw
+  # KERNEL=="hidraw*", KERNELS=="*054C:0DF2*", MODE="0660", TAG+="uaccess"
+  #   '';
+
   # Enable sound with pipewire.
-  sound.enable = true;
+  # sound.enable = true;
   hardware.pulseaudio.enable = false;
   
   security.rtkit.enable = true;
@@ -97,9 +108,11 @@
     # description = "sopy";
     # extraGroups = [ "networkmanager" "wheel" "dialout" "plugdev" "adbusers" ];
     packages = with pkgs; [
+    vlc
       peaclock
       # config.nur.repos.nltch.spotify-adblock
       spotify
+      protontricks
       config.nur.repos.minion3665.monocraft
 
       obsidian
@@ -127,6 +140,7 @@
       firefox-devedition
       vivaldi
       vivaldi-ffmpeg-codecs
+      ladybird
 
       onlyoffice-bin
       
@@ -144,11 +158,11 @@
       bottles
       matlab
       (jetbrains.plugins.addPlugins jetbrains.webstorm ["github-copilot"])
-      (jetbrains.plugins.addPlugins jetbrains.rust-rover ["github-copilot"])
-      (jetbrains.plugins.addPlugins jetbrains.pycharm-professional ["github-copilot"])
-      (jetbrains.plugins.addPlugins jetbrains.phpstorm ["github-copilot"])
-      (jetbrains.plugins.addPlugins jetbrains.idea-ultimate ["github-copilot"])
-      (jetbrains.plugins.addPlugins jetbrains.datagrip ["github-copilot"])
+      # (jetbrains.plugins.addPlugins jetbrains.rust-rover ["github-copilot"])
+      # (jetbrains.plugins.addPlugins jetbrains.pycharm-professional ["github-copilot"])
+      # (jetbrains.plugins.addPlugins jetbrains.phpstorm ["github-copilot"])
+      # (jetbrains.plugins.addPlugins jetbrains.idea-ultimate ["github-copilot"])
+      # (jetbrains.plugins.addPlugins jetbrains.datagrip ["github-copilot"])
       (jetbrains.plugins.addPlugins jetbrains.clion ["github-copilot"])
       vscode
       arduino-ide
@@ -158,6 +172,13 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+	kdenlive
+	ffmpeg
+
+	libnotify
+	
+	
+  
     inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
     direnv
     wl-clipboard
@@ -169,7 +190,7 @@
 
     
     kdePackages.filelight
-    alacritty 
+    kdePackages.partitionmanager
 
     lact
 
@@ -197,36 +218,6 @@
 
 	  podman
 
-# php tooling
-    php83
-# MS SQL Server
-    php83Extensions.sqlsrv
-    sqlcmd
-
-# java tooling
-	  maven
-    # jdk8_headless
-    # jdk11_headless
-    # jdk17_headless
-    jdk21_headless
-    staruml
-
-# javascript tooling
-	nodejs_20
-	bun
-
-# rust tooling
-	cargo
-
-# go tooling
-	go
-
-# cpp tooling
-	cmake
-	clang-tools
-	
-	ninja
-
 	llvmPackages.mlir
 
 	xwaylandvideobridge
@@ -244,8 +235,24 @@
   
   # nix.settings.trustedUsers = [ "root" "@wheel" ];
 
+
   programs = {
     adb.enable = true;
+
+    gamemode = {
+      enable = true;
+      enableRenice = true;
+      settings = {
+        general = {
+          softrealtime = "auto";
+          renice = 10;
+        };
+        custom = {
+          start = "notify-send -a 'Gamemode' 'Optimizations activated'";
+          end = "notify-send -a 'Gamemode' 'Optimizations deactivated'";
+        };
+      };
+    };
     
     noisetorch.enable = true;
   
