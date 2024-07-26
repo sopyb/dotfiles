@@ -29,7 +29,7 @@
 		# spicetify-nix.url = "github:the-argus/spicetify-nix";
 	};
 
-  outputs = { self, home-manager, nixpkgs, nix-matlab, nixos-cosmic, nur, ... } @ inputs: #  spicetify-nix, 
+  outputs = { self, home-manager, nixpkgs, nix-matlab, nur, ... } @ inputs: #  spicetify-nix, 
 	let
 		system = "x86_64-linux";
 		pkgs = import nixpkgs {
@@ -52,7 +52,7 @@
 					./configuration.nix
 
 					# Modules
-          			./system/hw_cfg_victus.nix
+					./system/hw_cfg_victus.nix
 					./system/modules/common.nix
 
 					# NUR

@@ -20,7 +20,7 @@
     KERNEL=="hidraw*", KERNELS=="*054C:0DF2*", MODE="0660", TAG+="uaccess"
   '';
 
-  environment.systemPackages = with pkgs; {
+  environment.systemPackages = with pkgs; [
     dualsensectl 
-  }
+  ];
 }
