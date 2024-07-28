@@ -64,6 +64,7 @@
 							useGlobalPkgs = true;
 							useUserPackages = true;
 							extraSpecialArgs = home-manager-args;
+							backupFileExtension = "old";
 
 							users.sopy = {
 								imports = [ 
