@@ -4,9 +4,7 @@
   home.packages = with pkgs; [
     nodejs_20
     github-copilot-cli
-  ];
-
-  xdg.configFile."shell".source = lib.getExe pkgs.zsh;
+    ];
 
   programs.zsh = {
     enable = true;
@@ -21,12 +19,13 @@
       ls = "eza --icons --grid";
       l = "eza --icons --grid -l";
       la = "eza --icons --grid -la";
-      neofetch = "hyfetch -b fastfetch";
+      neofetch = "hyfetch";
     
     };
 
     initExtra = ''
       eval "$(github-copilot-cli alias -- "$0")"
+      POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
     '';
 
     
