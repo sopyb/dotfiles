@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -20,7 +20,6 @@
       l = "eza --icons --grid -l";
       la = "eza --icons --grid -la";
       neofetch = "hyfetch";
-    
     };
 
     initExtra = ''

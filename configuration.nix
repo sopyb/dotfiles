@@ -84,7 +84,6 @@
       # config.nur.repos.nltch.spotify-adblock
       spotify
       protontricks
-      config.nur.repos.minion3665.monocraft
 
       obsidian
       openboard
@@ -169,9 +168,6 @@
     scrcpy
   
 # zip stuff
-    zip
-    unzip
-    p7zip
     
 
 # terminal utils
