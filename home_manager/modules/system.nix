@@ -3,7 +3,6 @@
 {
   imports = [
     ../programs/command_line.nix
-    ../programs/fonts.nix
   ];
 
   config = {
