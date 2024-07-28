@@ -142,18 +142,11 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-	kdenlive
-	ffmpeg
+    kdenlive
+    ffmpeg
 
-	libnotify
-	
-	
-  
+    libnotify
     inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
-    direnv
-    wl-clipboard
-
-    devenv
   
     argyllcms
     colord-kde
@@ -177,8 +170,6 @@
 	  eza
     micro
     killall
-    blahaj
-    ponysay
     gnupg
 
 	  podman
