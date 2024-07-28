@@ -4,7 +4,7 @@
   home.packages = with pkgs; [
     nodejs_20
     github-copilot-cli
-    ];
+  ];
 
   programs.zsh = {
     enable = true;
