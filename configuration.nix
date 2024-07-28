@@ -155,8 +155,6 @@
     kdePackages.filelight
     kdePackages.partitionmanager
 
-    lact
-
     android-tools
     scrcpy
   
@@ -164,8 +162,6 @@
     
 
 # terminal utils
-    curl
-    wget
     git
 	  eza
     micro
