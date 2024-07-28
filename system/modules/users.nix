@@ -27,7 +27,6 @@
       useDefaultShell = true;
       description = "sopy";
       extraGroups = [ "networkmanager" "wheel" "dialout" "plugdev" "adbusers" "gamemode" ];
-      shell = pkgs.zsh;
     };
 
     security.sudo = {

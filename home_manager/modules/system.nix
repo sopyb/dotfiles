@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../programs/htop.nix
+    ../programs/command_line.nix
   ];
 
   config = {

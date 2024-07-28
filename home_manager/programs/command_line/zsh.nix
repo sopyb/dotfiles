@@ -1,15 +1,20 @@
 { config, lib, pkgs, ... }:
 
 {
-  packages = [
+  home.packages = with pkgs; [
+    nodejs_20
     github-copilot-cli
   ];
 
+  xdg.configFile."shell".source = lib.getExe pkgs.zsh;
+
   programs.zsh = {
     enable = true;
+
+    autosuggestion.enable = true;
+
     autocd = true;
     dotDir = ".config/zsh";
-    enableAutosuggestions = true;
     enableCompletion = true;
     shellAliases = {
       sl = "eza --icons --grid";
