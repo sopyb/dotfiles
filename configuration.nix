@@ -118,6 +118,7 @@
 
       heroic
       steam
+      itch
       discover-overlay
       goverlay
       mangohud
