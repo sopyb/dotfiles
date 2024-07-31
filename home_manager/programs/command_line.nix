@@ -8,6 +8,7 @@
     ./command_line/git.nix
     ./command_line/htop.nix
     ./command_line/hyfetch.nix
+    ./command_line/micro.nix
     ./command_line/zsh.nix
   ];
 
