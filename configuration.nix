@@ -164,7 +164,6 @@
 
 # terminal utils
     git
-	  eza
     micro
     killall
     gnupg

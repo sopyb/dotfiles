@@ -15,10 +15,10 @@
     dotDir = ".config/zsh";
     enableCompletion = true;
     shellAliases = {
-      sl = "eza --icons --grid";
-      ls = "eza --icons --grid";
-      l = "eza --icons --grid -l";
-      la = "eza --icons --grid -la";
+      sl = "eza";
+      ls = "eza";
+      l = "eza -l";
+      la = "eza -la";
       neofetch = "hyfetch";
     };
 
