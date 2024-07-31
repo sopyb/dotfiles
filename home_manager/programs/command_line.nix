@@ -14,6 +14,7 @@
   home.packages = with pkgs; [
     # random stuff
     blahaj
+    killall
     ponysay
 
     # network stuff

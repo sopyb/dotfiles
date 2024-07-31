@@ -163,9 +163,6 @@
     
 
 # terminal utils
-    git
-    micro
-    killall
     gnupg
 
 	  podman
