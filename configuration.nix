@@ -162,8 +162,8 @@
 # zip stuff
     
 
-# terminal utils
-    gnupg
+    # terminal utils
+        gnupg
 
 	  podman
 
