@@ -89,21 +89,6 @@
       openboard
       krita
       
-      teams-for-linux
-      element-desktop
-      zapzap
-      zulip
-      zoom-us
-      (vesktop.overrideAttrs (finalAttrs: previousAttrs: {
-        desktopItems = [
-          (makeDesktopItem {
-            name = "Clementine";
-            exec = "vesktop %u";
-            icon = "clementine";
-            desktopName = "Clementine";
-          })
-        ];
-      }))
 
       tor-browser
       deluge
