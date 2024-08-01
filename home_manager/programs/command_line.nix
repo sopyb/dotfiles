@@ -18,6 +18,12 @@
     blahaj
     killall
     ponysay
+    ffmpeg
+    yt-dlp
+
+    # android screneshare stuff
+    android-tools
+    scrcpy
 
     # network stuff
     curl

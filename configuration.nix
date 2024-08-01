@@ -144,34 +144,19 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     kdenlive
-    ffmpeg
 
     libnotify
     inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
-  
-    argyllcms
-    colord-kde
-
-    
     kdePackages.filelight
     kdePackages.partitionmanager
 
-    android-tools
-    scrcpy
-  
-# zip stuff
-    
 
-    # terminal utils
-        gnupg
+    argyllcms
+    colord-kde
 
-	  podman
+    xwaylandvideobridge
 
-	llvmPackages.mlir
-
-	xwaylandvideobridge
-
-	kdePackages.qtstyleplugin-kvantum
+    kdePackages.qtstyleplugin-kvantum
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
