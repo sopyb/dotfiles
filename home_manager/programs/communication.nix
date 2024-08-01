@@ -9,7 +9,7 @@ in
     teams-for-linux
     vesktop
     zapzap
-    zulip
     zoom-us
+    zulip
   ];
 }
