@@ -4,7 +4,7 @@
   
   desktopItems = [
     (pkgs.makeDesktopItem {
-      name = "Clementine";w
+      name = "Clementine";
       exec = "vesktop %u";
       icon = "clementine";
       desktopName = "Clementine";
