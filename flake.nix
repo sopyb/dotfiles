@@ -55,6 +55,9 @@
 					./system/hw_cfg_victus.nix
 					./system/modules/common.nix
 
+					# Desktop Environment
+					./system/modules/desktop/cosmic.nix
+
 					# NUR
 					nur.nixosModules.nur
 
