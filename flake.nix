@@ -38,6 +38,8 @@
 
 			overlays = [
 				nix-matlab.overlay
+
+  			inputs.nixos-cosmic.overlays.default
 			];
 		};
 		home-manager-args = { inherit inputs pkgs; };
