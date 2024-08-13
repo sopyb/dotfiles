@@ -17,7 +17,6 @@
       };
     };
 
-
     noisetorch.enable = true;
   };
 }
