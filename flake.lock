@@ -60,11 +60,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1722982839,
-        "narHash": "sha256-UlyLqSUK5GJFeJ/8bX3Ja2aVIk09nimGtSEOLOhh82Y=",
+        "lastModified": 1723568262,
+        "narHash": "sha256-CvJmxLjxNi4VxGV4YSoAQCQPFCFBjejWx+EuX94BBps=",
         "owner": "taj-ny",
         "repo": "kwin-effects-forceblur",
-        "rev": "521f7b56ae6c1c0f9f6a586bd77947321bc2f2ea",
+        "rev": "4500adb340b7f9a28e2e7e1b47d13d58e3ffefac",
         "type": "github"
       },
       "original": {
@@ -81,11 +81,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1723302096,
-        "narHash": "sha256-WSLkAws173JKaYhyEBSxEU24qJzcrz2uxIQuvWjf81w=",
+        "lastModified": 1723561306,
+        "narHash": "sha256-dFFV0dfoZ796E0astCmYdTwemCEdGhrFXgHnnZzaB9M=",
         "owner": "doronbehar",
         "repo": "nix-matlab",
-        "rev": "0bd929d516486f22dccfdbd065f9ccb562ebc7e4",
+        "rev": "87149782c72af0fa9f51668475edb9a6fbb97b6c",
         "type": "gitlab"
       },
       "original": {
