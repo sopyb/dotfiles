@@ -79,9 +79,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sopy = {
     packages = with pkgs; [
-    vlc
-    
-  libvlc
+      mpv
       peaclock
       # config.nur.repos.nltch.spotify-adblock
       spotify
