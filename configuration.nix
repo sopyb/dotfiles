@@ -80,6 +80,8 @@
   users.users.sopy = {
     packages = with pkgs; [
     vlc
+    
+  libvlc
       peaclock
       # config.nur.repos.nltch.spotify-adblock
       spotify
