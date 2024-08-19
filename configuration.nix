@@ -81,7 +81,7 @@
     packages = with pkgs; [
       mpv
       peaclock
-      # config.nur.repos.nltch.spotify-adblock
+      config.nur.repos.nltch.spotify-adblock
       spotify
       protontricks
 

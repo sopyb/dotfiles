@@ -9,7 +9,7 @@
 	      inputs.nixpkgs.follows = "nixpkgs";
 	    };
 
-		nur.url = "github:nix-community/NUR/324a5f3b9fbfdb77336dc9fa1c0a02f33a6acf6d";
+		nur.url = "github:nix-community/NUR";
 
 		kwin-effects-forceblur = {
 			url = "github:taj-ny/kwin-effects-forceblur";
@@ -38,8 +38,7 @@
 
 			overlays = [
 				nix-matlab.overlay
-
-  			inputs.nixos-cosmic.overlays.default
+  			    inputs.nixos-cosmic.overlays.default
 			];
 		};
 		home-manager-args = { inherit inputs pkgs; };
