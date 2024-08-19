@@ -14,9 +14,6 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.{
-    services.xserver.enable = true;
-    # services.xserver.displayManager.gdm.enable = true;
-    # services.xserver.desktopManager.gnome.enable = true;
   time.timeZone = "EET";
 
   # Select internationalisation properties.
@@ -35,46 +32,14 @@
   };
 
   # Enable the KDE Plasma Desktop Environment.
+  # ! TODO: Move plasma related stuff to it's own file
   # services.displayManager.sddm.enable = true;
   # services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # services.desktopManager.plasma6.enable = true;
 
-  environment.variables = lib.mkForce {
-      QT_STYLE_OVERRIDE = "kvantum";
-    };
- 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "ro";
-    variant = "";
-  };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-  services.udev.packages = [
-    pkgs.android-udev-rules
-  ];
-
-  # Enable sound with pipewire.
-  # sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  # environment.variables = lib.mkForce {
+  #     QT_STYLE_OVERRIDE = "kvantum";
+  #   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sopy = {
@@ -113,13 +78,6 @@
 
       bottles
       matlab
-      (jetbrains.plugins.addPlugins jetbrains.webstorm ["github-copilot"])
-      # (jetbrains.plugins.addPlugins jetbrains.rust-rover ["github-copilot"])
-      # (jetbrains.plugins.addPlugins jetbrains.pycharm-professional ["github-copilot"])
-      # (jetbrains.plugins.addPlugins jetbrains.phpstorm ["github-copilot"])
-      # (jetbrains.plugins.addPlugins jetbrains.idea-ultimate ["github-copilot"])
-      # (jetbrains.plugins.addPlugins jetbrains.datagrip ["github-copilot"])
-      (jetbrains.plugins.addPlugins jetbrains.clion ["github-copilot"])
       vscode
       arduino-ide
     ];
@@ -131,17 +89,11 @@
     kdenlive
 
     libnotify
-    inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
+    # inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
     kdePackages.filelight
     kdePackages.partitionmanager
 
-
-    argyllcms
-    colord-kde
-
-    xwaylandvideobridge
-
-    kdePackages.qtstyleplugin-kvantum
+    # kdePackages.qtstyleplugin-kvantum
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
