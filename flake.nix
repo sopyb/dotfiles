@@ -59,6 +59,8 @@
 					# Desktop Environment
 					./system/modules/desktop/cosmic.nix
 
+					({networking.hostName = "alphicta";})
+
 					# NUR
 					nur.nixosModules.nur
 
