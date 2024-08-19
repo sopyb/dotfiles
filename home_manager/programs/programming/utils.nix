@@ -1,11 +1,12 @@
+{ pkgs, ... }:
+
 let
   addJetbrainsPlugins = ideList: 
     map (ide: 
-      jetbrains.plugins.addPlugins ide [
+      pkgs.jetbrains.plugins.addPlugins ide [
         "github-copilot"
         "ideavim"
-        "wakatime"
-      ]
+      ] 
     ) ideList;
 in
 {

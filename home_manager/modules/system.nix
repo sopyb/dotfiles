@@ -4,6 +4,7 @@
   imports = [
     ../programs/communication.nix
     ../programs/command_line.nix
+    ../programs/programming.nix
   ];
 
   config = {
