@@ -14,5 +14,5 @@
     home.username = "sopy";
     home.homeDirectory = "/home/sopy";
   };
-}g
+}
   
