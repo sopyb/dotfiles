@@ -9,7 +9,7 @@
 	      inputs.nixpkgs.follows = "nixpkgs";
 	    };
 
-		nur.url = "github:nix-community/NUR";
+		# nur.url = "github:nix-community/NUR";
 
 		kwin-effects-forceblur = {
 			url = "github:taj-ny/kwin-effects-forceblur";
@@ -29,7 +29,7 @@
 		# spicetify-nix.url = "github:the-argus/spicetify-nix";
 	};
 
-  outputs = { self, home-manager, nixpkgs, nix-matlab, nur, ... } @ inputs: #  spicetify-nix, 
+  outputs = { self, home-manager, nixpkgs, nix-matlab, ... } @ inputs: #  spicetify-nix, 
 	let
 		system = "x86_64-linux";
 		pkgs = import nixpkgs {
@@ -38,7 +38,7 @@
 
 			overlays = [
 				nix-matlab.overlay
-  			    inputs.nixos-cosmic.overlays.default
+				inputs.nixos-cosmic.overlays.default
 			];
 		};
 		home-manager-args = { inherit inputs pkgs; };
@@ -49,9 +49,6 @@
 				inherit system;
 
 				modules = [ 
-					# To split into modules
-					./configuration.nix
-
 					# Modules
 					./system/hw_cfg_victus.nix
 					./system/modules/common.nix
@@ -62,7 +59,7 @@
 					({networking.hostName = "alphicta";})
 
 					# NUR
-					nur.nixosModules.nur
+					# nur.nixosModules.nur
 
 					# Home Manager
 					home-manager.nixosModules.home-manager {

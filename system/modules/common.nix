@@ -25,4 +25,8 @@
   };
   
   time.timeZone = "EET";
+
+  environment.systemPackages = with pkgs; [
+    libnotify
+  ];
 }

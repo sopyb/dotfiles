@@ -19,7 +19,8 @@
     killall
     ponysay
     ffmpeg
-    yt-dlp
+    peaclock
+
 
     # android screneshare stuff
     android-tools

@@ -4,6 +4,8 @@
   imports = [
     ../programs/communication.nix
     ../programs/command_line.nix
+    ../programs/media.nix
+    ../programs/misc.nix
     ../programs/programming.nix
   ];
 
@@ -12,5 +14,5 @@
     home.username = "sopy";
     home.homeDirectory = "/home/sopy";
   };
-}
+}g
   
