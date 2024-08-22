@@ -14,9 +14,14 @@ in
 
       enabledExtensions = with spicePkgs.extensions; [
         adblock
-        fullAppDisplay
-        shuffle # shuffle+ (special characters are sanitized out of ext names)
-        hidePodcasts
+        copyLyrics
+        fullAlbumDate
+        phraseToPlaylist
+        playNext
+        seekSong
+        shuffle
+        trashbin
+        wikify
       ];
     };
 }
