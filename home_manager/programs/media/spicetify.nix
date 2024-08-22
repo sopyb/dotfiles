@@ -1,19 +1,19 @@
-{ pkgs, lib, spicetify-nix, ... }:
+{ pkgs, lib, inputs, ... }:
 
 let
-  spicePkgs = spicetify-nix.packages.${pkgs.system}.default;
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
 in
 {
-  imports = [ spicetify-nix.homeManagerModule ];
+  imports = [ inputs.spicetify-nix.homeManagerModules.default ];
 
-  # configure spicetify :)
   programs.spicetify =
     {
       enable = true;
-      theme = spicePkgs.themes.catppuccin;
-      colorScheme = "mocha";
+      theme = spicePkgs.themes.starryNight;
+      colorScheme = "default";
 
       enabledExtensions = with spicePkgs.extensions; [
+        adblock
         fullAppDisplay
         shuffle # shuffle+ (special characters are sanitized out of ext names)
         hidePodcasts

@@ -4,10 +4,10 @@
 	inputs = {
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-	    home-manager = {
-	      url = "github:nix-community/home-manager";
-	      inputs.nixpkgs.follows = "nixpkgs";
-	    };
+		home-manager = {
+			url = "github:nix-community/home-manager";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 
 		kwin-effects-forceblur = {
 			url = "github:taj-ny/kwin-effects-forceblur";
@@ -23,18 +23,23 @@
 			url = "github:lilyinstarlight/nixos-cosmic";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+
+		spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 	};
 
-  outputs = { self, home-manager, nixpkgs, nix-matlab, ... } @ inputs: #  spicetify-nix, 
+  outputs = { self, home-manager, nixpkgs, ... } @ inputs: 
 	let
 		system = "x86_64-linux";
 		pkgs = import nixpkgs {
 			inherit system;
 			config.allowUnfree = true;
 
-			overlays = [
+			overlays = with inputs; [
 				nix-matlab.overlay
-				inputs.nixos-cosmic.overlays.default
+				nixos-cosmic.overlays.default
 			];
 		};
 		home-manager-args = { inherit inputs pkgs; };

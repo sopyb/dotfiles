@@ -32,6 +32,22 @@
         "type": "github"
       }
     },
+    "flake-compat_3": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1696426674,
+        "narHash": "sha256-kvjfFW7WAETZlt09AgDn1MrtKzP7t90Vf7vypd3OL1U=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -81,11 +97,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1724252509,
-        "narHash": "sha256-jrQIAgeGVX3agbhi6l+hDczrIDTBaNFA1J/78XgM+wA=",
+        "lastModified": 1724338904,
+        "narHash": "sha256-pUIjzpyORz+ccWrYQ5FyLv4cIHVMdiMEwNLveBom8Rk=",
         "owner": "doronbehar",
         "repo": "nix-matlab",
-        "rev": "1094412925c32dfccf07481f37f2b29d10248566",
+        "rev": "8ccacc054328ac8ba7c5d867657c0c3e67d948ec",
         "type": "gitlab"
       },
       "original": {
@@ -155,7 +171,8 @@
         "kwin-effects-forceblur": "kwin-effects-forceblur",
         "nix-matlab": "nix-matlab",
         "nixos-cosmic": "nixos-cosmic",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "spicetify-nix": "spicetify-nix"
       }
     },
     "rust-overlay": {
@@ -176,6 +193,27 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "spicetify-nix": {
+      "inputs": {
+        "flake-compat": "flake-compat_3",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1724300166,
+        "narHash": "sha256-4xHNh21uFGWsakRKmh86OpbY0/E30KHvdMSrgX3bTTU=",
+        "owner": "Gerg-L",
+        "repo": "spicetify-nix",
+        "rev": "0b865dea6eb59c3b3d3f6b65a4d4d41725ae0c12",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Gerg-L",
+        "repo": "spicetify-nix",
         "type": "github"
       }
     },

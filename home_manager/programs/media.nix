@@ -3,7 +3,7 @@
 {
   imports = [
     ./media/spicetify.nix
-  ]
+  ];
 
   home.packages = with pkgs; [
     # media
@@ -18,7 +18,6 @@
 
     # games
     osu-lazer-bin
-
     
     # game tools
     discover-overlay
@@ -39,6 +38,5 @@
     obsidian
     openboard
     onlyoffice-bin
-
   ];
 }
