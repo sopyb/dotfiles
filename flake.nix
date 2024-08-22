@@ -9,8 +9,6 @@
 	      inputs.nixpkgs.follows = "nixpkgs";
 	    };
 
-		# nur.url = "github:nix-community/NUR";
-
 		kwin-effects-forceblur = {
 			url = "github:taj-ny/kwin-effects-forceblur";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -25,8 +23,6 @@
 			url = "github:lilyinstarlight/nixos-cosmic";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-
-		# spicetify-nix.url = "github:the-argus/spicetify-nix";
 	};
 
   outputs = { self, home-manager, nixpkgs, nix-matlab, ... } @ inputs: #  spicetify-nix, 
@@ -57,9 +53,6 @@
 					./system/modules/desktop/cosmic.nix
 
 					({networking.hostName = "alphicta";})
-
-					# NUR
-					# nur.nixosModules.nur
 
 					# Home Manager
 					home-manager.nixosModules.home-manager {
