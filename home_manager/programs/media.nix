@@ -16,6 +16,9 @@
     prismlauncher
     steam
 
+    # emulators
+    rpcs3
+
     # games
     osu-lazer-bin
     
