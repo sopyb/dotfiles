@@ -9,6 +9,7 @@
 
     tor-browser
     deluge
+    floorp
     firefox-devedition
     vivaldi
     vivaldi-ffmpeg-codecs
