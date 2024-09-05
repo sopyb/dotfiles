@@ -10,10 +10,12 @@
 
     tor-browser
     deluge
+    
     floorp
-    firefox-devedition
-    vivaldi
-    vivaldi-ffmpeg-codecs
+    google-chrome
+    # firefox-devedition
+    # vivaldi
+    # vivaldi-ffmpeg-codecs
     ladybird
   ];
 }
