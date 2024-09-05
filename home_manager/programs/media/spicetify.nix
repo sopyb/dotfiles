@@ -10,7 +10,7 @@ in
     {
       enable = true;
       theme = spicePkgs.themes.starryNight;
-      colorScheme = "Forest";
+      colorScheme = "Base";
 
       enabledExtensions = with spicePkgs.extensions; [
         adblock

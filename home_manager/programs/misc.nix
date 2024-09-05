@@ -5,6 +5,7 @@
     kdePackages.filelight
     kdePackages.partitionmanager
     kdePackages.plasma-systemmonitor
+    kdePackages.ark
 
 
     tor-browser
