@@ -7,13 +7,16 @@ in {
     arduino-ide
     matlab
     vscode
+
+    # Rust toolchain
+    rustup
   ] ++ utils.addJetbrainsPlugins [
-    jetbrains.clion
-    # jetbrains.webstorm
-    # jetbrains.rust-rover
-    # jetbrains.pycharm-professional
-    # jetbrains.phpstorm
-    # jetbrains.idea-ultimate
-    # jetbrains.datagrip
+    # jetbrains.clion ## llvm & university work
+    # jetbrains.webstorm ## random web projects
+    jetbrains.rust-rover ## sosh
+    # jetbrains.pycharm-professional ## not python... NOT PYTHON
+    # jetbrains.phpstorm ## Universuty work
+    # jetbrains.idea-ultimate ## University work
+    # jetbrains.datagrip ## University work
   ];
 }
