@@ -10,6 +10,12 @@ in {
 
     # Rust toolchain
     rustup
+
+    # D stuff
+    dmd
+    ldc
+    dtools
+    serve-d
   ] ++ utils.addJetbrainsPlugins [
     # jetbrains.clion ## llvm & university work
     # jetbrains.webstorm ## random web projects
