@@ -18,9 +18,9 @@ in {
     serve-d
   ] ++ utils.addJetbrainsPlugins [
     # jetbrains.clion ## llvm & university work
-    # jetbrains.webstorm ## random web projects
-    jetbrains.rust-rover ## sosh
-    # jetbrains.pycharm-professional ## not python... NOT PYTHON
+    jetbrains.webstorm ## random web projects - Portfolio time
+    jetbrains.rust-rover ## sheesh
+    # jetbrains.pycharm-profesasional ## not python... NOT PYTHON
     # jetbrains.phpstorm ## Universuty work
     # jetbrains.idea-ultimate ## University work
     # jetbrains.datagrip ## University work
