@@ -32,6 +32,10 @@
       enable = true;
       plugins = [
         { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; }
+        { name = "wbingli/zsh-wakatime"; tags = [ as:plugin ]; }
+        { name = "zsh-users/zsh-autosuggestions"; tags = [ as:plugin ]; }
+        { name = "zsh-users/zsh-completions"; tags = [ as:plugin ]; }
+        { name = "zsh-users/zsh-syntax-highlighting"; tags = [ as:plugin ]; }
       ];
     };
   };

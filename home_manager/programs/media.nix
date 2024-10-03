@@ -41,5 +41,6 @@
     obsidian
     openboard
     onlyoffice-bin
+    libreoffice
   ];
 }
