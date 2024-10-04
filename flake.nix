@@ -56,6 +56,7 @@
 					# Modules
 					./system/hw_cfg_victus.nix
 					./system/modules/common.nix
+					./system/specializations/deckmode.nix
 
 					# Desktop Environment
 					./system/modules/desktop/cosmic.nix
