@@ -55,14 +55,7 @@
 					# Modules
 					./system/hw_cfg_victus.nix
 					./system/modules/common.nix
-
-					# default specialization
-					(import ./system/specializations/default.nix {
-    	              extraImports = [
-    	                ./system/modules/desktop/cosmic.nix
-    	              ];
-    	            })
-					
+					 
 					# specializations
 					./system/specializations/deckmode.nix
 
@@ -84,7 +77,9 @@
 						};
 					}
 	            # config for default specialization
-				];
+				] ++ lib.mkIf (pkgs.config.specialisation != {}) [
+				  ./system/modules/desktop/cosmic.nix				    
+				] or [];
 
 				specialArgs = {
 					inherit inputs pkgs system;
