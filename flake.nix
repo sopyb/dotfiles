@@ -23,7 +23,6 @@
 			url = "github:lilyinstarlight/nixos-cosmic";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-
 		
         distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
 
@@ -51,15 +50,21 @@
 		nixosConfigurations = {
 			alphicta = lib.nixosSystem {
 				inherit system;
-
+				
 				modules = [ 
 					# Modules
 					./system/hw_cfg_victus.nix
 					./system/modules/common.nix
-					./system/specializations/deckmode.nix
 
-					# Desktop Environment
-					./system/modules/desktop/cosmic.nix
+					# default specialization
+					(import ./system/specializations/default.nix {
+    	              extraImports = [
+    	                ./system/modules/desktop/cosmic.nix
+    	              ];
+    	            })
+					
+					# specializations
+					./system/specializations/deckmode.nix
 
 					({networking.hostName = "alphicta";})
 
@@ -78,6 +83,7 @@
 							};
 						};
 					}
+	            # config for default specialization
 				];
 
 				specialArgs = {

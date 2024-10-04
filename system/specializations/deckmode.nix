@@ -1,43 +1,41 @@
-specialisation = {
-  deckmode.configuration = {
-    services.xserver.desktopManager.plasma5.enable = true;
-  };
+{ config, pkgs, ... }:
 
-  sopy = {
-    inheritParentConfig = true;
-    configuration = {
-      import = [
-        # ../modules/users.nix
-      ]
-    
-      system.nixos.tags = [ "deckmode" ];
+{ 
+    specialisation = {
+      deckmode = {
+        configuration = {
+          system.nixos.tags = [ "deckmode" ];
 
-      programs = {
-        gamescope = {
-          enable = true;
-          capSysNice = true;
-        };
-        steam = {
-          enable = true;
-          package = pkgs.steam.override {
-            withPrimus = true;
-            withJava = true;
-            extraPkgs = pkgs: [ bumblebee glxinfo ];
+          programs = {
+            java.enable = true;
+
+            gamescope = {
+              enable = true;
+              capSysNice = true;
+            };
+
+            steam = {
+              enable = true;
+
+              remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+              dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+              localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+              gamescopeSession.enable = true;
+            };
           };
-          gamescopeSession.enable = true;
-      };
-      
-      services.getty.autologinUser = "sopy";
-      environment = {
-        loginShellInit = ''
-          [[ "$(tty)" = "/dev/tty1" ]] && ./deckmode/gs.sh
-        '';
+          
+          services.getty.autologinUser = "sopy";
+          environment = {
+            loginShellInit = ''
+              [[ "$(tty)" = "/dev/tty1" ]] && ./deckmode/gs.sh
+            '';
 
-        systemPackages = with pkgs; [
-          mangohud
-          steam-run
-        ];
+            systemPackages = with pkgs; [
+              mangohud
+              steam-run
+            ];
+          };
+        };
       };
     };
-  };
-};
+}
