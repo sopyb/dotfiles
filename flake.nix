@@ -50,11 +50,14 @@
 		nixosConfigurations = {
 			alphicta = lib.nixosSystem {
 				inherit system;
-				
+
 				modules = [ 
 					# Modules
 					./system/hw_cfg_victus.nix
 					./system/modules/common.nix
+
+                    # Desktop Environment
+                    ./system/modules/desktop/cosmic.nix
 					 
 					# specializations
 					./system/specializations/deckmode.nix
@@ -67,7 +70,7 @@
 							useGlobalPkgs = true;
 							useUserPackages = true;
 							extraSpecialArgs = home-manager-args;
-							backupFileExtension = "old";
+							backupFileExtension = "old2";
 
 							users.sopy = {
 								imports = [ 
@@ -76,10 +79,7 @@
 							};
 						};
 					}
-	            # config for default specialization
-				] ++ lib.mkIf (pkgs.config.specialisation != {}) [
-				  ./system/modules/desktop/cosmic.nix				    
-				] or [];
+				];
 
 				specialArgs = {
 					inherit inputs pkgs system;
