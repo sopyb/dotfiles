@@ -11,7 +11,7 @@
     yt-dlp
 
     # game launchers
-    heroic
+    heroic-unwrapped
     itch
     prismlauncher
     steam

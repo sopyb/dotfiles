@@ -1,63 +1,73 @@
 { config, lib, pkgs, ... }:
 
-{ 
-    specialisation = {
-      deckmode = {    
-        inheritParentConfig = false;
-
-        configuration = {
-          imports = [
-            ../hw_cfg_victus.nix
-            ../modules/common.nix
-          ];
+{
+  specialisation = {
+    deckmode = {    
+      inheritParentConfig = false;
+      configuration = {
+        imports = [
+          ../hw_cfg_victus.nix
+          ../modules/common.nix
+        ];
+        
+        config = {          
+          system.nixos.tags = [ "deckmode" ];
           
-          config = {
-          
-            nixpkgs.config.allowUnfree = true;
-            system.nixos.tags = [ "deckmode" ];
-            
-            programs = {
-              java.enable = true;
-
-              gamescope = {
-                enable = true;
-                capSysNice = true;
-              };
-
-              steam = {
-                enable = true;
-
-                remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-                dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-                localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-                gamescopeSession.enable = true;
-
-                package = pkgs.steam.override {
-                  extraPkgs = pkgs: with pkgs; [
-                    libkrb5
-                    keyutils
-                    # bumblebee
-                    glxinfo
-                  ];
-                };
-              };
+          programs = {
+            java.enable = true;
+            gamescope = {
+              enable = true;
+              capSysNice = true;
             };
-
-            services.getty.autologinUser = "sopy";
-            environment = {
-              loginShellInit = ''
-                # [[ "$(tty)" = "/dev/tty1" ]] && /run/current-system/sw/bin/nvidia-offload ./gs.sh
-              [[ "$(tty)" = "/dev/tty1" ]] && ./gs.sh
-              '';
+            steam = {
+              enable = true;
+              remotePlay.openFirewall = true;
+              dedicatedServer.openFirewall = true;
+              localNetworkGameTransfers.openFirewall = true;
+              gamescopeSession.enable = true;
               
-              systemPackages = with pkgs; [
-                mangohud
-                steam-run
-                gamescope-wsi
-              ];
+              package = pkgs.steam.override {
+                extraPkgs = pkg: with pkgs; [
+                  libkrb5
+                  keyutils
+                ];
+              };
             };
+          };
+
+          hardware.nvidia = {
+            # prime = {
+            #   offload = {
+            #     enable = lib.mkForce false;
+            #     enableOffloadCmd = lib.mkForce true;
+            #   };
+            # 
+            #   reverseSync.enable = lib.mkForce true;
+            # };
+            # 
+            # powerManagement = {
+            #   enable = lib.mkForce true;
+            #   finegrained = lib.mkForce false;
+            # };
+
+            open = lib.mkForce true;
+          };
+          
+          services.getty.autologinUser = "sopy";
+          environment = {
+            loginShellInit = ''
+              [[ "$(tty)" = "/dev/tty1" ]] && ./gs.sh
+            '';
+            
+            systemPackages = with pkgs; [
+              mangohud
+              heroic-unwrapped
+              steam-run
+              gamescope-wsi
+            ];
           };
         };
       };
     };
+  };
 }
