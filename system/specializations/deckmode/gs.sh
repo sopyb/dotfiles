@@ -27,7 +27,7 @@ mangoVars=(
     MANGOHUD_CONFIG="$(IFS=,; echo "${mangoConfig[*]}")"
 )
 
-#export XWAYLAND_NO_GLAMOR=1
+export PrefersNonDefaultGPU=true
 export WLR_LIBINPUT_NO_DEVICES=1
 export "${mangoVars[@]}"
 export ENABLE_GAMESCOPE_WSI=1
