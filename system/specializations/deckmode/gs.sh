@@ -25,6 +25,7 @@ mangoVars=(
     MANGOHUD_CONFIG="$(IFS=,; echo "${mangoConfig[*]}")"
 )
 
+export WLR_LIBINPUT_NO_DEVICES=1
 export "${mangoVars[@]}"
 export ENABLE_GAMESCOPE_WSI=1
-exec gamescope "${gamescopeArgs[@]}" -- steam "${steamArgs[@]}" && echo "fuck fuck fuck fuck fuck fuck \n\n\n\n\n" > log.txt
+exec gamescope "${gamescopeArgs[@]}" -- steam "${steamArgs[@]}"

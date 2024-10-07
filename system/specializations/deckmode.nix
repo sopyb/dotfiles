@@ -46,8 +46,8 @@
             services.getty.autologinUser = "sopy";
             environment = {
               loginShellInit = ''
-                [[ "$(tty)" = "/dev/tty1" ]] && /run/current-system/sw/bin/nvidia-offload ./gs.sh
-              # [[ "$(tty)" = "/dev/tty1" ]] && ./gs.sh
+                # [[ "$(tty)" = "/dev/tty1" ]] && /run/current-system/sw/bin/nvidia-offload ./gs.sh
+              [[ "$(tty)" = "/dev/tty1" ]] && ./gs.sh
               '';
               
               systemPackages = with pkgs; [
