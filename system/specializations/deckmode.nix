@@ -34,26 +34,9 @@
               };
             };
           };
-
-          hardware.nvidia = {
-            # prime = {
-            #   offload = {
-            #     enable = lib.mkForce false;
-            #     enableOffloadCmd = lib.mkForce true;
-            #   };
-            # 
-            #   reverseSync.enable = lib.mkForce true;
-            # };
-            # 
-            # powerManagement = {
-            #   enable = lib.mkForce true;
-            #   finegrained = lib.mkForce false;
-            # };
-
-            open = lib.mkForce true;
-          };
           
           services.getty.autologinUser = "sopy";
+          services.switcherooControl.enable = true;
           environment = {
             loginShellInit = ''
               [[ "$(tty)" = "/dev/tty1" ]] && ./gs.sh
