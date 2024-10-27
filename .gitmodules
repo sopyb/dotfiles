@@ -1,3 +1,0 @@
-[submodule "dotfiles_secrets"]
-    path = dotfiles_secrets
-    url = git@github.com:sopyb/dotfiles-private.git

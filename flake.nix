@@ -64,6 +64,8 @@
               imports = [ 
                 ./home_manager/modules/system.nix
               ];
+
+              programs.home-manager.enable = true;
             }
           ];
 	    
