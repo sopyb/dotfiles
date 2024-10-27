@@ -23,6 +23,6 @@ in {
     # jetbrains.pycharm-profesasional ## not python... NOT PYTHON
     # jetbrains.phpstorm ## Universuty work
     # jetbrains.idea-ultimate ## University work
-    # jetbrains.datagrip ## University work
+    jetbrains.datagrip ## University work
   ];
 }

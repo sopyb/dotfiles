@@ -66,6 +66,17 @@
               ];
 
               programs.home-manager.enable = true;
+  
+              # Update desktop database after changes
+              home.activation = {
+                updateDesktopDatabase = {
+                  after = [ "linkGeneration" ];
+                  before = [ ];
+                  data = ''
+                    $DRY_RUN_CMD ${pkgs.desktop-file-utils}/bin/update-desktop-database $HOME/.local/share/applications
+                  '';
+                };
+              };
             }
           ];
 	    
