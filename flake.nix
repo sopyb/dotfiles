@@ -51,6 +51,27 @@
 		home-manager-args = { inherit inputs pkgs; };
 		lib = nixpkgs.lib;
 	in {
+	    homeConfigurations.sopy = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+
+          modules = [
+            {
+              home = {
+                username = "sopy";
+                homeDirectory = "/home/sopy";
+              };
+              
+              imports = [ 
+                ./home_manager/modules/system.nix
+              ];
+            }
+          ];
+	    
+          extraSpecialArgs = {
+            inherit inputs pkgs system;
+          };
+        };
+        
 		nixosConfigurations = {
 			alphicta = lib.nixosSystem {
 				inherit system;
