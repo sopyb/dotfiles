@@ -2,6 +2,6 @@
 
 {
   environment.systemPackages = [
-    inputs.activate-linux.defaultPackage.xf86_64-linux
+    inputs.activate-linux.defaultPackage.x86_64-linux
   ];
 }
