@@ -30,6 +30,11 @@
           url = "github:Gerg-L/spicetify-nix";
           inputs.nixpkgs.follows = "nixpkgs";
         };
+
+        activate-linux = {
+          url = "github:Kljunas2/activate-linux";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
 	};
 
   outputs = { self, home-manager, nixpkgs, ... } @ inputs: 
@@ -95,8 +100,9 @@
 					./system/modules/common.nix
 
                     # Desktop Environment
-                    ./system/modules/desktop/cosmic.nix
-					 
+                   ./system/modules/desktop/cosmic.nix
+                   ./system/modules/activate_linux.nix
+
 					# specializations
 					./system/specializations/deckmode.nix
 

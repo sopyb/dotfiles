@@ -16,6 +16,6 @@
     # firefox-devedition
     # vivaldi
     # vivaldi-ffmpeg-codecs
-    ladybird
+    # ladybird
   ];
 }

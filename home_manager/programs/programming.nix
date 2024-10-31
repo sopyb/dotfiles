@@ -10,16 +10,10 @@ in {
 
     # Rust toolchain
     rustup
-
-    # D stuff
-    dmd
-    ldc
-    dtools
-    serve-d
   ] ++ utils.addJetbrainsPlugins [
     jetbrains.clion ## llvm & university work
-    jetbrains.webstorm ## random web projects - Portfolio time
-    jetbrains.rust-rover ## sheesh
+    # jetbrains.webstorm ## random web projects - Portfolio time
+    # jetbrains.rust-rover ## sheesh
     # jetbrains.pycharm-profesasional ## not python... NOT PYTHON
     # jetbrains.phpstorm ## Universuty work
     # jetbrains.idea-ultimate ## University work

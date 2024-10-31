@@ -1,10 +1,6 @@
 { pkgs, ... }:
 
 {
-  imports = [ ];
-
-  config = {
-
     nix = {
       settings = {
         experimental-features = [ "nix-command" "flakes" ];
@@ -14,13 +10,11 @@
         trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="];
       };
 
-      package = pkgs.nixFlakes;
+      package = pkgs.nixVersions.stable;
 
       extraOptions = ''
         experimental-features = nix-command flakes
         binary-caches-parallel-connections = 5
       '';
     };
-  };
-
-}
+  }

@@ -3,9 +3,9 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-# { inputs, config, pkgs, options, lib, ... }:
+{ inputs, config, pkgs, options, lib, ... }:
 
-# {
+{
 #   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
 #   # Enable networking
@@ -15,11 +15,11 @@
 #   # Select internationalisation properties.
 
 #   # Enable the KDE Plasma Desktop Environment.
-#   # ! TODO: Move plasma related stuff to it's own file
-#   # services.displayManager.sddm.enable = true;
-#   # services.displayManager.sddm.wayland.enable = true;
-#   # services.desktopManager.plasma6.enable = true;
-
+#   # ! TODO: Move plasma related stuff to it's own fi
+services.displayManager.sddm.enable = true;
+services.displayManager.sddm.wayland.enable = true;
+services.desktopManager.plasma6.enable = true;
+}
 #   # environment.variables = lib.mkForce {
 #   #     QT_STYLE_OVERRIDE = "kvantum";
 #   #   };

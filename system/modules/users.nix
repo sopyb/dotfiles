@@ -2,7 +2,7 @@
 
 {
   imports = [ 
-    ../../dotfiles_secrets/users/passwords.nix
+#    ../../dotfiles_secrets/users/passwords.nix
   ];
 
   options.sopy.users = { };

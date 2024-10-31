@@ -5,7 +5,7 @@
 
 {
   imports =
-    [ 
+    [
       ./hardware/amdgpu.nix
       ./hardware/nvidia_proprietary.nix
       # ./hardware/nvidia_mesa_nvk.nix
@@ -20,33 +20,19 @@
   # boot.kernelParams = [ "amdgpu.vramlimit=2048" ]; TODO: Figure out how to give the igpu more vram
   boot.supportedFilesystems = [ "ntfs" ];
   boot.extraModulePackages = [ ];
-
+  
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/39b11b9c-6cd6-4726-b3f0-013afba27e5a";
+    { device = "/dev/disk/by-uuid/ce242705-bb0e-43c9-b9c2-3f1a3bca4cab";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/B50C-84B6";
+    { device = "/dev/disk/by-uuid/CB3A-62F0";
       fsType = "vfat";
+      options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/43980977-477a-4f43-9e87-2b6d6f9da6c9";
-      fsType = "ext4";
-    };
-
-  fileSystems."/home/sopy/Windows" = {
-  	device = "/dev/disk/by-uuid/9430AE4630AE2F64";
-  	fsType = "ntfs-3g";
-  	options = [ "rw" "uid=1000" ];
-  };
-
-  swapDevices = [ 
-    {
-    	device = "/dev/disk/by-uuid/dd9dd5d2-a0a9-48ed-a2d6-243608c179e8";
-    }
-  ];
+  swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
