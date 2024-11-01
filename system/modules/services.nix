@@ -3,7 +3,6 @@
 {
     # fix for Mullvad VPN
     networking.networkmanager.enable = true;
-    networking.nameservers = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
     
     services = {
         mullvad-vpn = {
@@ -20,15 +19,6 @@
         };
 
         printing.enable = true;
-        
-        # fix for Mullvad VPN
-        resolved = {
-            enable = true;
-            dnssec = "true";
-            domains = [ "~." ];
-            fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
-            dnsovertls = "true";
-        };
 
         udev.packages = [
             pkgs.android-udev-rules
