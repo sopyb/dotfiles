@@ -10,7 +10,7 @@
         trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="];
       };
 
-      package = pkgs.nixVersions.stable;
+      package = pkgs.lix;
 
       extraOptions = ''
         experimental-features = nix-command flakes
