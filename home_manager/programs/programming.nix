@@ -14,9 +14,10 @@ in {
     jetbrains.clion ## llvm & university work
     # jetbrains.webstorm ## random web projects - Portfolio time
     # jetbrains.rust-rover ## sheesh
-    # jetbrains.pycharm-profesasional ## not python... NOT PYTHON
+    jetbrains.pycharm-professional ## not python... NOT PYTHON
     # jetbrains.phpstorm ## Universuty work
     # jetbrains.idea-ultimate ## University work
     jetbrains.datagrip ## University work
+    jetbrains.goland
   ];
 }

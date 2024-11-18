@@ -32,6 +32,8 @@
                 variant = "";
             };
         };
+
+        fwupd.enable = true;
     };
 
 

@@ -6,5 +6,8 @@
       dockerCompat = true;
     };
     
-    environment.systemPackages = [ pkgs.distrobox ];
+    environment.systemPackages = with pkgs; [ 
+      distrobox
+      docker-compose       
+    ];
 }

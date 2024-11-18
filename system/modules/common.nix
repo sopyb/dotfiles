@@ -32,7 +32,7 @@
     nvtopPackages.nvidia
     nvtopPackages.amd
     nvtopPackages.intel
-    cloudflared
+    cloudflared  
   ];
 
   

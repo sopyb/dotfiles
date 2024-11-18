@@ -17,6 +17,13 @@ in
 
         theme = grub-theme;
         splashImage = "${grub-theme}/splash_image.jpg";        
+
+        extraEntries = ''
+          menuentry "Nobara Linux" {
+            search --no-floppy --fs-uuid --set=root 7D6D-06E4
+            chainloader /EFI/fedora/shimx64.efi
+          }
+        '';
       };
       
       efi.canTouchEfiVariables = true;
