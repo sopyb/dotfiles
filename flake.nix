@@ -139,7 +139,7 @@
     				./system/modules/common.nix
 
                     # Desktop Environment
-                    ./system/modules/desktop/plasma.nix
+                    ./system/modules/desktop/gnome.nix
 
     				({networking.hostName = "bethium";})
 
