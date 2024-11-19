@@ -12,6 +12,7 @@ echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf
 ## Rebuild system
 Available devices:
 - alphicta (my Victus 16-e0003nq laptop)
+- bethium (work pc)
 
 ```bash
 sudo nixos-rebuild switch --flake .#<hostname>
