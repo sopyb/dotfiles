@@ -129,6 +129,41 @@
 					inherit inputs pkgs system;
 				};
 			};
+
+			bethium = lib.nixosSystem {
+    			inherit system;
+
+    			modules = [ 
+    				# Modules
+    				./system/hw_cfg_bethium.nix
+    				./system/modules/common.nix
+
+                    # Desktop Environment
+                    ./system/modules/desktop/plasma.nix
+
+    				({networking.hostName = "bethium";})
+
+    				# Home Manager
+    				home-manager.nixosModules.home-manager {
+    						home-manager = {
+    						useGlobalPkgs = true;
+    						useUserPackages = true;
+    						extraSpecialArgs = home-manager-args;
+    						backupFileExtension = "old2";
+
+    						users.sopy = {
+    							imports = [ 
+    								./home_manager/modules/system.nix
+    							];
+    						};
+    					};
+    				}
+    			];
+
+    			specialArgs = {
+    				inherit inputs pkgs system;
+    			};
+    		};
 		};
 	};
 }
