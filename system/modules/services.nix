@@ -22,6 +22,7 @@
 
         udev.packages = [
             pkgs.android-udev-rules
+            pkgs.openrgb
         ];
 
         xserver = {
@@ -34,6 +35,8 @@
         };
 
         fwupd.enable = true;
+
+        hardware.openrgb.enable = true;
     };
 
 

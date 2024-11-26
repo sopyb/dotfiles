@@ -33,6 +33,7 @@
     nvtopPackages.amd
     nvtopPackages.intel
     cloudflared  
+    openrgb-with-all-plugins 
   ];
 
   
