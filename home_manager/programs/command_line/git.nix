@@ -8,7 +8,7 @@
     userEmail = "contact@sopy.one";
 
     signing = {
-      key = "0xF23DB4349DDE0FAA";
+      key = "0x9807678BAB0693F4";
       signByDefault = true;
     };
     
