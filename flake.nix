@@ -46,6 +46,7 @@
             config = {
               allowUnfree = true;
               nvidia.acceptLicense = true;
+              android_sdk.accept_license = true;
             };
             
 			overlays = with inputs; [

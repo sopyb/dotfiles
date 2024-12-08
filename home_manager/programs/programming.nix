@@ -7,10 +7,12 @@ in {
     arduino-ide
     matlab
     vscode
+    android-studio
 
     # Rust toolchain
     rustup
   ] ++ utils.addJetbrainsPlugins [
+    # android-studio
     jetbrains.clion ## llvm & university work
     jetbrains.webstorm ## random web projects - Portfolio time
     # jetbrains.rust-rover ## sheesh
