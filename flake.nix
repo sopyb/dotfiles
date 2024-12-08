@@ -97,7 +97,7 @@
 
 				modules = [ 
 					# Modules
-					./system/hw_cfg_victus.nix
+					./system/hw_cfg_alphicta.nix
 					./system/modules/common.nix
 
                     # Desktop Environment

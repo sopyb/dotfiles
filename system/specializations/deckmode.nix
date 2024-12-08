@@ -6,7 +6,7 @@
       inheritParentConfig = false;
       configuration = {
         imports = [
-          ../hw_cfg_victus.nix
+          ../hw_cfg_alphicta.nix
           ../modules/common.nix
         ];
         
