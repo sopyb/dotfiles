@@ -9,6 +9,9 @@ in {
     vscode
     android-studio
 
+    # DES
+    uppaal
+
     # Rust toolchain
     rustup
   ] ++ utils.addJetbrainsPlugins [
