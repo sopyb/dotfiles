@@ -1,182 +1,184 @@
 {
-	description = "A very basic flake";
+  description = "A very basic flake";
 
-	inputs = {
-		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-		home-manager = {
-			url = "github:nix-community/home-manager";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-		kwin-effects-forceblur = {
-			url = "github:taj-ny/kwin-effects-forceblur";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
+    kwin-effects-forceblur = {
+      url = "github:taj-ny/kwin-effects-forceblur";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-		nix-matlab = {
-			inputs.nixpkgs.follows = "nixpkgs";
-			url = "gitlab:doronbehar/nix-matlab";
-		};
+    nix-matlab = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "gitlab:doronbehar/nix-matlab";
+    };
 
-		nixos-cosmic = {
-			url = "github:lilyinstarlight/nixos-cosmic";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-        winapps = {
-            url = "github:winapps-org/winapps";
-            inputs.nixpkgs.follows = "nixpkgs";
+    winapps = {
+      url = "github:winapps-org/winapps";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
+
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    minesddm = {
+      url = "github:sopyb/sddm-theme-minesddm";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    minegrub-world-sel-theme = {
+      url = "github:Lxtharia/minegrub-world-sel-theme";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+  };
+
+  outputs = { self, home-manager, nixpkgs, ... } @ inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+
+        config = {
+          allowUnfree = true;
+          nvidia.acceptLicense = true;
+          android_sdk.accept_license = true;
         };
-        	
-        distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
 
-	    spicetify-nix = {
-          url = "github:Gerg-L/spicetify-nix";
-          inputs.nixpkgs.follows = "nixpkgs";
-        };
+        overlays = with inputs; [
+          nix-matlab.overlay
+          nixos-cosmic.overlays.default
+        ];
+      };
+      home-manager-args = { inherit inputs pkgs; };
+      lib = nixpkgs.lib;
+    in
+    {
+      homeConfigurations.sopy = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
 
-        # activate-linux = {
-        #   url = "github:Kljunas2/activate-linux";
-        #   inputs.nixpkgs.follows = "nixpkgs";
-        # };
-
-       
-        minesddm = {
-          url = "github:sopyb/sddm-theme-minesddm";
-          inputs.nixpkgs.follows = "nixpkgs";
-        }; 
-	};
-
-  outputs = { self, home-manager, nixpkgs, ... } @ inputs: 
-	let
-		system = "x86_64-linux";
-		pkgs = import nixpkgs {
-			inherit system;
-			
-            config = {
-              allowUnfree = true;
-              nvidia.acceptLicense = true;
-              android_sdk.accept_license = true;
+        modules = [
+          {
+            home = {
+              username = "sopy";
+              homeDirectory = "/home/sopy";
             };
-            
-			overlays = with inputs; [
-				nix-matlab.overlay
-				nixos-cosmic.overlays.default
-			];
-		};
-		home-manager-args = { inherit inputs pkgs; };
-		lib = nixpkgs.lib;
-	in {
-	    homeConfigurations.sopy = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+
+            imports = [
+              ./home_manager/modules/system.nix
+            ];
+
+            programs.home-manager.enable = true;
+
+            # Update desktop database after changes
+            home.activation = {
+              updateDesktopDatabase = {
+                after = [ "linkGeneration" ];
+                before = [ ];
+                data = ''
+                  $DRY_RUN_CMD ${pkgs.desktop-file-utils}/bin/update-desktop-database $HOME/.local/share/applications
+                '';
+              };
+            };
+          }
+        ];
+
+        extraSpecialArgs = {
+          inherit inputs pkgs system;
+        };
+      };
+
+      nixosConfigurations = {
+        alphicta = lib.nixosSystem {
+          inherit system;
 
           modules = [
-            {
-              home = {
-                username = "sopy";
-                homeDirectory = "/home/sopy";
-              };
-              
-              imports = [ 
-                ./home_manager/modules/system.nix
-              ];
+            # Modules
+            ./system/hw_cfg_alphicta.nix
+            ./system/modules/common.nix
 
-              programs.home-manager.enable = true;
-  
-              # Update desktop database after changes
-              home.activation = {
-                updateDesktopDatabase = {
-                  after = [ "linkGeneration" ];
-                  before = [ ];
-                  data = ''
-                    $DRY_RUN_CMD ${pkgs.desktop-file-utils}/bin/update-desktop-database $HOME/.local/share/applications
-                  '';
+            # Desktop Environment
+            ./system/modules/desktop/cosmic.nix
+            ./system/modules/desktop/cosmic-greeter.nix
+
+            # specializations
+            # ./system/specializations/deckmode.nix
+
+            ({ networking.hostName = "alphicta"; })
+
+            # Home Manager
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = home-manager-args;
+                backupFileExtension = "old2";
+
+                users.sopy = {
+                  imports = [
+                    ./home_manager/modules/system.nix
+                  ];
                 };
               };
             }
           ];
-	    
-          extraSpecialArgs = {
+
+          specialArgs = {
             inherit inputs pkgs system;
           };
         };
-        
-		nixosConfigurations = {
-			alphicta = lib.nixosSystem {
-				inherit system;
 
-				modules = [ 
-					# Modules
-					./system/hw_cfg_alphicta.nix
-					./system/modules/common.nix
+        bethium = lib.nixosSystem {
+          inherit system;
 
-                    # Desktop Environment
-                   ./system/modules/desktop/cosmic.nix
-                   ./system/modules/desktop/sddm.nix
-                   # ./system/modules/activate_linux.nix
+          modules = [
+            # Modules
+            ./system/hw_cfg_bethium.nix
+            ./system/modules/common.nix
 
-					# specializations
-					# ./system/specializations/deckmode.nix
+            # Desktop Environment
+            ./system/modules/desktop/gnome.nix
 
-					({networking.hostName = "alphicta";})
+            ({ networking.hostName = "bethium"; })
 
-					# Home Manager
-					home-manager.nixosModules.home-manager {
-							home-manager = {
-							useGlobalPkgs = true;
-							useUserPackages = true;
-							extraSpecialArgs = home-manager-args;
-							backupFileExtension = "old2";
+            # Home Manager
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = home-manager-args;
+                backupFileExtension = "old2";
 
-							users.sopy = {
-								imports = [ 
-									./home_manager/modules/system.nix
-								];
-							};
-						};
-					}
-				];
+                users.sopy = {
+                  imports = [
+                    ./home_manager/modules/system.nix
+                  ];
+                };
+              };
+            }
+          ];
 
-				specialArgs = {
-					inherit inputs pkgs system;
-				};
-			};
-
-			bethium = lib.nixosSystem {
-    			inherit system;
-
-    			modules = [ 
-    				# Modules
-    				./system/hw_cfg_bethium.nix
-    				./system/modules/common.nix
-
-                    # Desktop Environment
-                    ./system/modules/desktop/gnome.nix
-
-    				({networking.hostName = "bethium";})
-
-    				# Home Manager
-    				home-manager.nixosModules.home-manager {
-    						home-manager = {
-    						useGlobalPkgs = true;
-    						useUserPackages = true;
-    						extraSpecialArgs = home-manager-args;
-    						backupFileExtension = "old2";
-
-    						users.sopy = {
-    							imports = [ 
-    								./home_manager/modules/system.nix
-    							];
-    						};
-    					};
-    				}
-    			];
-
-    			specialArgs = {
-    				inherit inputs pkgs system;
-    			};
-    		};
-		};
-	};
+          specialArgs = {
+            inherit inputs pkgs system;
+          };
+        };
+      };
+    };
 }

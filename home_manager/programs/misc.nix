@@ -10,7 +10,7 @@
 
     tor-browser
     deluge
-    
+
     floorp
     google-chrome
     # firefox-devedition

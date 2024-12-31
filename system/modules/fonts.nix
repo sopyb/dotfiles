@@ -6,7 +6,7 @@
       corefonts
 
       noto-fonts-color-emoji
-      
+
       monocraft # nixpkgs version includes the nerd-fonts patched version the NUR one doesn't
     ] ++ builtins.filter (x: lib.isDerivation x) (builtins.attrValues pkgs.nerd-fonts);
 
@@ -15,9 +15,9 @@
 
     fontconfig = {
 
-        defaultFonts = {
-          emoji = [ "Noto Color Emoji" ];
-        };
+      defaultFonts = {
+        emoji = [ "Noto Color Emoji" ];
+      };
     };
   };
 }

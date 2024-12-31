@@ -20,14 +20,16 @@
   # boot.kernelParams = [ "amdgpu.vramlimit=2048" ]; TODO: Figure out how to give the igpu more vram
   boot.supportedFilesystems = [ "ntfs" ];
   boot.extraModulePackages = [ ];
-  
+
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/ce242705-bb0e-43c9-b9c2-3f1a3bca4cab";
+    {
+      device = "/dev/disk/by-uuid/ce242705-bb0e-43c9-b9c2-3f1a3bca4cab";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/CB3A-62F0";
+    {
+      device = "/dev/disk/by-uuid/CB3A-62F0";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };

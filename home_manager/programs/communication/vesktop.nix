@@ -1,7 +1,7 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 
 (pkgs.vesktop.overrideAttrs (oldAttrs: rec {
-  
+
   desktopItems = [
     (pkgs.makeDesktopItem {
       name = "Clementine";

@@ -1,8 +1,8 @@
 { pkgs, config, ... }:
 
 {
-  imports = [ 
-#    ../../dotfiles_secrets/users/passwords.nix
+  imports = [
+    #    ../../dotfiles_secrets/users/passwords.nix
   ];
 
   options.sopy.users = { };
@@ -14,14 +14,14 @@
 
         enableCompletion = true;
         autosuggestions.enable = true;
-    
+
         enableGlobalCompInit = false;
         syntaxHighlighting.enable = true;
       };
 
       direnv.enable = true;
     };
-    
+
     users.users.sopy = {
       isNormalUser = true;
       useDefaultShell = true;

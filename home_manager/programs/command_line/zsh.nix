@@ -27,7 +27,7 @@
       POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
     '';
 
-    
+
     zplug = {
       enable = true;
       plugins = [

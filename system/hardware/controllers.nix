@@ -1,4 +1,4 @@
-{ inputs, pkgs, ...}:
+{ inputs, pkgs, ... }:
 
 {
   # Xbox One Controller
@@ -21,7 +21,7 @@
   '';
 
   environment.systemPackages = with pkgs; [
-    dualsensectl 
+    dualsensectl
   ];
 
   # OpenTabletDriver

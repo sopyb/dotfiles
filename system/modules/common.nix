@@ -24,7 +24,7 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-  
+
   time.timeZone = "EET";
 
   environment.systemPackages = with pkgs; [
@@ -32,11 +32,11 @@
     nvtopPackages.nvidia
     nvtopPackages.amd
     nvtopPackages.intel
-    cloudflared  
-    openrgb-with-all-plugins 
+    cloudflared
+    openrgb-with-all-plugins
   ];
 
-  
+
   environment.etc."ssh/ssh_config".text = ''
     Host *.sopy.one
       ProxyCommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h

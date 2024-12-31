@@ -21,7 +21,6 @@
     ffmpeg
     peaclock
 
-
     # android screneshare stuff
     android-tools
     scrcpy
@@ -32,5 +31,7 @@
 
     # wayland
     wl-clipboard
+
+    nixpkgs-fmt
   ];
 }

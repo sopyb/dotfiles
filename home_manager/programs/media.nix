@@ -21,7 +21,7 @@
 
     # games
     osu-lazer-bin
-    
+
     # game tools
     gamescope
     goverlay

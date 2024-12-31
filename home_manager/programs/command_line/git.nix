@@ -3,7 +3,7 @@
 {
   programs.git = {
     enable = true;
-    
+
     userName = "Sopy";
     userEmail = "contact@sopy.one";
 
@@ -11,7 +11,7 @@
       key = "0x9807678BAB0693F4";
       signByDefault = true;
     };
-    
+
     extraConfig = {
       core = {
         autocrlf = "input";

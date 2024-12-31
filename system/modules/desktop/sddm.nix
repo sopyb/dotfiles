@@ -1,10 +1,10 @@
-{ inputs, ...}:
+{ inputs, ... }:
 
 {
-    imports = [ minesddm.nixosModules.default ];
+  imports = [ inputs.minesddm.nixosModules.default ];
 
-    services.xserver.displayManager.sddm = {
-      enable = true;
-      theme = "minesddm";
-   };
+  services.displayManager.sddm = {
+    enable = true;
+    theme = "minesddm";
+  };
 }
