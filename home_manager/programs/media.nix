@@ -11,7 +11,7 @@
     yt-dlp
 
     # game launchers
-    heroic
+    # heroic
     itch
     prismlauncher
     steam
@@ -23,13 +23,12 @@
     osu-lazer-bin
     
     # game tools
-    discover-overlay
     gamescope
     goverlay
     mangohud
 
     # wine stuff
-    bottles
+    # bottles
     protontricks
 
     # media creation

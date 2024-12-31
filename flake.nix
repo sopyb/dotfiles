@@ -23,7 +23,12 @@
 			url = "github:lilyinstarlight/nixos-cosmic";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-		
+
+        winapps = {
+            url = "github:winapps-org/winapps";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+        	
         distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
 
 	    spicetify-nix = {
@@ -31,10 +36,16 @@
           inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        activate-linux = {
-          url = "github:Kljunas2/activate-linux";
+        # activate-linux = {
+        #   url = "github:Kljunas2/activate-linux";
+        #   inputs.nixpkgs.follows = "nixpkgs";
+        # };
+
+       
+        minesddm = {
+          url = "github:sopyb/sddm-theme-minesddm";
           inputs.nixpkgs.follows = "nixpkgs";
-        };
+        }; 
 	};
 
   outputs = { self, home-manager, nixpkgs, ... } @ inputs: 
@@ -102,10 +113,11 @@
 
                     # Desktop Environment
                    ./system/modules/desktop/cosmic.nix
-                   ./system/modules/activate_linux.nix
+                   ./system/modules/desktop/sddm.nix
+                   # ./system/modules/activate_linux.nix
 
 					# specializations
-					./system/specializations/deckmode.nix
+					# ./system/specializations/deckmode.nix
 
 					({networking.hostName = "alphicta";})
 
