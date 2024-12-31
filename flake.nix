@@ -127,7 +127,9 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                extraSpecialArgs = home-manager-args;
+                extraSpecialArgs = home-manager-args // {
+                  machineName = "alphicta";
+                };
                 backupFileExtension = "old2";
 
                 users.sopy = {
@@ -163,7 +165,9 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                extraSpecialArgs = home-manager-args;
+                extraSpecialArgs = home-manager-args // {
+                  machineName = "bethium";
+                };
                 backupFileExtension = "old2";
 
                 users.sopy = {
