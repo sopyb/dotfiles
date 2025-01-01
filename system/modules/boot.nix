@@ -1,8 +1,5 @@
-{ pkgs, inputs, system, ... }:
+{ lib, pkgs, inputs, system, ... }:
 
-let
-  grub-theme = inputs.distro-grub-themes.packages.${system}.nixos-grub-theme;
-in
 {
   imports = [ inputs.minegrub-world-sel-theme.nixosModules.default ];
 
@@ -17,23 +14,24 @@ in
 
           minegrub-world-sel = {
             enable = true;
-            customIcons = [{
-              name = "nixos";
-              lineTop = "NixOS (23/11/2023, 23:03)";
-              lineBottom = "Survival Mode, No Cheats, Version: 23.11";
-              # Icon: you can use an icon from the remote repo, or load from a local file
-              imgName = "nixos";
-              # customImg = builtins.path {
-              #   path = ./nixos-logo.png;
-              #   name = "nixos-img";
-              # };
-            }];
+            customIcons = [
+              {
+                name = "nixos";
+                lineTop = "NixOS";
+                lineBottom = lib.concatStrings ["Spectator Mode, Cheats, Version: " (lib.versions.majorMinor lib.version)];
+                imgName = "nixos";
+              }
+            ];
           };
 
           extraEntries = ''
-            menuentry "Nobara Linux" {
+            menuentry "Nobara Linux" --class nobara --class gnu-linux --class gnu --class os {
               search --no-floppy --fs-uuid --set=root 7D6D-06E4
               chainloader /EFI/fedora/shimx64.efi
+            }
+
+            menuentry "UEFI Settings" --class uefi --class firmware {
+              fwsetup
             }
           '';
         };
@@ -66,6 +64,11 @@ in
         "plymouth:delay=5"
       ];
     };
+
+    environment.systemPackages = with pkgs; [
+      os-prober
+    ];
+
 
     system.stateVersion = "24.05";
   };
