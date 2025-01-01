@@ -1,9 +1,6 @@
 name: Check Nix formatting
 
-on:
-  push:
-    paths:
-      - '**/*.nix'
+on: [push, pull_request]
 
 jobs:
   check-formatting:
