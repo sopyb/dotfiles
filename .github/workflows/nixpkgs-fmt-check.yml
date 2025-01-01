@@ -1,0 +1,23 @@
+name: Check Nix formatting
+
+on:
+  push:
+    paths:
+      - '**/*.nix'
+
+jobs:
+  check-formatting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Nix
+        uses: cachix/install-nix-action@v30
+        
+      - name: Install nixpkgs-fmt
+        run: nix-env -i nixpkgs-fmt
+        
+      - name: Check formatting
+        id: format-check
+        run: |
+          nixpkgs-fmt --check ./**/*.nix
