@@ -18,7 +18,7 @@
               {
                 name = "nixos";
                 lineTop = "NixOS";
-                lineBottom = lib.concatStrings ["Spectator Mode, Cheats, Version: " (lib.versions.majorMinor lib.version)];
+                lineBottom = lib.concatStrings [ "Spectator Mode, Cheats, Version: " (lib.versions.majorMinor lib.version) ];
                 imgName = "nixos";
               }
             ];

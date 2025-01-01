@@ -12,7 +12,7 @@ in
     userEmail = "contact@sopy.one";
 
     signing = {
-      key = machineVars.gitSigningKey; 
+      key = machineVars.gitSigningKey;
       signByDefault = true;
     };
 
