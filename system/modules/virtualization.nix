@@ -19,8 +19,6 @@
       distrobox
       docker-compose
       virtiofsd
-      inputs.winapps.packages.${system}.winapps
-      inputs.winapps.packages.${system}.winapps-launcher
     ];
   };
 
