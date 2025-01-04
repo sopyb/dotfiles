@@ -32,6 +32,8 @@
     # wayland
     wl-clipboard
 
+    # Nix stuff
     nixpkgs-fmt
+    nil
   ];
 }
