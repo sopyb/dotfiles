@@ -13,11 +13,6 @@ jobs:
         
       - name: Install nixpkgs-fmt
         run: nix profile install nixpkgs#nixpkgs-fmt
-        
-      - name: Debug Step
-        run: |
-          echo "Listing files in $GITHUB_WORKSPACE"
-          find $GITHUB_WORKSPACE -name '*.nix'
 
       - name: Check formatting
         id: format-check
