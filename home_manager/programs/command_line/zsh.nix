@@ -15,29 +15,50 @@
     dotDir = ".config/zsh";
     enableCompletion = true;
     shellAliases = {
-      sl = "eza";
       ls = "eza";
+      sl = "eza";
       l = "eza -l";
       la = "eza -la";
       neofetch = "hyfetch";
     };
 
     initExtra = ''
+      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       eval "$(github-copilot-cli alias -- "$0")"
       POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
-    '';
+      '';
 
+    plugins = [
+      {
+        name = "nix-shell";
+        src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell";
+      }
+      {
+        name = "you-should-use";
+        src = "${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use";
+      }
+      {
+        name = "zsh-vi-mode";
+        src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode";
+      }
+      {
+        name = "zsh-z";
+        src = "${pkgs.zsh-z}/share/zsh-z";
+      }
+      {
+        name = "zsh-autosuggestions";
+        src = "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions";
+      }
+      {
+        name = "zsh-syntax-highlighting";
+        src = "${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting";
+      }
+      {
+        name = "powerlevel10k";
+        src = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k";
+      }
+    ];
 
-    zplug = {
-      enable = true;
-      plugins = [
-        { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; }
-        { name = "wbingli/zsh-wakatime"; tags = [ as:plugin ]; }
-        { name = "zsh-users/zsh-autosuggestions"; tags = [ as:plugin ]; }
-        { name = "zsh-users/zsh-completions"; tags = [ as:plugin ]; }
-        { name = "zsh-users/zsh-syntax-highlighting"; tags = [ as:plugin ]; }
-      ];
-    };
   };
 
   programs.fzf = {
