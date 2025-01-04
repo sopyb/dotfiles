@@ -5,7 +5,7 @@
 
   config = {
     boot = {
-      loader = rec {
+        loader = {
         grub = {
           enable = true;
           device = "nodev";
