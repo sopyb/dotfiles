@@ -17,5 +17,5 @@ jobs:
       - name: Check formatting
         id: format-check
         run: |
-          nixpkgs-fmt --check **/*.nix
-          echo "::set-output name=exitcode::$?"
+          nixpkgs-fmt --check $GITHUB_WORKSPACE/**/*.nix
+          echo "exitcode=$?" >> $GITHUB_ENV
