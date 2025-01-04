@@ -17,13 +17,5 @@ jobs:
       - name: Check formatting
         id: format-check
         run: |
-          nixpkgs-fmt --check ./**/*.nix
-        continue-on-error: true
-      - name: Report Status
-        run: |
-          if [ ${{ steps.format-check.outputs.exitcode }} -eq 0 ]; then
-            echo "All files are formatted correctly"
-          else
-            echo "Some files are not formatted correctly"
-            exit 1
-          fi
+          nixpkgs-fmt --check **/*.nix
+          echo "::set-output name=exitcode::$?"
