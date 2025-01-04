@@ -2,17 +2,17 @@
 
 {
   specialisation = {
-    deckmode = {    
+    deckmode = {
       inheritParentConfig = false;
       configuration = {
         imports = [
           ../hw_cfg_alphicta.nix
           ../modules/common.nix
         ];
-        
-        config = {          
+
+        config = {
           system.nixos.tags = [ "deckmode" ];
-          
+
           programs = {
             java.enable = true;
             gamescope = {
@@ -25,7 +25,7 @@
               dedicatedServer.openFirewall = true;
               localNetworkGameTransfers.openFirewall = true;
               gamescopeSession.enable = true;
-              
+
               package = pkgs.steam.override {
                 extraPkgs = pkg: with pkgs; [
                   libkrb5
@@ -34,14 +34,14 @@
               };
             };
           };
-          
+
           services.getty.autologinUser = "sopy";
           services.switcherooControl.enable = true;
           environment = {
             loginShellInit = ''
               [[ "$(tty)" = "/dev/tty1" ]] && ./gs.sh
             '';
-            
+
             systemPackages = with pkgs; [
               mangohud
               # heroic
