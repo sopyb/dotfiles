@@ -23,7 +23,4 @@
   environment.systemPackages = with pkgs; [
     dualsensectl
   ];
-
-  # OpenTabletDriver
-  hardware.opentabletdriver.enable = true;
 }

@@ -11,6 +11,7 @@
       # ./hardware/nvidia_mesa_nvk.nix
       ./hardware/bluetooth.nix
       ./hardware/controllers.nix
+      ./hardware/openTabletDriver.nix
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
