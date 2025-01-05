@@ -1,10 +1,14 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    nodejs_20
-    github-copilot-cli
-  ];
+  home = {
+    packages = with pkgs; [
+      nodejs_20
+      github-copilot-cli
+    ];
+
+    file.".config/zsh/.p10k.zsh".text = builtins.readFile ./p10k.zsh;
+  };
 
   programs.zsh = {
     enable = true;
@@ -20,13 +24,16 @@
       l = "eza -l";
       la = "eza -la";
       neofetch = "hyfetch";
+      cd = "z";
     };
 
     initExtra = ''
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       eval "$(github-copilot-cli alias -- "$0")"
       POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
-      '';
+
+      source ~/.config/zsh/.p10k.zsh
+    '';
 
     plugins = [
       {
@@ -36,10 +43,6 @@
       {
         name = "you-should-use";
         src = "${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use";
-      }
-      {
-        name = "zsh-vi-mode";
-        src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode";
       }
       {
         name = "zsh-z";
