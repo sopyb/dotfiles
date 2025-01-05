@@ -33,6 +33,11 @@
       POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 
       source ~/.config/zsh/.p10k.zsh
+
+
+      function edit() {
+        micro "$(fzf -e --query "$@")"
+      }
     '';
 
     plugins = [
