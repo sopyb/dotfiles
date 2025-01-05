@@ -18,21 +18,25 @@
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = [ "btrfs" "ext4" "vfat" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/ce242705-bb0e-43c9-b9c2-3f1a3bca4cab";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/ce242705-bb0e-43c9-b9c2-3f1a3bca4cab";
+    fsType = "ext4";
+  };
 
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/CB3A-62F0";
-      fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
-    };
+  fileSystems."/home/sopy/nobara" = {
+    device = "/dev/disk/by-uuid/21139142-7a7a-4b54-8944-1b877a1d70bf";
+    fsType = "btrfs";
+    options = [ "subvol=@home" "compress=zstd" ];
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/CB3A-62F0";
+    fsType = "vfat";
+    options = [ "fmask=0077" "dmask=0077" ];
+  };
 
   swapDevices = [ ];
 
