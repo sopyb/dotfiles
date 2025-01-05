@@ -9,8 +9,8 @@ in
   programs.spicetify =
     {
       enable = true;
-      theme = spicePkgs.themes.starryNight;
-      colorScheme = "Base";
+      theme = spicePkgs.themes.catppuccin;
+      colorScheme = "Macchiato";
 
       enabledExtensions = with spicePkgs.extensions; [
         adblock
