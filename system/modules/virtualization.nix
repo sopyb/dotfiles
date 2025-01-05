@@ -2,11 +2,6 @@
 
 {
   virtualisation = {
-    podman = {
-      enable = true;
-      dockerCompat = true;
-    };
-
     libvirtd.enable = true;
   };
 
@@ -16,8 +11,6 @@
     };
 
     systemPackages = with pkgs; [
-      distrobox
-      docker-compose
       virtiofsd
     ];
   };

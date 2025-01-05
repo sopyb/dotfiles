@@ -104,6 +104,7 @@
             # Modules
             ./system/hw_cfg_alphicta.nix
             ./system/modules/common.nix
+            ./system/modules/virtualization.nix
 
             # Desktop Environment
             ./system/modules/desktop/cosmic.nix

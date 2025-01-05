@@ -9,7 +9,7 @@
     ./programs.nix
     ./services.nix
     ./users.nix
-    ./virtualization.nix
+    ./containers.nix
   ];
 
   i18n.defaultLocale = "en_US.UTF-8";
