@@ -44,7 +44,7 @@
 
             systemPackages = with pkgs; [
               mangohud
-              # heroic
+              heroic
               steam-run
               gamescope-wsi
             ];
