@@ -36,7 +36,14 @@
 
 
       function edit() {
-        micro "$(fzf -e --query "$@")"
+        query="$@"
+        result=$(fzf -e --query "$query")
+
+        if [ -n "$result" ]; then
+          micro "$result"
+        else
+          echo "No file selected"
+        fi
       }
     '';
 
