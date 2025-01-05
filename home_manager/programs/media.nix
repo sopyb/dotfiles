@@ -11,7 +11,7 @@
     yt-dlp
 
     # game launchers
-    # heroic
+    heroic
     itch
     prismlauncher
     steam
@@ -28,7 +28,7 @@
     mangohud
 
     # wine stuff
-    # bottles
+    bottles
     protontricks
 
     # media creation
