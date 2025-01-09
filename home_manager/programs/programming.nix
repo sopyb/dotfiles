@@ -4,6 +4,10 @@ let
   utils = import ./programming/utils.nix { inherit pkgs; };
 in
 {
+  imports = [
+    ./programming/vscode.nix
+  ];
+
   home.packages = with pkgs; [
     arduino-ide
     matlab
