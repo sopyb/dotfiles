@@ -9,6 +9,7 @@
     ./command_line/gpg.nix
     ./command_line/htop.nix
     ./command_line/hyfetch.nix
+    ./command_line/kitty.nix
     ./command_line/micro.nix
     ./command_line/zsh.nix
   ];
