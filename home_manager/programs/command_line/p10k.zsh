@@ -570,7 +570,7 @@
   typeset -g POWERLEVEL9K_BATTERY_BACKGROUND=0
 
   ####################################[ time: current time ]####################################
-  typeset -g POWERLEVEL9K_TIME_FOREGROUND=0
+  typeset -g POWERLEVEL9K_TIME_FOREGROUND=7
   typeset -g POWERLEVEL9K_TIME_BACKGROUND=0
   typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'
   typeset -g POWERLEVEL9K_TIME_UPDATE_ON_COMMAND=true
