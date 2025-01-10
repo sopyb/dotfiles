@@ -69,7 +69,7 @@
         };
       };
 
-      "terminal.integrated.fontFamily" = "JetBrainsMono Nerd Font";
+      "terminal.integrated.fontFamily" = "JetBrainsMonoNL NF";
 
       "workbench.colorTheme" = "Catppuccin Macchiato";
     };
