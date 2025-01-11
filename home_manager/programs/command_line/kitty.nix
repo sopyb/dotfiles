@@ -8,7 +8,6 @@
     executable = true;
   };
 
-
   programs.kitty = {
     enable = true;
     package = pkgs.kitty;
@@ -22,8 +21,8 @@
     keybindings = {
       "ctrl+shift+c" = "copy_to_clipboard";
       "ctrl+shift+v" = "paste_from_clipboard";
-      "ctrl+shift+k" = "clear_scrollback";
-      "ctrl+shift+f" = "search";
+      "ctrl+shift+k" = "";
+      "ctrl+shift+f" = "";
       "alt+equal" = "increase_font_size";
       "alt+minus" = "decrease_font_size";
       "alt+t" = "new_tab";
