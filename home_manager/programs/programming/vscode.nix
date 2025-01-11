@@ -72,6 +72,7 @@
       "terminal.integrated.fontFamily" = "JetBrainsMonoNL NF";
 
       "workbench.colorTheme" = "Catppuccin Macchiato";
+      "catppuccin.accentColor" = "lavender";
     };
   };
 }
