@@ -62,40 +62,6 @@
       lib = nixpkgs.lib;
     in
     {
-      homeConfigurations.sopy = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-
-        modules = [
-          {
-            home = {
-              username = "sopy";
-              homeDirectory = "/home/sopy";
-            };
-
-            imports = [
-              ./home_manager/modules/system.nix
-            ];
-
-            programs.home-manager.enable = true;
-
-            # Update desktop database after changes
-            home.activation = {
-              updateDesktopDatabase = {
-                after = [ "linkGeneration" ];
-                before = [ ];
-                data = ''
-                  $DRY_RUN_CMD ${pkgs.desktop-file-utils}/bin/update-desktop-database $HOME/.local/share/applications
-                '';
-              };
-            };
-          }
-        ];
-
-        extraSpecialArgs = {
-          inherit inputs pkgs system;
-        };
-      };
-
       nixosConfigurations = {
         alphicta = lib.nixosSystem {
           inherit system;
@@ -176,6 +142,41 @@
           specialArgs = {
             inherit inputs pkgs system;
           };
+        };
+      };
+
+
+      homeConfigurations.sopy = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        modules = [
+          {
+            home = {
+              username = "sopy";
+              homeDirectory = "/home/sopy";
+            };
+
+            imports = [
+              ./home_manager/modules/system.nix
+            ];
+
+            programs.home-manager.enable = true;
+
+            # Update desktop database after changes
+            home.activation = {
+              updateDesktopDatabase = {
+                after = [ "linkGeneration" ];
+                before = [ ];
+                data = ''
+                  $DRY_RUN_CMD ${pkgs.desktop-file-utils}/bin/update-desktop-database $HOME/.local/share/applications
+                '';
+              };
+            };
+          }
+        ];
+
+        extraSpecialArgs = {
+          inherit inputs pkgs system;
         };
       };
     };
