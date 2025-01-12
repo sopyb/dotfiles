@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 {
   hardware.graphics = {
@@ -7,22 +7,14 @@
   };
 
   hardware.nvidia = {
-    modesetting.enable = true;
+    modesetting.enable = lib.mkDefault true;
     powerManagement = {
-      enable = true;
-      finegrained = true;
+      enable = lib.mkDefault true;
+      finegrained = lib.mkDefault true;
     };
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
-    prime = {
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
-      amdgpuBusId = "PCI:7:0:0";
-      nvidiaBusId = "PCI:1:0:0";
-    };
+    open = lib.mkDefault false;
+    nvidiaSettings = lib.mkDefault true;
+    package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
   services.xserver = {
