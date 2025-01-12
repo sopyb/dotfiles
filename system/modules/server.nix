@@ -5,8 +5,22 @@
     ./common.nix
   ];
   
-  services.xserver.displayManager.autoLogin = {
-    enable = true;
-    user = "sopy";
+  services = {
+    openssh = {
+      enable = true;
+      permitRootLogin = "no";
+      passwordAuthentication = false;
+    };
+
+    xserver.displayManager.autoLogin = {
+      enable = true;
+      user = "sopy";
+    };
+  };
+
+  users.users.sopy = {
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILiep/t/LdGXd2KfTFRQFu6KcPNDbHiix1tnO8+MXGyx sopy@alphicta"
+    ];
   };
 }
