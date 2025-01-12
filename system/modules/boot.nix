@@ -1,4 +1,4 @@
-{ lib, pkgs, inputs, system, ... }:
+{ lib, pkgs, inputs, ... }:
 
 {
   imports = [ inputs.minegrub-world-sel-theme.nixosModules.default ];
@@ -11,6 +11,7 @@
           device = lib.mkDefault "nodev";
           efiSupport = lib.mkDefault true;
           useOSProber = lib.mkDefault true;
+          gfxmodeEfi = lib.mkDefault "1920x1080";
 
           minegrub-world-sel = {
             enable = true;
