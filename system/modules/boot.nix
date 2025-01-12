@@ -8,9 +8,9 @@
       loader = {
         grub = {
           enable = true;
-          device = "nodev";
-          efiSupport = true;
-          useOSProber = true;
+          device = lib.mkDefault "nodev";
+          efiSupport = lib.mkDefault true;
+          useOSProber = lib.mkDefault true;
 
           minegrub-world-sel = {
             enable = true;
@@ -36,7 +36,7 @@
           '';
         };
 
-        efi.canTouchEfiVariables = true;
+        efi.canTouchEfiVariables = lib.mkDefault true;
       };
 
       kernelPackages = pkgs.linuxPackages_latest;

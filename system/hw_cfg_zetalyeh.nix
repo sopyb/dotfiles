@@ -13,13 +13,21 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
+  boot.loader.grub = {
+    device = "/dev/sda";
+    efiSupport = false;
+    useOSProber = false;
+  };
+
+  boot.loader.efi.canTouchEfiVariables = false;
+
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/96dc9024-9754-40e4-ad8f-3643742860e9";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/B860-180C";
+    { device = "/dev/disk/by-uuid/F6F8-ECAD";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
