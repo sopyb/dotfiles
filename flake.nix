@@ -149,7 +149,7 @@
 
           modules = [
             # Modules
-            # ./system/hw_cfg_zetalyeh.nix
+            ./system/hw_cfg_zetalyeh.nix
             ./system/modules/server.nix
 
             # Desktop Environment
