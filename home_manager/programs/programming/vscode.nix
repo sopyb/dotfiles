@@ -48,9 +48,10 @@
 
       "files.autoSave" = "afterDelay";
 
+      "git.autofetch" = true;
+      "git.confirmSync" = false;
       "git.enableCommitSigning" = true;
       "git.enableSmartCommit" = true;
-      "git.autofetch" = true;
 
       "github.copilot.enable" = {
         "*" = true;
