@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   hardware.nvidia = {
@@ -11,4 +11,6 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.legacy_390;
   };
+
+  boot.kernelPackages = pkgs.linuxPackages_6_6;
 }

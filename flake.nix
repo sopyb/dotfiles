@@ -49,7 +49,6 @@
 
         config = {
           allowUnfree = true;
-          allowBroken = true;
           nvidia.acceptLicense = true;
           android_sdk.accept_license = true;
         };
