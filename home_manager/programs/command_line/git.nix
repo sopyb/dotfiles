@@ -13,7 +13,7 @@ in
 
     signing = {
       key = machineVars.gitSigningKey;
-      signByDefault = true;
+      signByDefault = machineVars.gitSigning;
     };
 
     extraConfig = {

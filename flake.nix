@@ -69,12 +69,12 @@
           modules = [
             # Modules
             ./system/hw_cfg_alphicta.nix
-            ./system/modules/common.nix
+            ./system/modules/desktop.nix
             ./system/modules/virtualization.nix
 
             # Desktop Environment
-            ./system/modules/desktop/cosmic.nix
-            ./system/modules/desktop/cosmic-greeter.nix
+            ./system/modules/desktop/desktop_environments/cosmic.nix
+            ./system/modules/desktop/display_managers/cosmic-greeter.nix
 
             # specializations
             # ./system/specializations/deckmode.nix
@@ -94,7 +94,7 @@
 
                 users.sopy = {
                   imports = [
-                    ./home_manager/modules/system.nix
+                    ./home_manager/modules/desktop.nix
                   ];
                 };
               };
@@ -112,10 +112,10 @@
           modules = [
             # Modules
             ./system/hw_cfg_bethium.nix
-            ./system/modules/common.nix
+            ./system/modules/desktop.nix
 
             # Desktop Environment
-            ./system/modules/desktop/gnome.nix
+            ./system/modules/desktop/desktop_environments/gnome.nix
 
             ({ networking.hostName = "bethium"; })
 
@@ -132,7 +132,45 @@
 
                 users.sopy = {
                   imports = [
-                    ./home_manager/modules/system.nix
+                    ./home_manager/modules/desktop.nix
+                  ];
+                };
+              };
+            }
+          ];
+
+          specialArgs = {
+            inherit inputs pkgs system;
+          };
+        };
+
+        zetalyeh = lib.nixosSystem {
+          inherit system;
+
+          modules = [
+            # Modules
+            # ./system/hw_cfg_zetalyeh.nix
+            ./system/modules/server.nix
+
+            # Desktop Environment
+            ./system/modules/desktop/desktop_environments/xfce.nix
+
+            ({ networking.hostName = "zetalyeh"; })
+
+            # Home Manager
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = home-manager-args // {
+                  machineName = "zetalyeh";
+                };
+                backupFileExtension = "old2";
+
+                users.sopy = {
+                  imports = [
+                    ./home_manager/modules/server.nix
                   ];
                 };
               };

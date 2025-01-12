@@ -1,10 +1,9 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   imports = [
     ./boot.nix
     ./fonts.nix
-    ./limits.nix
     ./nix_settings.nix
     ./programs.nix
     ./services.nix
@@ -26,18 +25,4 @@
   };
 
   time.timeZone = "EET";
-
-  environment.systemPackages = with pkgs; [
-    libnotify
-    nvtopPackages.nvidia
-    nvtopPackages.amd
-    nvtopPackages.intel
-    cloudflared
-  ];
-
-
-  environment.etc."ssh/ssh_config".text = ''
-    Host *.sopy.one
-      ProxyCommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h
-  '';
 }
