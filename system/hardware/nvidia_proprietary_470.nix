@@ -1,14 +1,14 @@
 { inputs, system, ... }:
 
-let 
+let
   nvidianixpkgs = import inputs.nixpkgs_nvidia470 {
-        inherit system;
+    inherit system;
 
-        config = {
-          allowUnfree = true;
-          nvidia.acceptLicense = true;
-        };
-      };
+    config = {
+      allowUnfree = true;
+      nvidia.acceptLicense = true;
+    };
+  };
 in
 {
   hardware.nvidia = {
