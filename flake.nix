@@ -4,6 +4,9 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # Todo: remove once https://github.com/NixOS/nixpkgs/pull/370339 is merged
+    nixpkgs_nvidia470.url = "github:Kiskae/nixpkgs/nvidia/legacy_kernel_6_12";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -1,5 +1,15 @@
-{ config, pkgs, ... }:
+{ inputs, system, ... }:
 
+let 
+  nvidianixpkgs = import inputs.nixpkgs_nvidia470 {
+        inherit system;
+
+        config = {
+          allowUnfree = true;
+          nvidia.acceptLicense = true;
+        };
+      };
+in
 {
   hardware.nvidia = {
     modesetting.enable = true;
@@ -9,8 +19,8 @@
     };
     open = false;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
+    package = nvidianixpkgs.linuxPackages_6_6.nvidiaPackages.legacy_470;
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_6_6;
+  boot.kernelPackages = nvidianixpkgs.linuxPackages_6_6;
 }
