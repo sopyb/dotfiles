@@ -1,5 +1,8 @@
-{ pkgs, ... }:
-
+{ config, lib, pkgs, machineName, ... }:
+let
+  machineUtils = import ../../utils/machineVariables.nix { inherit lib config; };
+  machineVars = machineUtils.getMachineVariables machineName;
+in
 {
   programs.vscode = {
     enable = true;
@@ -50,7 +53,7 @@
 
       "git.autofetch" = true;
       "git.confirmSync" = false;
-      "git.enableCommitSigning" = true;
+      "git.enableCommitSigning" = machineVars.gitSigning;
       "git.enableSmartCommit" = true;
 
       "github.copilot.enable" = {
