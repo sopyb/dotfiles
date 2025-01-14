@@ -223,22 +223,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_nvidia470": {
-      "locked": {
-        "lastModified": 1735845639,
-        "narHash": "sha256-ynCNsm+s+WhlGO09kHETjGY7iPAuDKnp5/eNfp32za8=",
-        "owner": "Kiskae",
-        "repo": "nixpkgs",
-        "rev": "13c1c5bcfa7c34a695daef07621c202bc6a20a07",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Kiskae",
-        "ref": "nvidia/legacy_kernel_6_12",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
@@ -248,7 +232,6 @@
         "nix-matlab": "nix-matlab",
         "nixos-cosmic": "nixos-cosmic",
         "nixpkgs": "nixpkgs",
-        "nixpkgs_nvidia470": "nixpkgs_nvidia470",
         "spicetify-nix": "spicetify-nix"
       }
     },
