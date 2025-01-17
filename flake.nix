@@ -77,7 +77,7 @@
             ./system/modules/desktop/display_managers/cosmic-greeter.nix
 
             # specializations
-            # ./system/specializations/deckmode.nix
+            ./system/specializations/deckmode.nix
 
             ({ networking.hostName = "alphicta"; })
 

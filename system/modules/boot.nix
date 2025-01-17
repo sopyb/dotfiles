@@ -22,19 +22,18 @@
                 lineBottom = lib.concatStrings [ "Spectator Mode, Cheats, Version: " (lib.versions.majorMinor lib.version) ];
                 imgName = "nixos";
               }
+              {
+                name = "deckmode";
+                lineTop = "Deck Mode";
+                lineBottom = "Gaming Mode, Cheats, Version: unknown";
+                imgName = "steam";
+                customImg = builtins.path {
+                  path = ./steam.png;
+                  name = "steam";
+                };
+              }
             ];
           };
-
-          extraEntries = ''
-            menuentry "Nobara Linux" --class nobara --class gnu-linux --class gnu --class os {
-              search --no-floppy --fs-uuid --set=root 7D6D-06E4
-              chainloader /EFI/fedora/shimx64.efi
-            }
-
-            menuentry "UEFI Settings" --class uefi --class firmware {
-              fwsetup
-            }
-          '';
         };
 
         efi.canTouchEfiVariables = lib.mkDefault true;
