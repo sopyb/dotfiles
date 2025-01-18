@@ -13,6 +13,8 @@
         config = {
           system.nixos.tags = [ "deckmode" ];
 
+          boot.loader.grub.configurationName = ''Deck Mode" --class "deckmode'';
+          
           programs = {
             java.enable = true;
             gamescope = {
@@ -47,6 +49,8 @@
               heroic
               steam-run
               gamescope-wsi
+
+              bluetuith
             ];
           };
         };
