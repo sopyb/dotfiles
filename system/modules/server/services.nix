@@ -1,6 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
+  imports = [
+    inputs.nixosModules.default
+  ];
+
   services = {
     cockpit = {
       enable = true;
@@ -26,6 +30,8 @@
       enable = true;
       user = "sopy";
     };
+
+    vscode-server.enable = true;
   };
 
   users.users.sopy = {
