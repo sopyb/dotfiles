@@ -2,7 +2,7 @@
 
 {
   imports = [
-    inputs.nixosModules.default
+    inputs.vscode-server.nixosModules.default
   ];
 
   services = {
