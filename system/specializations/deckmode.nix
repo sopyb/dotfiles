@@ -14,7 +14,7 @@
           system.nixos.tags = [ "deckmode" ];
 
           boot.loader.grub.configurationName = ''Deck Mode" --class "deckmode'';
-          
+
           programs = {
             java.enable = true;
             gamescope = {
