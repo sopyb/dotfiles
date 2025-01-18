@@ -34,8 +34,14 @@
               }
             ];
           };
-        };
 
+          extraEntries = ''
+            menuentry "UEFI Settings" --class uefi --class firmware {
+              fwsetup
+            }
+          '';
+
+        };
         efi.canTouchEfiVariables = lib.mkDefault true;
       };
 
@@ -73,3 +79,4 @@
     system.stateVersion = "24.05";
   };
 }
+
