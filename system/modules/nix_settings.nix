@@ -17,7 +17,7 @@
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       ];
 
-      binary-caches-parallel-connections = 5;
+      binary-caches-parallel-connections = 0;
 
       auto-optimise-store = true;
     };
