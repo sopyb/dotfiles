@@ -12,10 +12,6 @@
 
       port = 9090;
       openFirewall = true;
-
-      settings = {
-        AllowUnencrypted = true;
-      };
     };
 
     openssh = {
