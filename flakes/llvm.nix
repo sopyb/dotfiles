@@ -25,32 +25,34 @@
             keepBuildTree
           ];
           buildInputs = with pkgs; [
-              bashInteractive
-              python3
-              ninja
-              cmake
-              llvmPackages_latest.llvm
+            bashInteractive
+            python3
+            ninja
+            cmake
+            llvmPackages_latest.llvm
           ];
         };
       };
 
       devShells.${system} = {
-        default = pkgs.mkShell.override {
-          inherit stdenv;
-        } {
-          inputsFrom = [
-            self.packages.${system}.default
-          ];
-          packages = with pkgs; [
-            llvmPackages_17.clang-tools
-          ];
-          env = {
-            CLANGD_FLAGS = "--query-driver=${pkgs.lib.getExe stdenv.cc}";
+        default = pkgs.mkShell.override
+          {
+            inherit stdenv;
+          }
+          {
+            inputsFrom = [
+              self.packages.${system}.default
+            ];
+            packages = with pkgs; [
+              llvmPackages_17.clang-tools
+            ];
+            env = {
+              CLANGD_FLAGS = "--query-driver=${pkgs.lib.getExe stdenv.cc}";
+            };
+            shellHook = ''
+              ln -sfn ${self.packages.${system}.default}/.build/source/build/compile_commands.json .
+            '';
           };
-          shellHook = ''
-            ln -sfn ${self.packages.${system}.default}/.build/source/build/compile_commands.json .
-          '';
-        };
       };
     };
 }
