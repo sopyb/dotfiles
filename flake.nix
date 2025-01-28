@@ -76,6 +76,7 @@
 
             # Desktop Environment
             ./system/modules/desktop/desktop_environments/cosmic.nix
+            ./system/modules/desktop/desktop_environments/plasma.nix
             ./system/modules/desktop/display_managers/cosmic-greeter.nix
 
             # specializations
