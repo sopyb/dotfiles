@@ -82,6 +82,9 @@
             # specializations
             ./system/specializations/deckmode.nix
 
+            # Services
+            # ./system/modules/ollama.nix
+
             ({ networking.hostName = "alphicta"; })
 
             # Home Manager
