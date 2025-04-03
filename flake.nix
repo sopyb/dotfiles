@@ -39,6 +39,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nur.url = "github:nix-community/NUR";
 
     vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
@@ -58,6 +59,7 @@
         overlays = with inputs; [
           nix-matlab.overlay
           nixos-cosmic.overlays.default
+          nur.overlay
         ];
       };
       home-manager-args = { inherit inputs pkgs; };
@@ -76,10 +78,14 @@
 
             # Desktop Environment
             ./system/modules/desktop/desktop_environments/cosmic.nix
-            ./system/modules/desktop/desktop_environments/plasma.nix
-            ./system/modules/desktop/display_managers/cosmic-greeter.nix
+            # ./system/modules/desktop/desktop_environments/plasma.nix
+            # ./system/modules/desktop/display_managers/cosmic-greeter.nix
+            ./system/modules/desktop/display_managers/ly.nix
+
+            
 
             # specializations
+            ./system/specializations/winVM/disableDGPUspec.nix
             ./system/specializations/deckmode.nix
 
             # Services
@@ -101,6 +107,7 @@
                 users.sopy = {
                   imports = [
                     ./home_manager/modules/desktop.nix
+                    ./home_manager/desktop_environments/hyprland/hyprland.nix  
                   ];
                 };
               };

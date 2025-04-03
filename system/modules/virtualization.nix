@@ -2,7 +2,20 @@
 
 {
   virtualisation = {
-    libvirtd.enable = true;
+    libvirtd = {
+      enable = true;
+
+      qemuVerbatimConfig = ''
+                cgroup_device_acl = [
+           "/dev/null", "/dev/full", "/dev/zero",
+           "/dev/random", "/dev/urandom",
+           "/dev/ptmx", "/dev/kvm",
+           "/dev/userfaultfd",
+           "/dev/kvmfr0"
+        ]
+      '';
+    };
+
   };
 
   environment = {
@@ -12,6 +25,7 @@
 
     systemPackages = with pkgs; [
       virtiofsd
+      looking-glass-client
     ];
   };
 

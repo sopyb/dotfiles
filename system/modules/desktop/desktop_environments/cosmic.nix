@@ -14,10 +14,13 @@
       cosmic-ext-applet-clipboard-manager
       cosmic-ext-applet-emoji-selector
       cosmic-ext-applet-external-monitor-brightness
-      cosmic-ext-examine
+      examine
       cosmic-ext-tweaks
     ];
 
-    sessionVariables.COSMIC_DATA_CONTROL_ENABLED = 1;
+    sessionVariables = {
+        COSMIC_DATA_CONTROL_ENABLED = 1;
+        COSMIC_DISABLE_DIRECT_SCANOUT = 1;
+    };
   };
 }

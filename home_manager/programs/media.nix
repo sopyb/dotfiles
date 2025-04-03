@@ -12,8 +12,9 @@
 
     # game launchers
     heroic
-    itch
+    # itch
     prismlauncher
+    samrewritten
     steam
 
     # emulators
@@ -32,7 +33,7 @@
     protontricks
 
     # media creation
-    kdenlive
+    kdePackages.kdenlive
     krita
     obs-studio
 

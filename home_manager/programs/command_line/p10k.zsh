@@ -16,6 +16,7 @@
     start_left_joined
     os_icon_joined          # os identifier
     dir                     # current directory
+    toolbox
     vcs                     # git status
     # =========================[ Line #2 ]=========================
     newline                 # \n

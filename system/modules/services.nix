@@ -20,10 +20,16 @@
 
     printing.enable = true;
 
-    udev.packages = [
-      pkgs.android-udev-rules
-      pkgs.openrgb
-    ];
+    udev = {
+      packages = [
+        pkgs.android-udev-rules
+        pkgs.openrgb
+      ];
+
+      extraRules = ''
+        SUBSYSTEM=="kvmfr", OWNER="sopy", GROUP="kvm", MODE="0660"
+      '';
+    };
 
     xserver = {
       # enable = true;

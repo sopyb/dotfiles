@@ -8,9 +8,10 @@ in
     element-desktop
     teams-for-linux
     thunderbird
+    slack
     vesktop
     zapzap
     zoom-us
-    zulip
+    # zulip
   ];
 }

@@ -1,4 +1,4 @@
-a#!/usr/bin/env bash
+#!/usr/bin/env bash
 set -xeuo pipefail
 
 gamescopeArgs=(
@@ -39,8 +39,8 @@ export "${mangoVars[@]}"
 export ENABLE_GAMESCOPE_WSI=1
 nohup gamescope "${gamescopeArgs[@]}" -- steam "${steamArgs[@]}" > /dev/null 2>&1 &
 
-sleep 2
-export DISPLAY=:0
-startplasma-wayland
+# sleep 2
+# export DISPLAY=:0
+# startplasma-wayland
 
 # steam

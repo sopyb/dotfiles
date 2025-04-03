@@ -106,13 +106,16 @@
   programs.hyfetch = {
     enable = true;
     settings = {
-      preset = "lesbian";
+      preset = "transgender";
       mode = "rgb";
       light_dark = "dark";
       lightness = 0.5;
       color_align = {
-        mode = "horizontal";
-        custom_colors = [ ];
+        mode = "custom";
+        custom_colors = [
+            0
+            1
+        ];
         fore_back = null;
       };
       backend = "fastfetch";

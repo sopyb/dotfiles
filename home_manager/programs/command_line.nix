@@ -36,5 +36,8 @@
     # Nix stuff
     nixpkgs-fmt
     nil
+
+    # Work stuff
+    picocom
   ];
 }
