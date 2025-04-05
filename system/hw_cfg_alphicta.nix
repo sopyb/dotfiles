@@ -30,8 +30,8 @@
     "vfio"
     "kvmfr"
   ];
-  
-  
+
+
   boot.extraModulePackages = with config.boot.kernelPackages; [
     config.boot.kernelPackages.kvmfr
   ];
@@ -88,12 +88,12 @@
       # };
 
       sync.enable = true;
-      
+
       amdgpuBusId = "PCI:7:0:0";
       nvidiaBusId = "PCI:1:0:0";
     };
-    
-      powerManagement.finegrained = false;
+
+    powerManagement.finegrained = false;
   };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

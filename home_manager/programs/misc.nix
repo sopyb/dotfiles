@@ -7,6 +7,7 @@
     kdePackages.plasma-systemmonitor
     kdePackages.ark
 
+    doublecmd
 
     tor-browser
     deluge

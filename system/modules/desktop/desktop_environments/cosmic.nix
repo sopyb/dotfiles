@@ -19,8 +19,8 @@
     ];
 
     sessionVariables = {
-        COSMIC_DATA_CONTROL_ENABLED = 1;
-        COSMIC_DISABLE_DIRECT_SCANOUT = 1;
+      COSMIC_DATA_CONTROL_ENABLED = 1;
+      COSMIC_DISABLE_DIRECT_SCANOUT = 1;
     };
   };
 }

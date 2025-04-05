@@ -113,8 +113,8 @@
       color_align = {
         mode = "custom";
         custom_colors = [
-            0
-            1
+          0
+          1
         ];
         fore_back = null;
       };

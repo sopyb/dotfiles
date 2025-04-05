@@ -10,7 +10,7 @@
           system.nixos.tags = [ "passthrough" ];
           boot.loader.grub.configurationName = ''dGPU Disabled" --class "nixos'';
           boot.kernelParams = [ "amd_iommu=on" "pcie_aspm=off" ];
-            
+
 
           # Alphicta
           boot.initrd.preDeviceCommands = ''

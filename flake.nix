@@ -82,7 +82,7 @@
             # ./system/modules/desktop/display_managers/cosmic-greeter.nix
             ./system/modules/desktop/display_managers/ly.nix
 
-            
+
 
             # specializations
             ./system/specializations/winVM/disableDGPUspec.nix
@@ -107,7 +107,7 @@
                 users.sopy = {
                   imports = [
                     ./home_manager/modules/desktop.nix
-                    ./home_manager/desktop_environments/hyprland/hyprland.nix  
+                    ./home_manager/desktop_environments/hyprland/hyprland.nix
                   ];
                 };
               };
