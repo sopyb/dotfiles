@@ -5,7 +5,7 @@ let
     map
       (ide:
         pkgs.jetbrains.plugins.addPlugins ide [
-          "github-copilot"
+          # "github-copilot"
           "ideavim"
         ]
       )

@@ -89,7 +89,7 @@
             ./system/specializations/deckmode.nix
 
             # Services
-            # ./system/modules/ollama.nix
+            ./system/modules/ollama.nix
 
             ({ networking.hostName = "alphicta"; })
 

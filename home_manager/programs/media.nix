@@ -18,7 +18,7 @@
     steam
 
     # emulators
-    rpcs3
+    # rpcs3
 
     # games
     osu-lazer-bin

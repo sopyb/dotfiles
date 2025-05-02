@@ -7,7 +7,8 @@
     kdePackages.plasma-systemmonitor
     kdePackages.ark
 
-    doublecmd
+    bitwarden-cli
+    bitwarden-desktop
 
     tor-browser
     deluge

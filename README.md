@@ -16,6 +16,7 @@ Available devices:
 - alphicta (my Victus 16-e0003nq laptop)
 - bethium (office all-in-one pc)
 - zetalyeh ("server" machine under my desk - formerly chtulhu)
+- omegantes (Oracle Cloud ARM vps)
 
 ```bash
 sudo nixos-rebuild switch --flake .#<hostname>
@@ -35,19 +36,13 @@ The hostnames follow a Greek letter + mythology/reference naming scheme:
   - Previously named "chtulhu" - because of how janky it is
   - Now you too can experience 2010 again... 
 
+- **omegantes**: From omega + μάντης (mantēs - literally the word for oracle in greek)
+
 ## File Structure
 
 ### Root Directory (/)
 - `flake.nix` - Main flake configuration file
 - `flake.lock` - Tracks pinned dependencies versions
-
-### /flakes/
-Development environment flakes used with direnv that can be symlinked into project directories
-
-Mandatory, command so I don't forget:
-```sh
-ln -s ~/dotfiles/flakes/llvm.flake ./flake.nix
-```
 
 ### /home-manager/
 User-specific configurations managed by home-manager:
