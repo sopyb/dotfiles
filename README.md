@@ -44,6 +44,11 @@ The hostnames follow a Greek letter + mythology/reference naming scheme:
 - `flake.nix` - Main flake configuration file
 - `flake.lock` - Tracks pinned dependencies versions
 
+### /lib/
+- `machine-options.nix` - Defines options for machine configuration
+- `make-machine.nix` - Helper to create NixOS configurations from options
+- `make-home.nix` - Helper to create Home Manager configurations from options
+
 ### /home-manager/
 User-specific configurations managed by home-manager:
 

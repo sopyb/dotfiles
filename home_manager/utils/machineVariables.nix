@@ -14,6 +14,10 @@ let
       gitSigningKey = "0x";
       gitSigning = false;
     };
+    omegantes = {
+      gitSigningKey = "0x";
+      gitSigning = false;
+    };
   };
 in
 {

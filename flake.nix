@@ -46,188 +46,137 @@
 
   outputs = { self, home-manager, nixpkgs, ... } @ inputs:
     let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
+      lib = nixpkgs.lib;
 
+      # Create a function to generate pkgs for different systems
+      pkgsForSystem = system: import nixpkgs {
+        inherit system;
         config = {
           allowUnfree = true;
           nvidia.acceptLicense = true;
           android_sdk.accept_license = true;
         };
-
         overlays = with inputs; [
           nix-matlab.overlay
           nixos-cosmic.overlays.default
-          nur.overlay
+          nur.overlays.default
         ];
       };
-      home-manager-args = { inherit inputs pkgs; };
-      lib = nixpkgs.lib;
+
+      mkMachine = { name, hardwareConfig, machineConfig, system ? "x86_64-linux" }:
+        let
+          # Create architecture-specific packages for this machine
+          machinePackages = pkgsForSystem system;
+        in
+        lib.nixosSystem {
+          inherit system;
+
+          modules = [
+            # Machine configuration
+            hardwareConfig
+            ./lib/make-machine.nix
+            machineConfig
+
+            # Home Manager
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = { inherit inputs; } // {
+                  machineName = name;
+                  inherit system;
+                  machine = machineConfig.machine;
+                  pkgs = machinePackages;
+                };
+                backupFileExtension = "old";
+
+                users.sopy = {
+                  imports = [
+                    ./lib/make-home.nix
+                  ];
+                };
+              };
+            }
+          ];
+
+          specialArgs = {
+            inherit inputs system;
+            machine = machineConfig.machine;
+            pkgs = machinePackages;
+          };
+        };
     in
     {
       nixosConfigurations = {
-        alphicta = lib.nixosSystem {
-          inherit system;
-
-          modules = [
-            # Modules
-            ./system/hw_cfg_alphicta.nix
-            ./system/modules/desktop.nix
-            ./system/modules/virtualization.nix
-
-            # Desktop Environment
-            ./system/modules/desktop/desktop_environments/cosmic.nix
-            ./system/modules/desktop/desktop_environments/hyprland.nix
-            # ./system/modules/desktop/display_managers/cosmic-greeter.nix
-            ./system/modules/desktop/display_managers/ly.nix
-
-
-
-            # specializations
-            ./system/specializations/winVM/disableDGPUspec.nix
-            ./system/specializations/deckmode.nix
-
-            # Services
-            ./system/modules/ollama.nix
-
-            ({ networking.hostName = "alphicta"; })
-
-            # Home Manager
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = home-manager-args // {
-                  machineName = "alphicta";
-                };
-                backupFileExtension = "old2";
-
-                users.sopy = {
-                  imports = [
-                    ./home_manager/modules/desktop.nix
-                    ./home_manager/desktop_environments/hyprland/hyprland.nix
-                  ];
-                };
+        alphicta = mkMachine {
+          name = "alphicta";
+          hardwareConfig = ./system/hw_cfg_alphicta.nix;
+          machineConfig = {
+            machine = {
+              name = "alphicta";
+              type = "desktop";
+              features = {
+                virtualization = true;
+                ollama = true;
+                deckmode = true;
+                noDGPUspecialization = true;
               };
-            }
-          ];
-
-          specialArgs = {
-            inherit inputs pkgs system;
-          };
-        };
-
-        bethium = lib.nixosSystem {
-          inherit system;
-
-          modules = [
-            # Modules
-            ./system/hw_cfg_bethium.nix
-            ./system/modules/desktop.nix
-
-            # Desktop Environment
-            ./system/modules/desktop/desktop_environments/gnome.nix
-
-            ({ networking.hostName = "bethium"; })
-
-            # Home Manager
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = home-manager-args // {
-                  machineName = "bethium";
-                };
-                backupFileExtension = "old2";
-
-                users.sopy = {
-                  imports = [
-                    ./home_manager/modules/desktop.nix
-                  ];
-                };
-              };
-            }
-          ];
-
-          specialArgs = {
-            inherit inputs pkgs system;
-          };
-        };
-
-        zetalyeh = lib.nixosSystem {
-          inherit system;
-
-          modules = [
-            # Modules
-            ./system/hw_cfg_zetalyeh.nix
-            ./system/modules/server.nix
-
-            # Desktop Environment
-            ./system/modules/desktop/desktop_environments/xfce.nix
-
-            ({ networking.hostName = "zetalyeh"; })
-
-            # Home Manager
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = home-manager-args // {
-                  machineName = "zetalyeh";
-                };
-                backupFileExtension = "old2";
-
-                users.sopy = {
-                  imports = [
-                    ./home_manager/modules/server.nix
-                  ];
-                };
-              };
-            }
-          ];
-
-          specialArgs = {
-            inherit inputs pkgs system;
-          };
-        };
-      };
-
-
-      homeConfigurations.sopy = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-
-        modules = [
-          {
-            home = {
-              username = "sopy";
-              homeDirectory = "/home/sopy";
-            };
-
-            imports = [
-              ./home_manager/modules/system.nix
-            ];
-
-            programs.home-manager.enable = true;
-
-            # Update desktop database after changes
-            home.activation = {
-              updateDesktopDatabase = {
-                after = [ "linkGeneration" ];
-                before = [ ];
-                data = ''
-                  $DRY_RUN_CMD ${pkgs.desktop-file-utils}/bin/update-desktop-database $HOME/.local/share/applications
-                '';
+              desktopEnvironment = {
+                enable = true;
+                type = "hyprland";
+                displayManager = "ly";
               };
             };
-          }
-        ];
+          };
+        };
 
-        extraSpecialArgs = {
-          inherit inputs pkgs system;
+        bethium = mkMachine {
+          name = "bethium";
+          hardwareConfig = ./system/hw_cfg_bethium.nix;
+          machineConfig = {
+            machine = {
+              name = "bethium";
+              type = "desktop";
+              features = { };
+              desktopEnvironment = {
+                enable = true;
+                type = "gnome";
+                displayManager = "none";
+              };
+            };
+          };
+        };
+
+        zetalyeh = mkMachine {
+          name = "zetalyeh";
+          hardwareConfig = ./system/hw_cfg_zetalyeh.nix;
+          machineConfig = {
+            machine = {
+              name = "zetalyeh";
+              type = "hybrid";
+              features = { };
+              desktopEnvironment = {
+                enable = true;
+                type = "xfce";
+                displayManager = "ly";
+              };
+            };
+          };
+        };
+
+        omegantes = mkMachine {
+          name = "omegantes";
+          system = "aarch64-linux";
+          hardwareConfig = ./system/hw_cfg_omegantes.nix;
+          machineConfig = {
+            machine = {
+              name = "omegantes";
+              type = "server";
+              features = { };
+              desktopEnvironment.enable = false;
+            };
+          };
         };
       };
     };

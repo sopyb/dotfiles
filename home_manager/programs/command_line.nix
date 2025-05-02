@@ -16,11 +16,8 @@
 
   home.packages = with pkgs; [
     # random stuff
-    blahaj
     killall
-    ponysay
     ffmpeg
-    peaclock
 
     # android screneshare stuff
     android-tools

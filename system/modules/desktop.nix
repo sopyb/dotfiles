@@ -3,6 +3,10 @@
 {
   imports = [
     ./common.nix
+    ./boot.nix
+    ./fonts.nix
+    ./programs.nix
+    ./services.nix
     ./desktop/limits.nix
   ];
 

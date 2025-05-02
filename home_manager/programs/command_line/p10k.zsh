@@ -99,7 +99,11 @@
 
   #################################[ blank: blank space ]##################################
   function prompt_blank() {
-    p10k segment +e -b none -f none -i ' ' -t ''
+    if [[ -n "$SSH_CONNECTION" ]]; then
+      p10k segment +e -b none -f 1 -i ' ' -t ''
+    else
+      p10k segment +e -b none -f none -i ' ' -t ''
+    fi
   }
 
   function instant_prompt_blank() {
@@ -114,7 +118,11 @@
 
   #################################[ start_left: custom prompt start ]######################
   function prompt_start_left() {
-    p10k segment +e -f 5 -b none -i $'\uE0BA\u2588' -t ''
+    if [[ -n "$SSH_CONNECTION" ]]; then
+      p10k segment +e -f 1 -b none -i $'\uE0BA\u2588' -t ''
+    else
+      p10k segment +e -f 5 -b none -i $'\uE0BA\u2588' -t ''
+    fi
   }
 
   function instant_prompt_start_left() {
@@ -125,6 +133,7 @@
   typeset -g POWERLEVEL9K_START_LEFT_LEFT_RIGHT_WHITESPACE=''
   typeset -g POWERLEVEL9K_START_LEFT_RIGHT_LEFT_WHITESPACE=''
   typeset -g POWERLEVEL9K_START_LEFT_RIGHT_RIGHT_WHITESPACE=''
+  typeset -g POWERLEVEL9K_START_LEFT_{REMOTE,REMOTE_SUDO}_BACKGROUND=3
 
   #################################[ start_right: custom prompt start ]######################
 
@@ -142,9 +151,13 @@
   typeset -g POWERLEVEL9K_START_RIGHT_RIGHT_RIGHT_WHITESPACE=''
 
   #################################[ os_icon: os identifier ]##################################
-  typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=0
-  typeset -g POWERLEVEL9K_OS_ICON_BACKGROUND=5
-
+  if [[ -n "$SSH_CONNECTION" ]]; then
+    typeset -g POWERLEVEL9K_OS_ICON_BACKGROUND=1
+    typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=0
+  else
+    typeset -g POWERLEVEL9K_OS_ICON_BACKGROUND=5
+    typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=0
+  fi
 
   ##################################[ dir: current directory ]##################################
   typeset -g POWERLEVEL9K_DIR_BACKGROUND=4
@@ -330,7 +343,7 @@
   typeset -g POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND=0
 
   typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_FOREGROUND=0
-  typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_BACKGROUND=5
+  typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_BACKGROUND=1
 
   typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND=0
   typeset -g POWERLEVEL9K_CONTEXT_BACKGROUND=5

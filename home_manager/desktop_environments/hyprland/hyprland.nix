@@ -75,14 +75,14 @@
           name = "logitech-pro-x-wireless";
           sensitivity = -0.8;
         }
-                {
-                  name = "logitech-pro-x-wireless-1";
-                  sensitivity = -0.8;
-                }
-                        {
-                          name = "logitech-pro-x-wireless-2";
-                          sensitivity = -0.8;
-                        }
+        {
+          name = "logitech-pro-x-wireless-1";
+          sensitivity = -0.8;
+        }
+        {
+          name = "logitech-pro-x-wireless-2";
+          sensitivity = -0.8;
+        }
       ];
       gestures = {
         workspace_swipe = true;
@@ -112,8 +112,8 @@
 
       bindr = [
         "$mod, SUPER_L,     exec, anyrun"
-        "CAPS, Caps_Lock,   exec, swayosd-client --caps-lock"   # Caps Lock
-        "MOD2, code:77,     exec, swayosd-client --num-lock"    # Num Lock
+        "CAPS, Caps_Lock,   exec, swayosd-client --caps-lock" # Caps Lock
+        "MOD2, code:77,     exec, swayosd-client --num-lock" # Num Lock
         "    , Scroll_Lock, exec, swayosd-client --scroll-lock" # Scroll Lock
       ];
 
@@ -196,7 +196,7 @@
       "$PiP" = "class:^(floorp)$, title:^(Firefox|Picture-in-Picture)$";
 
       windowrulev2 = [
-         "float, $PiP"
+        "float, $PiP"
         "pin, $PiP"
         "move 78% 40%, $PiP"
         "size 20% 20%, $PiP"
@@ -226,46 +226,46 @@
     };
 
     swayosd = {
-        enable = true;
+      enable = true;
     };
   };
 
   programs = {
     hyprlock = {
-        enable = true;
+      enable = true;
 
-        settings = {
-          general = {
-            disable_loading_bar = true;
-            grace = 300;
-            hide_cursor = true;
-            no_fade_in = false;
-          };
-        
-          background = [
-            {
-              path = "~/.config/hypr/bg.png";
-              blur_passes = 3;
-              blur_size = 8;
-            }
-          ];
-        
-          input-field = [
-            {
-              size = "200, 50";
-              position = "0, -80";
-              monitor = "";
-              dots_center = true;
-              fade_on_empty = false;
-              font_color = "rgb(202, 211, 245)";
-              inner_color = "rgb(91, 96, 120)";
-              outer_color = "rgb(24, 25, 38)";
-              outline_thickness = 5;
-              placeholder_text = ''<span foreground="#cad3f5">Password...</span>'';
-              shadow_passes = 2;
-            }
-          ];
+      settings = {
+        general = {
+          disable_loading_bar = true;
+          grace = 300;
+          hide_cursor = true;
+          no_fade_in = false;
         };
+
+        background = [
+          {
+            path = "~/.config/hypr/bg.png";
+            blur_passes = 3;
+            blur_size = 8;
+          }
+        ];
+
+        input-field = [
+          {
+            size = "200, 50";
+            position = "0, -80";
+            monitor = "";
+            dots_center = true;
+            fade_on_empty = false;
+            font_color = "rgb(202, 211, 245)";
+            inner_color = "rgb(91, 96, 120)";
+            outer_color = "rgb(24, 25, 38)";
+            outline_thickness = 5;
+            placeholder_text = ''<span foreground="#cad3f5">Password...</span>'';
+            shadow_passes = 2;
+          }
+        ];
+      };
     };
   };
 
