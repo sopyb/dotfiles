@@ -2,8 +2,8 @@
 
 {
   programs.hyprland.enable = true;
-  
-  security.pam.services.hyprlock = {};
+
+  security.pam.services.hyprlock = { };
 
   boot.kernelParams = [
     "nvidia_drm.fbdev=1"
