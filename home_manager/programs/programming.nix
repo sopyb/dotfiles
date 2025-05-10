@@ -20,7 +20,7 @@ in
 
     # Java6 :c Java 8 eh
     jdk8
-    staruml
+    # staruml
 
     # Rust toolchain
     rustup

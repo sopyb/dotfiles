@@ -30,7 +30,7 @@
     };
 
     minesddm = {
-      url = "github:sopyb/sddm-theme-minesddm";
+      url = "github:sopyb/sddm-theme-minesddm/fix-race-condition";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -42,6 +42,8 @@
     nur.url = "github:nix-community/NUR";
 
     vscode-server.url = "github:nix-community/nixos-vscode-server";
+
+    vgpu4nixos.url = "github:mrzenc/vgpu4nixos";
   };
 
   outputs = { self, home-manager, nixpkgs, ... } @ inputs:
@@ -125,7 +127,7 @@
               desktopEnvironment = {
                 enable = true;
                 type = "hyprland";
-                displayManager = "ly";
+                displayManager = "sddm";
               };
             };
           };

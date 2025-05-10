@@ -13,6 +13,6 @@ log "Copying configuration to remote host..."
 rsync -avz --exclude '.git/' --exclude 'result/' ./ $TARGET_HOST:/tmp/nixos-config/
 
 log "Building configuration on remote host..."
-ssh $TARGET_HOST "cd /tmp/nixos-config && sudo nixos-rebuild switch --flake '.#omegantes'"
+ssh $TARGET_HOST "cd /tmp/nixos-config && sudo nixos-rebuild switch --flake '.#omegantes' --show-trace"
 
 log "Deployment completed successfully!"
