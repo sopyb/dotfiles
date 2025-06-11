@@ -204,7 +204,7 @@
     };
   };
 
-  home.file.".config/hypr/bg.png".source = ../common/bg.png;
+  home.file.".config/hypr/bg.jpg".source = ../common/bg.jpg;
 
   services = {
     hyprpaper = {
@@ -215,12 +215,12 @@
         splash = true;
         splash_offset = 2.0;
 
-        preload = [ "~/.config/hypr/bg.png" ];
+        preload = [ "~/.config/hypr/bg.jpg" ];
 
         wallpaper = [
-          "eDP-1,    ~/.config/hypr/bg.png"
-          "HDMI-A-1, ~/.config/hypr/bg.png"
-          "DP-2,     ~/.config/hypr/bg.png"
+          "eDP-1,    ~/.config/hypr/bg.jpg"
+          "HDMI-A-1, ~/.config/hypr/bg.jpg"
+          "DP-2,     ~/.config/hypr/bg.jpg"
         ];
       };
     };

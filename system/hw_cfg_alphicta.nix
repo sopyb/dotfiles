@@ -7,11 +7,12 @@
   imports =
     [
       ./hardware/amdgpu.nix
-      ./hardware/nvidia_griddunlock.nix
+      ./hardware/nvidia_proprietary.nix
+      ./modules/desktop/desktop_environments/plasma.nix
       # ./hardware/nvidia_mesa_nvk.nix
       ./hardware/bluetooth.nix
       ./hardware/controllers.nix
-      ./hardware/openTabletDriver.nix
+      # ./hardware/openTabletDriver.nix
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
@@ -40,40 +41,49 @@
   boot.supportedFilesystems = [ "btrfs" "ext4" "vfat" ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/ce242705-bb0e-43c9-b9c2-3f1a3bca4cab";
-    fsType = "ext4";
+    device = "/dev/disk/by-uuid/f0362a99-b3b1-4fce-bbb5-c4a63e1b9c12";
+    neededForBoot = true;
+    options = [ "subvol=@" "noatime" "compress=zstd:3" "space_cache=v2" ];
   };
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/4664995f-3298-4bc7-8edb-517d1ae39e26";
+    device = "/dev/disk/by-uuid/f0362a99-b3b1-4fce-bbb5-c4a63e1b9c12";
     fsType = "btrfs";
     neededForBoot = true;
-    options = [ "subvol=@nix" "noatime" "compress=zstd" ];
+    options = [ "subvol=@nix" "noatime" "compress=zstd:3" "space_cache=v2" ];
   };
 
   fileSystems."/var" = {
-    device = "/dev/disk/by-uuid/4664995f-3298-4bc7-8edb-517d1ae39e26";
+    device = "/dev/disk/by-uuid/f0362a99-b3b1-4fce-bbb5-c4a63e1b9c12";
     fsType = "btrfs";
     neededForBoot = true;
-    options = [ "subvol=@var" "noatime" "compress=zstd" ];
+    options = [ "subvol=@var" "noatime" "compress=zstd:3" "space_cache=v2" ];
+  };
+
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/5c11c8ad-9148-4c58-a985-583d7989d91f";
+    fsType = "btrfs";
+    neededForBoot = true;
+    options = [ "noatime" "compress=zstd:3" "space_cache=v2" ];
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/CB3A-62F0";
+    device = "/dev/disk/by-uuid/f0362a99-b3b1-4fce-bbb5-c4a63e1b9c12";
+    fsType = "btrfs";
+    neededForBoot = true;
+    options = [ "subvol=@boot" "noatime" "compress=zstd:3" "space_cache=v2" ];
+  };
+
+  fileSystems."/boot/EFI" = {
+    device = "/dev/disk/by-uuid/2322-B7EF";
     fsType = "vfat";
     options = [ "fmask=0077" "dmask=0077" ];
   };
 
-  fileSystems."/home/sopy/Games" = {
-    device = "/dev/disk/by-uuid/1e4867ad-a94b-47ea-98b0-a03ab6ec63d0 ";
-    fsType = "ext4";
-    options = [ "defaults" "nofail" ];
-  };
-
   swapDevices = [
-    {
-      device = "/dev/disk/by-uuid/8b628163-a58b-40d6-8376-20e380fec43c";
-    }
+    # {
+    #   device = "/dev/disk/by-uuid/8b628163-a58b-40d6-8376-20e380fec43c";
+    # }
   ];
 
   services.udisks2 = {

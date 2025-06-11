@@ -8,8 +8,10 @@
       loader = {
         grub = {
           enable = true;
+          version = 2;
           device = lib.mkDefault "nodev";
           efiSupport = lib.mkDefault true;
+          efiInstallAsRemovable = lib.mkDefault true;
           useOSProber = lib.mkDefault true;
           gfxmodeEfi = lib.mkDefault "1920x1080";
 
@@ -42,7 +44,8 @@
           '';
 
         };
-        efi.canTouchEfiVariables = lib.mkDefault true;
+#        efi.canTouchEfiVariables = lib.mkDefault true;
+        efi.efiSysMountPoint = "/boot/EFI";
       };
 
       kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;

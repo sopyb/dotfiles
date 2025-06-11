@@ -2,7 +2,7 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -120,14 +120,13 @@
               type = "desktop";
               features = {
                 virtualization = true;
-                ollama = true;
                 deckmode = true;
                 noDGPUspecialization = true;
               };
               desktopEnvironment = {
                 enable = true;
                 type = "hyprland";
-                displayManager = "sddm";
+                displayManager = "ly";
               };
             };
           };

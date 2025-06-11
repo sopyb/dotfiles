@@ -9,14 +9,8 @@
 
   config = {
     programs = {
-      zsh = {
+      fish = {
         enable = true;
-
-        enableCompletion = true;
-        autosuggestions.enable = true;
-
-        enableGlobalCompInit = false;
-        syntaxHighlighting.enable = true;
       };
 
       direnv.enable = true;
@@ -26,8 +20,8 @@
       isNormalUser = true;
       useDefaultShell = true;
       description = "sopy";
-      extraGroups = [ "networkmanager" "wheel" "dialout" "plugdev" "adbusers" "gamemode" "docker" "kvm" "libvirtd" ];
-      shell = pkgs.zsh;
+      extraGroups = [ "networkmanager" "wheel" "dialout" "plugdev" "adbusers" "gamemode" "docker" "kvm" "libvirtd" "input" ];
+      shell = pkgs.fish;
     };
 
     security.sudo = {

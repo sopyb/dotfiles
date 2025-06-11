@@ -1,4 +1,4 @@
-{ config, lib, machineName, ... }:
+{ config, lib, pkgs, machineName, ... }:
 
 let
   machineUtils = import ../../utils/machineVariables.nix { inherit lib config; };
@@ -7,6 +7,7 @@ in
 {
   programs.git = {
     enable = true;
+    package = pkgs.gitFull;
 
     userName = "Sopy";
     userEmail = "contact@sopy.one";
@@ -37,5 +38,6 @@ in
     };
 
     lfs.enable = true;
+    
   };
 }

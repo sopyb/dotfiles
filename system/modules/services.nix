@@ -18,6 +18,8 @@
       jack.enable = true;
     };
 
+    ratbagd.enable = true;
+
     printing.enable = true;
 
     udev = {

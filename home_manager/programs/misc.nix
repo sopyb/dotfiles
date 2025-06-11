@@ -19,5 +19,8 @@
     # vivaldi
     # vivaldi-ffmpeg-codecs
     # ladybird
+
+
+    piper
   ];
 }
