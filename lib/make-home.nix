@@ -11,6 +11,7 @@ in
   imports = [
     ./machine-options.nix
     ../home_manager/modules/common.nix
+    inputs.zen-browser.homeModules.beta
   ]
   # Machine type home configuration
   ++ (optionalModule (machine.type == "desktop" || machine.type == "hybrid") ../home_manager/modules/desktop.nix)

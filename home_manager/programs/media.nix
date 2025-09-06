@@ -5,10 +5,38 @@
     ./media/spicetify.nix
   ];
 
+  programs.zen-browser = {
+    enable = true;
+
+    policies = {
+      AutofillAddressEnabled = true;
+      AutofillCreditCardEnabled = false;
+      DisableAppUpdate = true;
+      DisableFeedbackCommands = true;
+      DisableFirefoxStudies = true;
+      DisablePocket = true;
+      DisableTelemetry = true;
+      DontCheckDefaultBrowser = true;
+      NoDefaultBookmarks = true;
+      OfferToSaveLogins = false;
+    };
+  };
+
+
+
+
+
   home.packages = with pkgs; [
     # media
     mpv
     yt-dlp
+
+    # browsers
+    google-chrome
+    firefox-devedition
+    vivaldi
+    vivaldi-ffmpeg-codecs
+    ladybird
 
     # game launchers
     heroic
@@ -18,9 +46,12 @@
     steam
 
     # emulators
-    # rpcs3
+    # xemu
+    xenia-canary
+    rpcs3
 
     # games
+    olympus
     osu-lazer-bin
 
     # game tools
@@ -37,10 +68,14 @@
     krita
     obs-studio
 
+    blender
+    # unityhub
+    godot
+
     # documents
     obsidian
-    openboard
+    # openboard
+    libreoffice-qt6-fresh
     onlyoffice-bin
-    libreoffice
   ];
 }

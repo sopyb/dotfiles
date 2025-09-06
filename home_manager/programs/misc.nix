@@ -13,14 +13,10 @@
     tor-browser
     deluge
 
-    floorp
-    google-chrome
-    # firefox-devedition
-    # vivaldi
-    # vivaldi-ffmpeg-codecs
-    # ladybird
-
 
     piper
+
+    gpclient
+    gpauth
   ];
 }

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -15,7 +15,19 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+
+    plugins = with pkgs.hyprlandPlugins; [
+      hyprsplit
+    ];
+
     settings = {
+      plugin = {
+        split-monitor-workspaces = {
+          count = 10;
+          enable_notifications = 1;
+        };
+      };
+
       env = [
         "LIBVA_DRIVER_NAME,nvidia"
         "__GLX_VENDOR_LIBRARY_NAME,nvidia"
@@ -25,14 +37,20 @@
         "HYPRCURSOR_SIZE,16"
       ];
 
+      cursor = {
+        "no_hardware_cursors" = true;
+      };
+
       exec-once = [
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+        "hyprpm reload -n"
 
         "activate-linux"
         "swaync"
         "swayosd-server"
         "systemctl --user start hyprpaper"
         "systemctl --user start hyprpolkitagent"
+        # "hypridle"
 
         # autostart apps and move to workspace 1
         "[workspace special:z silent] discord"
@@ -41,16 +59,16 @@
       ];
 
       monitor = [
-        "eDP-1,    1920x1080@144,     0x1440, 1"
-        "HDMI-A-1, 1920x1080@119.88,  0x0,    1, mirror, eDP-1"
-        "DP-2,     2560x1440@59.95,   0x0,    1"
+        "eDP-1,    1920x1080@144,     0x0, 1"
+        "HDMI-A-1, 1920x1080@74.97,  1920x0,    1"
+        "DP-2,     2560x1440@59.95,   1920x0,    1"
       ];
 
       "$mod" = "SUPER";
       "$term" = "kitty";
       "$mail" = "thunderbird";
       "$fileManager" = "thunar";
-      "$browser" = "floorp";
+      "$browser" = "zen";
 
       animations = {
         enabled = false;
@@ -94,6 +112,10 @@
         disable_hyprland_logo = true;
       };
 
+      debug = {
+        full_cm_proto = true;
+      };
+
       bindel = [
         "    ,XF86AudioRaiseVolume,  exec, swayosd-client --output-volume raise --max-volume 175"
         "    ,XF86AudioLowerVolume,  exec, swayosd-client --output-volume lower --max-volume 175"
@@ -129,6 +151,9 @@
         "$mod, r, exec, $fileManager"
         "$mod, t, exec, $term"
 
+        # Lock
+        "$mod, l, exec, hyprlock"
+
         # Screenshots
         "          , print, exec, hyprshot -m output --clipboard-only --freeze"
         "$mod SHIFT, print, exec, hyprshot -m window --clipboard-only --freeze"
@@ -145,8 +170,8 @@
         "$mod SHIFT, f, fullscreen"
         "$mod, v, togglefloating"
 
-        "$mod, mouse_down, workspace, e+1"
-        "$mod, mouse_up, workspace, e-1"
+        "$mod ALT, right, split:workspace, e+1"
+        "$mod ALT, left,  split:workspace, e-1"
 
       ] ++ (builtins.concatLists (builtins.genList
         (i:
@@ -154,8 +179,8 @@
             ws = i + 1;
           in
           [
-            "$mod, code:1${toString i}, workspace, ${toString ws}"
-            "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+            "$mod, code:1${toString i}, split:workspace, ${toString ws}"
+            "$mod SHIFT, code:1${toString i}, split:movetoworkspace, ${toString ws}"
           ]
         )
         9)) ++ [
@@ -191,6 +216,7 @@
 
       windowrule = [
         "workspace special:z silent, class:discord"
+        "noblur, opaque, class:deadlocked"
       ];
 
       "$PiP" = "class:^(floorp)$, title:^(Firefox|Picture-in-Picture)$";
@@ -204,7 +230,7 @@
     };
   };
 
-  home.file.".config/hypr/bg.jpg".source = ../common/bg.jpg;
+  home.file.".config/hypr/bg.png".source = ../common/bg.png;
 
   services = {
     hyprpaper = {
@@ -215,12 +241,36 @@
         splash = true;
         splash_offset = 2.0;
 
-        preload = [ "~/.config/hypr/bg.jpg" ];
+        preload = [ "~/.config/hypr/bg.png" ];
 
         wallpaper = [
-          "eDP-1,    ~/.config/hypr/bg.jpg"
-          "HDMI-A-1, ~/.config/hypr/bg.jpg"
-          "DP-2,     ~/.config/hypr/bg.jpg"
+          "eDP-1,    ~/.config/hypr/bg.png"
+          "HDMI-A-1, ~/.config/hypr/bg.png"
+          "DP-2,     ~/.config/hypr/bg.png"
+        ];
+      };
+    };
+
+    hypridle = {
+      enable = true;
+
+      settings = {
+        general = {
+          lock_cmd = "pidof hyprlock || hyprlock"; # avoid starting multiple hyprlock instances.
+          before_sleep_cmd = "loginctl lock-session"; # lock before suspend.
+          after_sleep_cmd = "hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
+        };
+
+        listener = [
+          {
+            timeout = 300;
+            on-timeout = "loginctl lock-session";
+          }
+          {
+            timeout = 330;
+            on-timeout = "hyprctl dispatch dpms off";
+            on-resume = "hyprctl dispatch dpms on";
+          }
         ];
       };
     };
@@ -237,7 +287,7 @@
       settings = {
         general = {
           disable_loading_bar = true;
-          grace = 300;
+          grace = 2;
           hide_cursor = true;
           no_fade_in = false;
         };
@@ -246,23 +296,52 @@
           {
             path = "~/.config/hypr/bg.png";
             blur_passes = 3;
-            blur_size = 8;
+            blur_size = 3;
+          }
+        ];
+
+        # Username label
+        label = [
+          {
+            monitor = "";
+            text = "Hi there, $USER";
+            text_align = "center";
+            color = "rgb(202, 211, 245)"; # Catppuccin Machiatto Text
+            font_size = 24;
+            font_family = "JetBrains Mono Nerd Font";
+            position = "0, -40";
+            halign = "center";
+            valign = "center";
+          }
+          {
+            monitor = "";
+            text = "$TIME";
+            text_align = "center";
+            color = "rgb(183, 189, 248)"; # Catppuccin Machiatto lavender
+            font_size = 128;
+            font_family = "JetBrains Mono Nerd Font";
+            position = "0, 200";
+            halign = "center";
+            valign = "center";
           }
         ];
 
         input-field = [
           {
-            size = "200, 50";
-            position = "0, -80";
+            size = "300, 60";
+            position = "0, -100";
             monitor = "";
             dots_center = true;
             fade_on_empty = false;
-            font_color = "rgb(202, 211, 245)";
-            inner_color = "rgb(91, 96, 120)";
-            outer_color = "rgb(24, 25, 38)";
-            outline_thickness = 5;
-            placeholder_text = ''<span foreground="#cad3f5">Password...</span>'';
+            font_color = "rgb(202, 211, 245)"; # Catppuccin Machiatto Text
+            inner_color = "rgba(54, 58, 79, 0.8)"; # Catppuccin Machiatto Surface0 with transparency
+            outer_color = "rgb(183, 189, 248)"; # Catppuccin Machiatto lavender
+            outline_thickness = 3;
+            placeholder_text = ''Password...'';
             shadow_passes = 2;
+            dots_spacing = 0.3;
+            dots_rounding = -1;
+            rounding = 10;
           }
         ];
       };

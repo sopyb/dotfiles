@@ -4,11 +4,11 @@
   imports = [ inputs.minesddm.nixosModules.default ];
 
   services.displayManager = {
-  
-          sessionPackages = [ pkgs.niri ];
-      sddm = {
-        enable = true;
-        theme = "minesddm";
-        };
+
+    sessionPackages = [ pkgs.niri ];
+    sddm = {
+      enable = true;
+      theme = "minesddm";
     };
+  };
 }

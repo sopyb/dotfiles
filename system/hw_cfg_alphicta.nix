@@ -12,7 +12,8 @@
       # ./hardware/nvidia_mesa_nvk.nix
       ./hardware/bluetooth.nix
       ./hardware/controllers.nix
-      # ./hardware/openTabletDriver.nix
+      ./hardware/openTabletDriver.nix
+      # inputs.nixos-hardware.nixosModules.common-cpu-amd
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
@@ -92,18 +93,35 @@
 
   hardware.nvidia = {
     prime = {
-      # offload = {
-      #   enable = true;
-      #   enableOffloadCmd = true;
-      # };
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
 
-      sync.enable = true;
+      # sync.enable = true;
 
       amdgpuBusId = "PCI:7:0:0";
       nvidiaBusId = "PCI:1:0:0";
     };
 
     powerManagement.finegrained = false;
+  };
+
+  services.power-profiles-daemon.enable = false;
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+      CPU_MIN_PERF_ON_AC = 0;
+      CPU_MAX_PERF_ON_AC = 100;
+      CPU_MIN_PERF_ON_BAT = 0;
+      CPU_MAX_PERF_ON_BAT = 20;
+    };
   };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

@@ -12,9 +12,6 @@
 
   environment.systemPackages = with pkgs; [
     libnotify
-    nvtopPackages.nvidia
-    nvtopPackages.amd
-    nvtopPackages.intel
   ];
 
   environment.sessionVariables = {

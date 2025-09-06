@@ -44,7 +44,7 @@
           '';
 
         };
-#        efi.canTouchEfiVariables = lib.mkDefault true;
+        #        efi.canTouchEfiVariables = lib.mkDefault true;
         efi.efiSysMountPoint = "/boot/EFI";
       };
 

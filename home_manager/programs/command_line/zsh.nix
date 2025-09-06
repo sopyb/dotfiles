@@ -23,7 +23,7 @@
       l = "eza -l";
       la = "eza -la";
       neofetch = "hyfetch";
-      cd = "z";
+      # cd = "z";
     };
 
     initExtra = ''

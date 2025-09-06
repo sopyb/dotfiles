@@ -9,18 +9,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     kwin-effects-forceblur = {
       url = "github:taj-ny/kwin-effects-forceblur";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-matlab = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "gitlab:doronbehar/nix-matlab";
-    };
-
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -30,7 +25,7 @@
     };
 
     minesddm = {
-      url = "github:sopyb/sddm-theme-minesddm/fix-race-condition";
+      url = "github:Davi-S/sddm-theme-minesddm";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -39,11 +34,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprland.url = "github:hyprwm/Hyprland";
+    split-monitor-workspaces = {
+      url = "github:Duckonaut/split-monitor-workspaces";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     nur.url = "github:nix-community/NUR";
 
     vscode-server.url = "github:nix-community/nixos-vscode-server";
 
     vgpu4nixos.url = "github:mrzenc/vgpu4nixos";
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs = { self, home-manager, nixpkgs, ... } @ inputs:
@@ -59,8 +62,6 @@
           android_sdk.accept_license = true;
         };
         overlays = with inputs; [
-          nix-matlab.overlay
-          nixos-cosmic.overlays.default
           nur.overlays.default
         ];
       };
