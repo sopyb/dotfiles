@@ -35,10 +35,6 @@
     };
 
     hyprland.url = "github:hyprwm/Hyprland";
-    split-monitor-workspaces = {
-      url = "github:Duckonaut/split-monitor-workspaces";
-      inputs.hyprland.follows = "hyprland";
-    };
 
     nur.url = "github:nix-community/NUR";
 
@@ -53,7 +49,6 @@
     let
       lib = nixpkgs.lib;
 
-      # Create a function to generate pkgs for different systems
       pkgsForSystem = system: import nixpkgs {
         inherit system;
         config = {
@@ -68,17 +63,16 @@
 
       mkMachine = { name, hardwareConfig, machineConfig, system ? "x86_64-linux" }:
         let
-          # Create architecture-specific packages for this machine
           machinePackages = pkgsForSystem system;
         in
         lib.nixosSystem {
-          inherit system;
-
           modules = [
             # Machine configuration
             hardwareConfig
             ./lib/make-machine.nix
             machineConfig
+            { nixpkgs.pkgs = machinePackages; }
+            nixpkgs.nixosModules.readOnlyPkgs
 
             # Home Manager
             home-manager.nixosModules.home-manager
@@ -86,11 +80,10 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                extraSpecialArgs = { inherit inputs; } // {
+                extraSpecialArgs = {
+                  inherit inputs system;
                   machineName = name;
-                  inherit system;
                   machine = machineConfig.machine;
-                  pkgs = machinePackages;
                 };
                 backupFileExtension = "old";
 
@@ -106,7 +99,6 @@
           specialArgs = {
             inherit inputs system;
             machine = machineConfig.machine;
-            pkgs = machinePackages;
           };
         };
     in

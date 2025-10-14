@@ -24,5 +24,11 @@
     pciutils
   ];
 
+  networking.hosts = {
+    "127.0.0.1" = [ "winter15.gosredirector.ea.com" ];
+  };
+
   time.timeZone = "EET";
+
+  system.stateVersion = "24.05";
 }

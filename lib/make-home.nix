@@ -1,4 +1,4 @@
-{ lib, pkgs, inputs, system, machine, machineName, ... }:
+{ lib, inputs, machine, machineName, ... }:
 
 # This module sets up home-manager configuration based on machine options
 let

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   home = {
@@ -15,7 +15,7 @@
     autosuggestion.enable = true;
 
     autocd = true;
-    dotDir = ".config/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
     enableCompletion = true;
     shellAliases = {
       ls = "eza";
@@ -23,15 +23,27 @@
       l = "eza -l";
       la = "eza -la";
       neofetch = "hyfetch";
-      # cd = "z";
     };
 
-    initExtra = ''
+    completionInit = "autoload -U compinit && compinit -i";
+
+    initContent = ''
+      export "MICRO_TRUECOLOR=1"
+
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 
       source ~/.config/zsh/.p10k.zsh
 
+      if [[ -n "$CONTAINER_ID" ]] && [[ "$CONTAINER_ID" == "ros2" ]]; then
+        compinit() {
+          builtin autoload -U compinit
+          builtin compinit -u "$@"
+        }
+
+        source /opt/ros/humble/setup.zsh
+        export ROS_DOMAIN_ID=0
+      fi
 
       function edit() {
         query="$@"

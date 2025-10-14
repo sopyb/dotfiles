@@ -25,7 +25,6 @@
     udev = {
       packages = [
         pkgs.android-udev-rules
-        pkgs.openrgb
       ];
 
       extraRules = ''
@@ -45,8 +44,6 @@
     };
 
     fwupd.enable = true;
-
-    hardware.openrgb.enable = true;
   };
 
 

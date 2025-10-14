@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, system, ... }:
 
 {
   specialisation = {
@@ -11,6 +11,11 @@
         ];
 
         config = {
+          nixpkgs.hostPlatform = system;
+          nixpkgs.config.allowUnfree = true;
+          nixpkgs.config.nvidia.acceptLicense = true;
+          nixpkgs.config.android_sdk.accept_license = true;
+
           system.nixos.tags = [ "deckmode" ];
 
           boot.loader.grub.configurationName = ''Deck Mode" --class "deckmode'';

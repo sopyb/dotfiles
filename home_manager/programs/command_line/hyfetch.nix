@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   programs.fastfetch = {
@@ -106,21 +106,26 @@
   programs.hyfetch = {
     enable = true;
     settings = {
-      preset = "lesbian";
+      preset = "rainbow";
       mode = "rgb";
       light_dark = "dark";
-      lightness = 0.5;
+      lightness = 0.25;
       color_align = {
-        mode = "horizontal";
-        custom_colors = [
-          0
-          1
-        ];
+        mode = "custom";
+        custom_colors = {
+          "1" = 2;
+          "2" = 3;
+          "3" = 4;
+          "4" = 5;
+          "5" = 0;
+          "6" = 1;
+
+        };
         fore_back = null;
       };
       backend = "fastfetch";
       args = null;
-      distro = null;
+      distro = "nixos_colorful";
       pride_month_shown = [ ];
       pride_month_disable = true;
     };

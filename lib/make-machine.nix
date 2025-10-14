@@ -1,4 +1,4 @@
-{ lib, pkgs, inputs, system, machine, ... }:
+{ lib, system, machine, ... }:
 
 let
   optionalModule = condition: path:

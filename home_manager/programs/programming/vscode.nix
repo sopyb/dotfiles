@@ -6,77 +6,80 @@ in
 {
   programs.vscode = {
     enable = true;
-    enableUpdateCheck = false;
-    enableExtensionUpdateCheck = true;
 
     package = pkgs.vscode;
 
-    extensions = with pkgs.vscode-extensions; [
-      arrterian.nix-env-selector
+    profiles.default = {
+      enableUpdateCheck = false;
+      enableExtensionUpdateCheck = true;
 
-      bierner.github-markdown-preview
-      bierner.markdown-preview-github-styles
+      extensions = with pkgs.vscode-extensions; [
+        arrterian.nix-env-selector
 
-      catppuccin.catppuccin-vsc
-      catppuccin.catppuccin-vsc-icons
+        bierner.github-markdown-preview
+        bierner.markdown-preview-github-styles
 
-      firefox-devtools.vscode-firefox-debug
+        catppuccin.catppuccin-vsc
+        catppuccin.catppuccin-vsc-icons
 
-      github.copilot
-      github.copilot-chat
-      github.vscode-github-actions
-      github.vscode-pull-request-github
+        firefox-devtools.vscode-firefox-debug
 
-      jnoortheen.nix-ide
+        github.copilot
+        github.copilot-chat
+        github.vscode-github-actions
+        github.vscode-pull-request-github
 
-      mkhl.direnv
+        jnoortheen.nix-ide
 
-      ms-python.debugpy
-      ms-python.python
-      ms-python.vscode-pylance
+        mkhl.direnv
 
-      wakatime.vscode-wakatime
-    ];
+        ms-python.debugpy
+        ms-python.python
+        ms-python.vscode-pylance
 
-    keybindings = [
-      {
-        key = "ctrl+alt+l";
-        command = "editor.action.formatDocument";
-        when = "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor";
-      }
-    ];
+        wakatime.vscode-wakatime
+      ];
 
-    userSettings = {
-      "diffEditor.ignoreTrimWhitespace" = false;
+      keybindings = [
+        {
+          key = "ctrl+alt+l";
+          command = "editor.action.formatDocument";
+          when = "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor";
+        }
+      ];
 
-      "files.autoSave" = "afterDelay";
+      userSettings = {
+        "diffEditor.ignoreTrimWhitespace" = false;
 
-      "git.autofetch" = true;
-      "git.confirmSync" = false;
-      "git.enableCommitSigning" = machineVars.gitSigning;
-      "git.enableSmartCommit" = true;
+        "files.autoSave" = "afterDelay";
 
-      "github.copilot.enable" = {
-        "*" = true;
-      };
+        "git.autofetch" = true;
+        "git.confirmSync" = false;
+        "git.enableCommitSigning" = machineVars.gitSigning;
+        "git.enableSmartCommit" = true;
 
-      "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "nil";
-      "nix.serverSettings" = {
-        nil = {
-          diagnostics = {
-            ignored = [ "unused_with" ];
-          };
-          formatting = {
-            command = [ "nixpkgs-fmt" ];
+        "github.copilot.enable" = {
+          "*" = true;
+        };
+
+        "nix.enableLanguageServer" = true;
+        "nix.serverPath" = "nil";
+        "nix.serverSettings" = {
+          nil = {
+            diagnostics = {
+              ignored = [ "unused_with" ];
+            };
+            formatting = {
+              command = [ "nixpkgs-fmt" ];
+            };
           };
         };
+
+        "terminal.integrated.fontFamily" = "JetBrainsMonoNL NF";
+
+        "workbench.colorTheme" = "Catppuccin Macchiato";
+        "catppuccin.accentColor" = "lavender";
       };
-
-      "terminal.integrated.fontFamily" = "JetBrainsMonoNL NF";
-
-      "workbench.colorTheme" = "Catppuccin Macchiato";
-      "catppuccin.accentColor" = "lavender";
     };
   };
 }

@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./media/spicetify.nix
+    # ./media/spicetify.nix
   ];
 
   programs.zen-browser = {
@@ -30,6 +30,7 @@
     # media
     mpv
     yt-dlp
+    youtube-music
 
     # browsers
     google-chrome
@@ -44,6 +45,7 @@
     prismlauncher
     samrewritten
     steam
+    alvr
 
     # emulators
     # xemu
