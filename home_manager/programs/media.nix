@@ -49,8 +49,8 @@
 
     # emulators
     # xemu
-    xenia-canary
-    rpcs3
+    # xenia-canary
+    # rpcs3
 
     # games
     olympus

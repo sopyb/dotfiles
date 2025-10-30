@@ -33,5 +33,12 @@
         thunar-media-tags-plugin
       ];
     };
+
+    alvr = {
+      enable = true;
+      openFirewall = true;
+
+      package = pkgs.alvr;
+    };
   };
 }

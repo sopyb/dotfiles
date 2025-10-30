@@ -13,6 +13,7 @@ in
     arduino-ide
     vscode
     android-studio
+    nur.repos.xddxdd.mtkclient
 
     # Rust toolchain
     rustup

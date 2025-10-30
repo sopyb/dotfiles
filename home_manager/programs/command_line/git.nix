@@ -9,15 +9,13 @@ in
     enable = true;
     package = pkgs.gitFull;
 
-    userName = "Sopy";
-    userEmail = "contact@sopy.one";
+    settings = {
+      user = {
+        name = "Sopy";
+        email = "contact@sopy.one";
+      };
 
-    signing = {
-      key = machineVars.gitSigningKey;
-      signByDefault = machineVars.gitSigning;
-    };
 
-    extraConfig = {
       core = {
         autocrlf = "input";
         # editor = "vim";
@@ -35,6 +33,11 @@ in
         process = "git-lfs filter-process";
         required = true;
       };
+    };
+
+    signing = {
+      key = machineVars.gitSigningKey;
+      signByDefault = machineVars.gitSigning;
     };
 
     lfs.enable = true;

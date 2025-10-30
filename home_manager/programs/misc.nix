@@ -18,5 +18,7 @@
 
     gpclient
     gpauth
+
+    winboat
   ];
 }
