@@ -5,7 +5,6 @@
     packages = with pkgs; [
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
       noto-fonts-color-emoji
 
       fira-code
@@ -13,8 +12,7 @@
 
       corefonts
 
-
-      monocraft # nixpkgs version includes the nerd-fonts patched version the NUR one doesn't
+      monocraft
     ] ++ builtins.filter (x: lib.isDerivation x) (builtins.attrValues pkgs.nerd-fonts);
 
     enableDefaultPackages = true;

@@ -66,7 +66,7 @@
     protontricks
 
     # media creation
-    kdePackages.kdenlive
+    custom.davinci-resolve-studio
     krita
     obs-studio
 
@@ -78,6 +78,6 @@
     obsidian
     # openboard
     libreoffice-qt6-fresh
-    onlyoffice-bin
+    onlyoffice-desktopeditors
   ];
 }

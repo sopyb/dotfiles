@@ -23,10 +23,6 @@
     printing.enable = true;
 
     udev = {
-      packages = [
-        pkgs.android-udev-rules
-      ];
-
       extraRules = ''
         SUBSYSTEM=="kvmfr", OWNER="sopy", GROUP="kvm", MODE="0660"
       '';

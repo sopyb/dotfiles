@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -45,9 +46,11 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { self, home-manager, nixpkgs, ... } @ inputs:
+  outputs = { self, home-manager, nixpkgs, nixpkgs-stable, ... } @ inputs:
     let
       lib = nixpkgs.lib;
+
+      overlaysModule = import ./overlays/default.nix { inherit inputs; };
 
       pkgsForSystem = system: import nixpkgs {
         inherit system;
@@ -56,8 +59,9 @@
           nvidia.acceptLicense = true;
           android_sdk.accept_license = true;
         };
-        overlays = with inputs; [
-          nur.overlays.default
+        overlays = [
+          inputs.nur.overlays.default
+          overlaysModule
         ];
       };
 
@@ -72,7 +76,7 @@
             ./lib/make-machine.nix
             machineConfig
             { nixpkgs.pkgs = machinePackages; }
-            nixpkgs.nixosModules.readOnlyPkgs
+            # nixpkgs.nixosModules.readOnlyPkgs
 
             # Home Manager
             home-manager.nixosModules.home-manager
