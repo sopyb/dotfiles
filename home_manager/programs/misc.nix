@@ -13,11 +13,7 @@
     tor-browser
     deluge
 
-
     piper
-
-    gpclient
-    gpauth
 
     winboat
   ];
