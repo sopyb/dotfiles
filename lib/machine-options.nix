@@ -57,16 +57,18 @@ in
           description = "Whether to enable desktop environment";
         };
 
-        type = mkOption {
-          type = types.enum [ "gnome" "hyprland" "cosmic" "plasma" "xfce" "none" ];
-          default = "none";
-          description = "Desktop environment to use";
+        types = mkOption {
+          type = types.listOf (types.enum [ "cosmic" "gnome" "hyprland" "niri" "plasma" "xfce" ]);
+          default = [ ];
+          description = "List of desktop environments to install";
+          example = [ "gnome" "plasma" ];
         };
 
         displayManager = mkOption {
-          type = types.enum [ "sddm" "ly" "cosmic-greeter" "none" ];
-          default = "none";
+          type = types.nullOr (types.enum [ "sddm" "ly" "cosmic-greeter" ]);
+          default = null;
           description = "Display manager to use";
+          example = "sddm";
         };
       };
     };

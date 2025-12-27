@@ -122,7 +122,7 @@
               };
               desktopEnvironment = {
                 enable = true;
-                type = "hyprland";
+                types = [ "hyprland" "niri" "cosmic" ];
                 displayManager = "ly";
               };
             };
@@ -139,7 +139,7 @@
               features = { };
               desktopEnvironment = {
                 enable = true;
-                type = "gnome";
+                types = [ "gnome" ];
                 displayManager = "none";
               };
             };
@@ -156,7 +156,7 @@
               features = { };
               desktopEnvironment = {
                 enable = true;
-                type = "xfce";
+                types = [ "xfce" ];
                 displayManager = "ly";
               };
             };
