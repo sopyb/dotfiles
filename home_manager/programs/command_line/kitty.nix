@@ -44,7 +44,8 @@
     };
 
     settings = {
-      "background_opacity_inactive_transparent" = 0.9;
+      "background_opacity_inactive_transparent" = 0.5;
+      "background_opacity" =  0.7;
       "scrollback_lines" = 10000;
       "enable_audio_bell" = false;
       "update_check_interval" = 0;

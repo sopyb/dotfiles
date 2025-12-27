@@ -45,7 +45,6 @@
     prismlauncher
     samrewritten
     steam
-    alvr
 
     # emulators
     # xemu
