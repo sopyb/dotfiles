@@ -34,11 +34,11 @@
       ];
     };
 
-#     alvr = {
-#       enable = true;
-#       openFirewall = true;
-# 
-#       package = pkgs.alvr;
-#     };
+    #     alvr = {
+    #       enable = true;
+    #       openFirewall = true;
+    # 
+    #       package = pkgs.alvr;
+    #     };
   };
 }
