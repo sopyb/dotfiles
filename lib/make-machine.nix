@@ -8,7 +8,7 @@ let
     cosmic = ../system/modules/desktop/desktop_environments/cosmic.nix;
     gnome = ../system/modules/desktop/desktop_environments/gnome.nix;
     hyprland = ../system/modules/desktop/desktop_environments/hyprland.nix;
-    niri = ../system/modules/desktop/desktop_environments/hyprland.nix;
+    niri = ../system/modules/desktop/desktop_environments/niri.nix;
     plasma = ../system/modules/desktop/desktop_environments/plasma.nix;
     xfce = ../system/modules/desktop/desktop_environments/xfce.nix;
   };

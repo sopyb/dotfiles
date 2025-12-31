@@ -36,6 +36,7 @@
     };
 
     hyprland.url = "github:hyprwm/Hyprland";
+    niri.url = "github:sodiboo/niri-flake";
 
     nur.url = "github:nix-community/NUR";
 
