@@ -6,20 +6,11 @@ let
   swaync = import ../common/swaync.nix;
 in
 {
-  imports = [
-    anyrun.module
-    swaync.module
-    swayosd.module
-  ];
-
   home.packages = with pkgs; [
-    brightnessctl
     # cosmic-launcher
     hyprpicker
     hyprpolkitagent
     hyprshot
-
-    wev # for debugging
   ];
 
   wayland.windowManager.hyprland = {

@@ -12,9 +12,9 @@
     scrollLock = "swayosd-client --scroll-lock";
   };
 
-  module = { ... }: {
+  module = { lib, ... }: {
     services.swayosd = {
-      enable = true;
+      enable = lib.mkDefault true;
     };
   };
 }

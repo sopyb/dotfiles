@@ -4,10 +4,10 @@
     toggle = "pkill anyrun || anyrun";
   };
 
-  module = { pkgs, ... }: {
+  module = { pkgs, lib, ... }: {
     programs.anyrun = {
-      enable = true;
-      package = pkgs.anyrun;
+      enable = lib.mkDefault true;
+      package = lib.mkDefault pkgs.anyrun;
       config = {
         plugins = [
           "${pkgs.anyrun}/lib/libapplications.so"

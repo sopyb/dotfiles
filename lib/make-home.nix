@@ -7,12 +7,18 @@ let
     hyprland = ../home_manager/desktop_environments/hyprland/hyprland.nix;
   };
 
+  waylandWindowManagers = [ "hyprland" ];
+
   # Import home modules for enabled desktop environments
   importDesktopEnvironmentHomes =
     lib.optionals machine.desktopEnvironment.enable
       (map (de: desktopEnvironmentHomeModules.${de})
         (lib.filter (de: desktopEnvironmentHomeModules ? ${de})
           (machine.desktopEnvironment.types or [ ])));
+
+  # Check if any wayland window manager is enabled
+  hasWaylandWM = machine.desktopEnvironment.enable &&
+    lib.any (de: lib.elem de waylandWindowManagers) (machine.desktopEnvironment.types or [ ]);
 
   # Check machine type
   isDesktop = machine.type == "desktop" || machine.type == "hybrid";
@@ -29,6 +35,9 @@ in
   # Machine type home configuration
   ++ lib.optional isDesktop ../home_manager/modules/desktop.nix
   ++ lib.optional isServer ../home_manager/modules/server.nix
+
+  # Common wayland utilities (anyrun, swayosd, swaync)
+  ++ lib.optional hasWaylandWM ../home_manager/desktop_environments/common/wayland.nix
 
   # Desktop environment specific configs
   ++ importDesktopEnvironmentHomes;

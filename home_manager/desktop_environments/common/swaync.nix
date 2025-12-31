@@ -4,9 +4,9 @@
     toggle = "swaync-client -t";
   };
 
-  module = { pkgs, ... }: {
-    home.packages = with pkgs; [
-      swaynotificationcenter
-    ];
+  module = { pkgs, lib, ... }: {
+    services.swaync = lib.mkDefault {
+        enable = true;
+    };
   };
 }
