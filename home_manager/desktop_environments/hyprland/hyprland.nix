@@ -1,14 +1,23 @@
 { pkgs, ... }:
 
+let
+  anyrun = import ../common/anyrun.nix;
+  swayosd = import ../common/swayosd.nix;
+  swaync = import ../common/swaync.nix;
+in
 {
+  imports = [
+    anyrun.module
+    swaync.module
+    swayosd.module
+  ];
+
   home.packages = with pkgs; [
-    activate-linux
     brightnessctl
     # cosmic-launcher
     hyprpicker
     hyprpolkitagent
     hyprshot
-    swaynotificationcenter
 
     wev # for debugging
   ];
@@ -45,9 +54,8 @@
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "hyprpm reload -n"
 
-        "activate-linux"
-        "swaync"
-        "swayosd-server"
+        swaync.cmd.daemon
+        swayosd.cmd.server
         "systemctl --user start hyprpaper"
         "systemctl --user start hyprpolkitagent"
         # "hypridle"
@@ -69,8 +77,6 @@
       "$mail" = "thunderbird";
       "$fileManager" = "thunar";
       "$browser" = "zen";
-      "$launcher" = "anyrun";
-      # "$launcher" = "cosmic-launcher";
 
       animations = {
         enabled = false;
@@ -122,12 +128,12 @@
       };
 
       bindel = [
-        "    ,XF86AudioRaiseVolume,  exec, swayosd-client --output-volume raise --max-volume 175"
-        "    ,XF86AudioLowerVolume,  exec, swayosd-client --output-volume lower --max-volume 175"
-        "    ,XF86AudioMute,         exec, swayosd-client --output-volume mute-toggle"
-        "    ,XF86AudioMicMute,      exec, swayosd-client --input-volume mute-toggle"
-        "    ,XF86MonBrightnessUp,   exec, swayosd-client --brightness +10"
-        "    ,XF86MonBrightnessDown, exec, swayosd-client --brightness -10"
+        "    ,XF86AudioRaiseVolume,  exec, ${swayosd.cmd.volumeUp}"
+        "    ,XF86AudioLowerVolume,  exec, ${swayosd.cmd.volumeDown}"
+        "    ,XF86AudioMute,         exec, ${swayosd.cmd.volumeMute}"
+        "    ,XF86AudioMicMute,      exec, ${swayosd.cmd.micMute}"
+        "    ,XF86MonBrightnessUp,   exec, ${swayosd.cmd.brightnessUp}"
+        "    ,XF86MonBrightnessDown, exec, ${swayosd.cmd.brightnessDown}"
       ];
 
       bindl = [
@@ -138,10 +144,10 @@
       ];
 
       bindr = [
-        "$mod, SUPER_L,     exec, pkill $launcher || $launcher"
-        "CAPS, Caps_Lock,   exec, swayosd-client --caps-lock" # Caps Lock
-        "MOD2, code:77,     exec, swayosd-client --num-lock" # Num Lock
-        "    , Scroll_Lock, exec, swayosd-client --scroll-lock" # Scroll Lock
+        "$mod, SUPER_L,     exec, ${anyrun.cmd.toggle}"
+        "CAPS, Caps_Lock,   exec, ${swayosd.cmd.capsLock}"
+        "MOD2, code:77,     exec, ${swayosd.cmd.numLock}"
+        "    , Scroll_Lock, exec, ${swayosd.cmd.scrollLock}"
       ];
 
       bindm = [
@@ -168,7 +174,7 @@
         "$mod, p, exec, hyprpicker"
 
         # Notifications
-        "$mod, n, exec, swaync-client -t"
+        "$mod, n, exec, ${swaync.cmd.toggle}"
 
         # Window stuff  
         "$mod SHIFT, q, killactive"
@@ -279,180 +285,71 @@
         ];
       };
     };
-
-    swayosd = {
-      enable = true;
-    };
   };
 
-  programs = {
-    anyrun = {
-      enable = true;
-      package = pkgs.anyrun;
-      config = {
-        plugins = [
-          "${pkgs.anyrun}/lib/libapplications.so"
-          "${pkgs.anyrun}/lib/libdictionary.so"
-          "${pkgs.anyrun}/lib/librink.so"
-          "${pkgs.anyrun}/lib/libshell.so"
-          "${pkgs.anyrun}/lib/libsymbols.so"
-          "${pkgs.anyrun}/lib/libstdin.so"
-          "${pkgs.anyrun}/lib/libtranslate.so"
-          "${pkgs.anyrun}/lib/libwebsearch.so"
-        ];
+  programs.hyprlock = {
+    enable = true;
 
-        height.fraction = 0.3;
-        width.fraction = 0.8;
-
-        x.fraction = 0.5;
-        y.fraction = 0.5;
-
-
-        closeOnClick = true;
-        showResultsImmediately = true;
+    settings = {
+      general = {
+        disable_loading_bar = true;
+        grace = 2;
+        hide_cursor = true;
+        no_fade_in = false;
       };
 
-      extraCss = ''
-        window {
-          background: transparent;
+      background = [
+        {
+          path = "~/.config/hypr/bg.png";
+          blur_passes = 3;
+          blur_size = 3;
         }
-            
-        box.main {
-          padding: 5px;
-          margin: 10px;
-          border-radius: 10px;
-          border: 2px solid #b7bdf8;
-          background-color: #24273a;
-          box-shadow: 0 0 5px #181926;
-        }
-            
-        entry {
-          background-color: #363a4f;
-          border: 1px solid #5b6078;
-          border-radius: 5px;
-          padding: 8px;
-          margin-bottom: 8px;
-          color: #cad3f5;
-          caret-color: #b7bdf8;
-        }
-            
-        entry:focus {
-          border: 1px solid #b7bdf8;
-        }
-            
-        list.plugin {
-          background-color: rgba(0, 0, 0, 0);
-          min-height: 100%;
-        }
-            
-        scrolledwindow {
-          min-height: 100%;
-        }
-            
-        row.match {
-          padding: 8px;
-          margin: 2px 0;
-        }
-            
-        label.match {
-          color: #cad3f5;
-        }
-            
-        label.match.description {
-          font-size: 10px;
-          color: #a5adcb;
-        }
-            
-        .match {
-          background: transparent;
-          color: #cad3f5;
-        }
-            
-        .match:selected {
-          border-left: 4px solid #b7bdf8;
-          background: #363a4f;
-          border-radius: 5px;
-          animation: fade 0.1s linear;
-        }
-            
-        @keyframes fade {
-          0% {
-            opacity: 0;
-          }
-            
-          100% {
-            opacity: 1;
-          }
-        }
-      '';
+      ];
 
-    };
+      # Username label
+      label = [
+        {
+          monitor = "";
+          text = "Hi there, $USER";
+          text_align = "center";
+          color = "rgb(202, 211, 245)"; # Catppuccin Machiatto Text
+          font_size = 24;
+          font_family = "JetBrains Mono Nerd Font";
+          position = "0, -40";
+          halign = "center";
+          valign = "center";
+        }
+        {
+          monitor = "";
+          text = "$TIME";
+          text_align = "center";
+          color = "rgb(183, 189, 248)"; # Catppuccin Machiatto lavender
+          font_size = 128;
+          font_family = "JetBrains Mono Nerd Font";
+          position = "0, 200";
+          halign = "center";
+          valign = "center";
+        }
+      ];
 
-
-    hyprlock = {
-      enable = true;
-
-      settings = {
-        general = {
-          disable_loading_bar = true;
-          grace = 2;
-          hide_cursor = true;
-          no_fade_in = false;
-        };
-
-        background = [
-          {
-            path = "~/.config/hypr/bg.png";
-            blur_passes = 3;
-            blur_size = 3;
-          }
-        ];
-
-        # Username label
-        label = [
-          {
-            monitor = "";
-            text = "Hi there, $USER";
-            text_align = "center";
-            color = "rgb(202, 211, 245)"; # Catppuccin Machiatto Text
-            font_size = 24;
-            font_family = "JetBrains Mono Nerd Font";
-            position = "0, -40";
-            halign = "center";
-            valign = "center";
-          }
-          {
-            monitor = "";
-            text = "$TIME";
-            text_align = "center";
-            color = "rgb(183, 189, 248)"; # Catppuccin Machiatto lavender
-            font_size = 128;
-            font_family = "JetBrains Mono Nerd Font";
-            position = "0, 200";
-            halign = "center";
-            valign = "center";
-          }
-        ];
-
-        input-field = [
-          {
-            size = "300, 60";
-            position = "0, -100";
-            monitor = "";
-            dots_center = true;
-            fade_on_empty = false;
-            font_color = "rgb(202, 211, 245)"; # Catppuccin Machiatto Text
-            inner_color = "rgba(54, 58, 79, 0.8)"; # Catppuccin Machiatto Surface0 with transparency
-            outer_color = "rgb(183, 189, 248)"; # Catppuccin Machiatto lavender
-            outline_thickness = 3;
-            placeholder_text = ''Password...'';
-            shadow_passes = 2;
-            dots_spacing = 0.3;
-            dots_rounding = -1;
-            rounding = 10;
-          }
-        ];
-      };
+      input-field = [
+        {
+          size = "300, 60";
+          position = "0, -100";
+          monitor = "";
+          dots_center = true;
+          fade_on_empty = false;
+          font_color = "rgb(202, 211, 245)"; # Catppuccin Machiatto Text
+          inner_color = "rgba(54, 58, 79, 0.8)"; # Catppuccin Machiatto Surface0 with transparency
+          outer_color = "rgb(183, 189, 248)"; # Catppuccin Machiatto lavender
+          outline_thickness = 3;
+          placeholder_text = ''Password...'';
+          shadow_passes = 2;
+          dots_spacing = 0.3;
+          dots_rounding = -1;
+          rounding = 10;
+        }
+      ];
     };
   };
 
