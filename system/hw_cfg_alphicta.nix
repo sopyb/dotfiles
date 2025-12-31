@@ -104,7 +104,11 @@
       nvidiaBusId = "PCI:1:0:0";
     };
 
-    powerManagement.finegrained = false;
+
+    powerManagement = {
+      enable = false;
+      finegrained = false;
+    };
   };
 
   services.power-profiles-daemon.enable = false;
