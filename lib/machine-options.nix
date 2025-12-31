@@ -58,7 +58,7 @@ in
         };
 
         types = mkOption {
-          type = types.listOf (types.enum [ "cosmic" "gnome" "hyprland" "niri" "plasma" "xfce" ]);
+          type = types.listOf (types.enum [ "cosmic" "gnome" "hyprland" "plasma" "xfce" ]);
           default = [ ];
           description = "List of desktop environments to install";
           example = [ "gnome" "plasma" ];

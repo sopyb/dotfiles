@@ -9,12 +9,10 @@
       substituters = [
         "https://cache.lix.systems"
         "https://cache.nixos.org/"
-        "https://niri.cachix.org/"
       ];
       trusted-public-keys = [
         "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-        "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
       ];
 
       binary-caches-parallel-connections = 10;
