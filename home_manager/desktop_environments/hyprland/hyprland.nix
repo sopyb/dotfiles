@@ -18,6 +18,8 @@ in
 
     plugins = with pkgs.hyprlandPlugins; [
       hyprsplit
+      hyprscrolling
+      hyprexpo
     ];
 
     settings = {
@@ -25,6 +27,23 @@ in
         split-monitor-workspaces = {
           count = 10;
           enable_notifications = 1;
+        };
+
+        hyprscrolling = {
+          enable = true;
+          column_width = 0.5;
+          fullscreen_on_one_column = false;
+        };
+
+        hyprexpo = {
+          columns = 3;
+          gap_size = 5;
+          bg_col = "rgb(111111)";
+          workspace_method = "center current";
+          gesture_distance = 300;
+          "hyprexpo-gesture" = {
+            expo = "4, vertical";
+          };
         };
       };
 
@@ -36,6 +55,10 @@ in
         "XCURSOR_SIZE,16"
         "HYPRCURSOR_SIZE,16"
       ];
+
+      general = {
+        layout = "scrolling";
+      };
 
       cursor = {
         "no_hardware_cursors" = true;
@@ -69,10 +92,6 @@ in
       "$fileManager" = "thunar";
       "$browser" = "zen";
 
-      animations = {
-        enabled = false;
-      };
-
       input = {
         kb_layout = "ro";
 
@@ -102,12 +121,23 @@ in
         }
       ];
 
+      bezier = [
+        "easeInOutCustom, 0.20, 0.00, 0.20, 1"
+      ];
+
       animation = [
-        "workspaces, 1, 5, default, slidevert"
+        "global, 1, 2, easeInOutCustom"
+        "workspaces, 1, 2, easeInOutCustom, slidevert"
       ];
 
       gesture = [
         "3, vertical, workspace"
+        "3, right, dispatcher, layoutmsg, move -col"
+        "3, left, dispatcher, layoutmsg, move +col"
+      ];
+
+      hyprexpo-gesture = [
+        "4, vertical, expo"
       ];
 
       misc = {
@@ -153,6 +183,23 @@ in
         "$mod, r, exec, $fileManager"
         "$mod, t, exec, $term"
 
+        # Layout (hyprscrolling)
+        "$mod, period, layoutmsg, move +col"
+        "$mod, comma, layoutmsg, move -col"
+        "$mod, bracketright, layoutmsg, colresize +0.1"
+        "$mod, bracketleft, layoutmsg, colresize -0.1"
+        "$mod ALT, right, layoutmsg, colresize +0.1"
+        "$mod ALT, left, layoutmsg, colresize -0.1"
+        "$mod ALT, up, resizeactive, 0 -10"
+        "$mod ALT, down, resizeactive, 0 10"
+        "$mod SHIFT, right, layoutmsg, movewindowto r"
+        "$mod SHIFT, left, layoutmsg, movewindowto l"
+        "$mod SHIFT, up, layoutmsg, movewindowto u"
+        "$mod SHIFT, down, layoutmsg, movewindowto d"
+
+        # Overview
+        "$mod, tab, hyprexpo:expo, toggle"
+
         # Lock
         "$mod, l, exec, hyprlock"
 
@@ -169,7 +216,7 @@ in
 
         # Window stuff  
         "$mod SHIFT, q, killactive"
-        "$mod SHIFT, f, fullscreen"
+        "$mod SHIFT, f, fullscreen, 1"
         "$mod, v, togglefloating"
 
         "$mod ALT, right, split:workspace, e+1"
@@ -197,11 +244,6 @@ in
         "$mod, right, movefocus, r"
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
-
-        "$mod SHIFT, left, movewindow, l"
-        "$mod SHIFT, right, movewindow, r"
-        "$mod SHIFT, up, movewindow, u"
-        "$mod SHIFT, down, movewindow, d"
 
         "$mod CONTROL, left, workspace, e-1"
         "$mod CONTROL, right, workspace, e+1"
