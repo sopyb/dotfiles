@@ -6,7 +6,7 @@
 
   module = { pkgs, lib, ... }: {
     services.swaync = lib.mkDefault {
-        enable = true;
+      enable = true;
     };
   };
 }
