@@ -6,7 +6,7 @@ let
       (ide:
         pkgs.jetbrains.plugins.addPlugins ide [
           # "github-copilot"
-          "ideavim"
+          # "ideavim"
         ]
       )
       ideList;

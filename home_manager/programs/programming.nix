@@ -24,7 +24,7 @@ in
     jetbrains.rust-rover ## sheesh
     # jetbrains.pycharm-professional ## not python... NOT PYTHON
     # jetbrains.phpstorm ## Universuty work
-    jetbrains.idea-ultimate ## University work
+    jetbrains.idea ## University work
     # jetbrains.datagrip ## University work
     # jetbrains.goland
     # jetbrains.rider

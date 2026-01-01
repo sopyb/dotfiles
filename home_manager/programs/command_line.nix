@@ -35,6 +35,6 @@
     nil
 
     # Work stuff
-    picocom
+    # picocom
   ];
 }

@@ -30,7 +30,7 @@
     # media
     mpv
     yt-dlp
-    youtube-music
+    pear-desktop
 
     # browsers
     google-chrome
