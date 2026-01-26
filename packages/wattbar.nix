@@ -23,10 +23,10 @@ pkgs.rustPlatform.buildRustPackage {
   ];
 
   meta = with pkgs.lib; {
-    description = "Wayland implementation of xbattbar ";
+    description = "Wayland implementation of xbattbar";
     homepage = "https://github.com/thequux/wattbar";
     license = licenses.mit;
     platforms = platforms.linux;
-    maintainers = [];
+    maintainers = [ ];
   };
 }
