@@ -10,25 +10,25 @@
 
     home.file.".config/wattbar/catppuccin.theme".text = ''
       [charging]
-      0%	  #f5bde6	#363a4f  # Pink / Surface0
-      15%	  #eed49f	#363a4f  # Yellow / Surface0
-      40%   #a6da95	#363a4f  # Green / Surface0
-      90%	  #8aadf4	#363a4f  # Blue / Surface0
-      100%  #8aadf4	#363a4f  # Blue / Surface0
+      0%		#f5bde6	#363a4f  # Pink / Surface0
+      25%		#eed49f	#363a4f  # Yellow / Surface0
+      50%		#a6da95	#363a4f  # Green / Surface0
+      95%		#a6da95	#363a4f  # Green / Surface0
+      100%	#8aadf4	#363a4f  # Blue / Surface0
 
       [discharging]
-      0%	  #f5bde6	#363a4f  # Pink / Surface0
-      15%	  #eed49f	#363a4f  # Yellow / Surface0
-      40%   #a6da95	#363a4f  # Green / Surface0
-      90%	  #8aadf4	#363a4f  # Blue / Surface0
-      100%  #8aadf4	#363a4f  # Blue / Surface0
+      0%		#f5bde6	#363a4f  # Pink / Surface0
+      25%		#eed49f	#363a4f  # Yellow / Surface0
+      50%		#a6da95	#363a4f  # Green / Surface0
+      95%		#a6da95	#363a4f  # Green / Surface0
+      100%	#8aadf4	#363a4f  # Blue / Surface0
 
       [nocharge]
-      0%	  #f5bde6	#363a4f  # Pink / Surface0
-      15%	  #eed49f	#363a4f  # Yellow / Surface0
-      40%   #a6da95	#363a4f  # Green / Surface0
-      90%	  #8aadf4	#363a4f  # Blue / Surface0
-      100%  #8aadf4	#363a4f  # Blue / Surface0
+      0%		#f5bde6	#363a4f  # Pink / Surface0
+      25%		#eed49f	#363a4f  # Yellow / Surface0
+      50%		#a6da95	#363a4f  # Green / Surface0
+      95%		#a6da95	#363a4f  # Green / Surface0
+      100%	#8aadf4	#363a4f  # Blue / Surface0
     '';
   };
 }
