@@ -8,7 +8,7 @@
       inputs.wattbar.packages.${pkgs.system}.wattbar
     ];
 
-    home.file."/.config/wattbar/catppuccin.theme".text = """
+    home.file.".config/wattbar/catppuccin.theme".text = ''
       [charging]
       0%	  #f5bde6	#363a4f  # Pink / Surface0
       15%	  #eed49f	#363a4f  # Yellow / Surface0
@@ -25,6 +25,6 @@
 
       [nocharge]
       0%		#939ab7	#181926  # Overlay2 / Crust
-    """;
+    '';
   };
 }
