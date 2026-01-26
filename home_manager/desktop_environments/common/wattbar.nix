@@ -3,9 +3,9 @@
     start = "wattbar -b l --theme catppuccin";
   };
 
-  module = { inputs, pkgs, lib, ... }: {
-    home.packages = [
-      inputs.wattbar.packages.${pkgs.system}.wattbar
+  module = { pkgs, lib, ... }: {
+    home.packages = with pkgs; [
+      custom.wattbar
     ];
 
     home.file.".config/wattbar/catppuccin.theme".text = ''
