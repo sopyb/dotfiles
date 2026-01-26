@@ -20,6 +20,12 @@
     ffmpeg
     poppler-utils
     pulsemixer
+    jq
+
+    # nix stuff
+    nix-prefetch-github
+    nix-prefetch-git
+    cachix
 
     # android screneshare stuff
     android-tools
