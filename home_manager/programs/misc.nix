@@ -11,7 +11,7 @@
     bitwarden-desktop
 
     tor-browser
-    deluge
+    qbittorrent
 
     piper
 
