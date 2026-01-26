@@ -11,6 +11,7 @@
       fira-code-symbols
 
       corefonts
+      vista-fonts
 
       monocraft
     ] ++ builtins.filter (x: lib.isDerivation x) (builtins.attrValues pkgs.nerd-fonts);
