@@ -17,8 +17,7 @@ in
     enable = true;
 
     plugins = with pkgs.hyprlandPlugins; [
-      hyprsplit
-      hyprscrolling
+      # hyprsplit
       hyprexpo
     ];
 
@@ -29,21 +28,12 @@ in
           enable_notifications = 1;
         };
 
-        hyprscrolling = {
-          enable = true;
-          column_width = 0.5;
-          fullscreen_on_one_column = false;
-        };
-
         hyprexpo = {
           columns = 3;
           gap_size = 5;
           bg_col = "rgb(111111)";
           workspace_method = "center current";
           gesture_distance = 300;
-          "hyprexpo-gesture" = {
-            expo = "4, vertical";
-          };
         };
       };
 
@@ -82,7 +72,7 @@ in
 
       monitor = [
         "eDP-1,    1920x1080@144,     0x0, 1"
-        "HDMI-A-1, 1920x1080@119.88,  1920x0,    1"
+        "HDMI-A-1, 1920x1080@60,  0x0, 1, mirror, eDP-1"
         "DP-2,     1920x1080@120,   1920x0,    1"
       ];
 
@@ -132,8 +122,6 @@ in
 
       gesture = [
         "3, vertical, workspace"
-        "3, right, dispatcher, layoutmsg, move -col"
-        "3, left, dispatcher, layoutmsg, move +col"
       ];
 
       hyprexpo-gesture = [
@@ -183,19 +171,11 @@ in
         "$mod, r, exec, $fileManager"
         "$mod, t, exec, $term"
 
-        # Layout (hyprscrolling)
-        "$mod, period, layoutmsg, move +col"
-        "$mod, comma, layoutmsg, move -col"
-        "$mod, bracketright, layoutmsg, colresize +0.1"
-        "$mod, bracketleft, layoutmsg, colresize -0.1"
-        "$mod ALT, right, layoutmsg, colresize +0.1"
-        "$mod ALT, left, layoutmsg, colresize -0.1"
-        "$mod ALT, up, resizeactive, 0 -10"
-        "$mod ALT, down, resizeactive, 0 10"
-        "$mod SHIFT, right, layoutmsg, movewindowto r"
-        "$mod SHIFT, left, layoutmsg, movewindowto l"
-        "$mod SHIFT, up, layoutmsg, movewindowto u"
-        "$mod SHIFT, down, layoutmsg, movewindowto d"
+        # Resize
+        "$mod ALT, right, resizeactive, 10 0"
+        "$mod ALT, left,  resizeactive, -10 0"
+        "$mod ALT, up,    resizeactive, 0 -10"
+        "$mod ALT, down,  resizeactive, 0 10"
 
         # Overview
         "$mod, tab, hyprexpo:expo, toggle"
@@ -219,8 +199,10 @@ in
         "$mod SHIFT, f, fullscreen, 1"
         "$mod, v, togglefloating"
 
-        "$mod ALT, right, split:workspace, e+1"
-        "$mod ALT, left,  split:workspace, e-1"
+        "$mod ALT, right, workspace, e+1"
+        "$mod ALT, left,  workspace, e-1"
+        # "$mod ALT, right, split:workspace, e+1"
+        # "$mod ALT, left,  split:workspace, e-1"
 
       ] ++ (builtins.concatLists (builtins.genList
         (i:
@@ -228,8 +210,10 @@ in
             ws = i + 1;
           in
           [
-            "$mod, code:1${toString i}, split:workspace, ${toString ws}"
-            "$mod SHIFT, code:1${toString i}, split:movetoworkspace, ${toString ws}"
+            # "$mod, code:1${toString i}, split:workspace, ${toString ws}"
+            "$mod, code:1${toString i}, workspace, ${toString ws}"
+            # "$mod SHIFT, code:1${toString i}, split:movetoworkspace, ${toString ws}"
+            "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
           ]
         )
         9)) ++ [
@@ -245,6 +229,11 @@ in
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
 
+        "$mod SHIFT, left, movewindow, l"
+        "$mod SHIFT, right, movewindow, r"
+        "$mod SHIFT, up, movewindow, u"
+        "$mod SHIFT, down, movewindow, d"
+
         "$mod CONTROL, left, workspace, e-1"
         "$mod CONTROL, right, workspace, e+1"
 
@@ -259,8 +248,9 @@ in
       ];
 
       windowrule = [
-        "workspace special:z silent, class:discord"
-        "noblur, opaque, class:deadlocked"
+        "match:class discord, workspace special:z silent"
+        "match:class deadlocked, no_blur on"
+        "match:class deadlocked, opaque on"
       ];
 
       "$PiP" = "class:^(floorp)$, title:^(Firefox|Picture-in-Picture)$";
@@ -388,4 +378,3 @@ in
 
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 }
-
