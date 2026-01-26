@@ -1,9 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 let
   anyrun = import ../common/anyrun.nix;
   swayosd = import ../common/swayosd.nix;
   swaync = import ../common/swaync.nix;
+  wattbar = import ../common/wattbar.nix;
 in
 {
   home.packages = with pkgs; [
@@ -58,6 +59,7 @@ in
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "hyprpm reload -n"
 
+        wattbar.cmd.start
         swaync.cmd.daemon
         swayosd.cmd.server
         "systemctl --user start hyprpaper"
