@@ -14,6 +14,14 @@ in
     wattbar.module
   ];
 
+  home.pointerCursor = {
+    package = pkgs.catppuccin-cursors.macchiatoLavender;
+    name = "catppuccin-macchiato-lavender-cursors";
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
+  };
+
   # Common wayland packages
   home.packages = with pkgs; [
     brightnessctl

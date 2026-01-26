@@ -43,8 +43,11 @@ in
         "__GLX_VENDOR_LIBRARY_NAME,nvidia"
         "NVD_BACKEND,direct"
 
-        "XCURSOR_SIZE,16"
-        "HYPRCURSOR_SIZE,16"
+        "XCURSOR_THEME,catppuccin-macchiato-lavender-cursors"
+        "XCURSOR_SIZE,24"
+
+        "HYPRCURSOR_THEME,catppuccin-macchiato-lavender-cursors"
+        "HYPRCURSOR_SIZE,24"
       ];
 
       general = {
