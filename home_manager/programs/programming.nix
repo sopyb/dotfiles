@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 let
   utils = import ./programming/utils.nix { inherit pkgs; };
@@ -12,7 +12,7 @@ in
   home.packages = with pkgs; [
     arduino-ide
     vscode
-    nur.repos.xddxdd.mtkclient
+    # nur.repos.xddxdd.mtkclient
 
     # python stuff TwT
     poetry
