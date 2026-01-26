@@ -18,6 +18,7 @@
     # random stuff
     killall
     ffmpeg
+    poppler-utils
 
     # android screneshare stuff
     android-tools
