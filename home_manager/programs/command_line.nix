@@ -19,6 +19,7 @@
     killall
     ffmpeg
     poppler-utils
+    pulsemixer
 
     # android screneshare stuff
     android-tools
@@ -30,6 +31,7 @@
 
     # wayland
     wl-clipboard
+    wl-gammactl
 
     # Nix stuff
     nixpkgs-fmt
