@@ -12,17 +12,19 @@ in
   home.packages = with pkgs; [
     arduino-ide
     vscode
-    android-studio
     nur.repos.xddxdd.mtkclient
+
+    # python stuff TwT
+    poetry
 
     # Rust toolchain
     rustup
   ] ++ utils.addJetbrainsPlugins [
-    # android-studio
-    # jetbrains.clion ## llvm & university work
+    android-studio
+    jetbrains.clion ## llvm & university work
     # jetbrains.webstorm ## random web projects - Portfolio time
     jetbrains.rust-rover ## sheesh
-    # jetbrains.pycharm-professional ## not python... NOT PYTHON
+    jetbrains.pycharm ## not python... NOT PYTHON
     # jetbrains.phpstorm ## Universuty work
     jetbrains.idea ## University work
     # jetbrains.datagrip ## University work
