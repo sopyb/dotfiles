@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 let
   anyrun = import ../common/anyrun.nix;
@@ -199,7 +199,7 @@ in
         # Notifications
         "$mod, n, exec, ${swaync.cmd.toggle}"
 
-        # Window stuff  
+        # Window stuff
         "$mod SHIFT, q, killactive"
         "$mod SHIFT, f, fullscreen, 1"
         "$mod, v, togglefloating"
@@ -278,15 +278,18 @@ in
       settings = {
         ipc = true;
         splash = true;
-        splash_offset = 2.0;
+        splash_offset = 10;
 
         preload = [ "~/.config/hypr/bg.png" ];
 
-        wallpaper = [
-          "eDP-1,    ~/.config/hypr/bg.png"
-          "HDMI-A-1, ~/.config/hypr/bg.png"
-          "DP-2,     ~/.config/hypr/bg.png"
-        ];
+        wallpaper = builtins.map
+          (monitor:
+            {
+              inherit monitor;
+              path = "~/.config/hypr/bg.png";
+              fit_mode = "cover";
+            }
+          ) [ "eDP-1" "HDMI-A-1" "DP-2" ];
       };
     };
 
