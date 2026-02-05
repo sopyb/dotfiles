@@ -5,8 +5,6 @@
     packages = with pkgs; [
       nodejs_20
     ];
-
-    file.".config/zsh/.p10k.zsh".text = builtins.readFile ./p10k.zsh;
   };
 
   programs.zsh = {
@@ -29,11 +27,6 @@
 
     initContent = ''
       export "MICRO_TRUECOLOR=1"
-
-      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-      POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
-
-      source ~/.config/zsh/.p10k.zsh
 
       if [[ -n "$CONTAINER_ID" ]] && [[ "$CONTAINER_ID" == "ros2" ]]; then
         compinit() {
@@ -78,12 +71,13 @@
         name = "zsh-syntax-highlighting";
         src = "${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting";
       }
-      {
-        name = "powerlevel10k";
-        src = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k";
-      }
     ];
 
+  };
+
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   programs.fzf = {
