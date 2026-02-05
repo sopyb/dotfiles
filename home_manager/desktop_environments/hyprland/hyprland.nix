@@ -258,14 +258,14 @@ in
         "match:class deadlocked, opaque on"
       ];
 
-      "$PiP" = "class:^(floorp)$, title:^(Firefox|Picture-in-Picture)$";
+      # "$PiP" = "class:^(floorp)$, title:^(Firefox|Picture-in-Picture)$"; TODO: do this with window rules for zen-browser pip
 
-      windowrulev2 = [
-        "float, $PiP"
-        "pin, $PiP"
-        "move 78% 40%, $PiP"
-        "size 20% 20%, $PiP"
-      ];
+      # windowrulev2 = [
+      #   "float, $PiP"
+      #   "pin, $PiP"
+      #   "move 78% 40%, $PiP"
+      #   "size 20% 20%, $PiP"
+      # ];
     };
   };
 
