@@ -46,13 +46,17 @@
     samrewritten
     steam
 
+    # mod managers
+    olympus
+    r2modman
+    
+
     # emulators
     # xemu
     # xenia-canary
     # rpcs3
 
     # games
-    olympus
     osu-lazer-bin
 
     # game tools
