@@ -6,7 +6,7 @@
       inheritParentConfig = false;
       configuration = {
         imports = [
-          ../hw_cfg_alphicta.nix
+          ../machines/alphicta
           ../modules/common.nix
         ];
 

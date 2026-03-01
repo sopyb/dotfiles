@@ -110,7 +110,7 @@
       nixosConfigurations = {
         alphicta = mkMachine {
           name = "alphicta";
-          hardwareConfig = ./system/hw_cfg_alphicta.nix;
+          hardwareConfig = ./system/machines/alphicta;
           machineConfig = {
             machine = {
               name = "alphicta";
@@ -131,7 +131,7 @@
 
         bethium = mkMachine {
           name = "bethium";
-          hardwareConfig = ./system/hw_cfg_bethium.nix;
+          hardwareConfig = ./system/machines/bethium;
           machineConfig = {
             machine = {
               name = "bethium";
@@ -148,7 +148,7 @@
 
         zetalyeh = mkMachine {
           name = "zetalyeh";
-          hardwareConfig = ./system/hw_cfg_zetalyeh.nix;
+          hardwareConfig = ./system/machines/zetalyeh;
           machineConfig = {
             machine = {
               name = "zetalyeh";
@@ -166,7 +166,7 @@
         omegantes = mkMachine {
           name = "omegantes";
           system = "aarch64-linux";
-          hardwareConfig = ./system/hw_cfg_omegantes.nix;
+          hardwareConfig = ./system/machines/omegantes;
           machineConfig = {
             machine = {
               name = "omegantes";
