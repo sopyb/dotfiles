@@ -102,12 +102,6 @@
       amdgpuBusId = "PCI:7:0:0";
       nvidiaBusId = "PCI:1:0:0";
     };
-
-
-    powerManagement = {
-      enable = false;
-      finegrained = false;
-    };
   };
 
   services.power-profiles-daemon.enable = false;
