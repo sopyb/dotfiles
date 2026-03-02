@@ -49,7 +49,6 @@
     # mod managers
     olympus
     r2modman
-    
 
     # emulators
     # xemu
