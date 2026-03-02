@@ -1,0 +1,30 @@
+name: Evaluate System Configs
+
+on: [push, pull_request]
+
+jobs:
+  evaluate:
+    strategy:
+      matrix:
+        include:
+          - system: alphicta
+            arch: x86_64-linux
+          - system: bethium
+            arch: x86_64-linux
+          - system: zetalyeh
+            arch: x86_64-linux
+          - system: omegantes
+            arch: aarch64-linux
+      fail-fast: false
+    runs-on: ${{ matrix.arch == 'aarch64-linux' && 'ubuntu-latest-arm64' || 'ubuntu-latest' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v30
+
+      - name: Evaluate ${{ matrix.system }} configuration for syntax errors
+        run: nix eval '.#nixosConfigurations.${{ matrix.system }}.config.system.name' --json > /dev/null
+
+      - name: Build ${{ matrix.system }} system configuration
+        run: nix build '.#nixosConfigurations.${{ matrix.system }}.config.system.build.toplevel' --json > /dev/null
