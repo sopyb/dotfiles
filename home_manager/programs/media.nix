@@ -20,6 +20,8 @@
       NoDefaultBookmarks = true;
       OfferToSaveLogins = false;
     };
+
+    suppressXdgMigrationWarning = true;
   };
 
 

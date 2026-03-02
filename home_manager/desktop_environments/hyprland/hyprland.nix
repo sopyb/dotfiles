@@ -85,7 +85,7 @@ in
       "$term" = "kitty";
       "$mail" = "thunderbird";
       "$fileManager" = "thunar";
-      "$browser" = "zen";
+      "$browser" = "zen-beta";
 
       input = {
         kb_layout = "ro";
