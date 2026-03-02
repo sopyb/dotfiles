@@ -26,7 +26,7 @@ let
 
   # Import display manager if specified
   importDisplayManager =
-    let dm = machine.desktopEnvironment.displayManager;
+    let dm = machine.desktopEnvironment.displayManager or null;
     in optional (dm != null && displayManagerModules ? ${dm}) displayManagerModules.${dm};
 
   # Check machine type
