@@ -11,7 +11,6 @@ in
 
   home.packages = with pkgs; [
     arduino-ide
-    vscode
     # nur.repos.xddxdd.mtkclient
 
     # python stuff TwT
