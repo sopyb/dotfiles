@@ -20,6 +20,9 @@ sudo nixos-rebuild switch --flake .#<hostname>
 
 You can update the pinned flake packages with `nix flake update`.
 
+## Todo:
+- Rewrite deckmode specialization to be more system agnostic and actually functional instead of barely functional
+
 ## License
 
 This repository is under the MIT license, [Read more here](./LICENSE).
