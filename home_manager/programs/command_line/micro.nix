@@ -17,7 +17,7 @@ in
       colorscheme = "catppuccin-macchiato";
       mkparents = true;
       tabstospaces = true;
-      truecolor = true;
+      truecolor = 1;
     };
   };
 
