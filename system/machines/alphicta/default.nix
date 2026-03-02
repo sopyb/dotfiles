@@ -130,19 +130,19 @@
   };
 
   systemd.services.ec-permissions = {
-    description = "Allow input group to access EC"; # slightly better than just having gamemoderun use sudo
+    description = "Allow gamemode group to access EC"; # slightly better than just having gamemoderun use sudo
     after = [ "sys-kernel-debug.mount" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${pkgs.bash}/bin/bash -c 'chmod 0755 /sys/kernel/debug 2>/dev/null; chmod 0755 /sys/kernel/debug/ec 2>/dev/null; chgrp input /sys/kernel/debug/ec/ec0/io 2>/dev/null; chmod 0660 /sys/kernel/debug/ec/ec0/io 2>/dev/null || true'";
+      ExecStart = "${pkgs.bash}/bin/bash -c 'chmod 0755 /sys/kernel/debug 2>/dev/null; chmod 0755 /sys/kernel/debug/ec 2>/dev/null; chgrp gamemode /sys/kernel/debug/ec/ec0/io 2>/dev/null; chmod 0660 /sys/kernel/debug/ec/ec0/io 2>/dev/null || true'";
       RemainAfterExit = true;
     };
   };
 
   programs.gamemodeCommands = {
     start = [
-      "systemd-run --user --unit=alphicta-fan-max --property=KillSignal=SIGTERM ${./fan-max.sh}"
+      "systemd-run --user --unit=alphicta-fan-max --property=KillSignal=SIGTERM ${./fan-max.sh}  2>/dev/null || true"
     ];
     end = [
       "systemctl --user stop alphicta-fan-max 2>/dev/null || true"
