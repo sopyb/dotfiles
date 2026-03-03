@@ -25,16 +25,16 @@ jobs:
 
           f=$(mktemp)
 
-          nix eval '.#nixosConfigurations.${{ matrix.system }}.config.system.build.toplevel' \
-            --json \
-            --option warn-dirty false \
-            2> >(grep -v -E "^(copying path|unpacking ')" | tee "$f")
+          nix eval ".#nixosConfigurations.${{ matrix.system }}.config.system.build.toplevel" \
+          --json \
+          --option warn-dirty false \
+          2> >(tee >(grep --line-buffered -v -E "^(copying path|unpacking '|fetching git input)" > "$f") >&2)
 
           status=$?
 
           # Evaluation produced stderr output: warnings present
           if [ -s "$f" ]; then
-            exit 1
+          exit 1
           fi
 
           exit $status
