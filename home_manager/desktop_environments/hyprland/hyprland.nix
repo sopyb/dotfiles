@@ -19,7 +19,7 @@ in
 
     plugins = with pkgs.hyprlandPlugins; [
       # hyprsplit
-      hyprexpo
+      # hyprexpo
     ];
 
     settings = {
@@ -34,7 +34,7 @@ in
           gap_size = 5;
           bg_col = "rgb(111111)";
           workspace_method = "center current";
-          gesture_distance = 300;
+          # gesture_distance = 300;
         };
       };
 
@@ -129,9 +129,9 @@ in
         "3, vertical, workspace"
       ];
 
-      hyprexpo-gesture = [
-        "4, vertical, expo"
-      ];
+      # hyprexpo-gesture = [
+      #   "4, vertical, expo"
+      # ];
 
       misc = {
         disable_hyprland_logo = true;
@@ -183,7 +183,7 @@ in
         "$mod ALT, down,  resizeactive, 0 10"
 
         # Overview
-        "$mod, tab, hyprexpo:expo, toggle"
+        # "$mod, tab, hyprexpo:expo, toggle"
 
         # Lock
         "$mod, l, exec, hyprlock"
@@ -257,6 +257,10 @@ in
         "match:class deadlocked, no_blur on"
         "match:class deadlocked, opaque on"
       ];
+
+      ecosystem = {
+        no_update_news = true;
+      };
 
       # "$PiP" = "class:^(floorp)$, title:^(Firefox|Picture-in-Picture)$"; TODO: do this with window rules for zen-browser pip
 
