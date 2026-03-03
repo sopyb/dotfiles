@@ -25,7 +25,7 @@ jobs:
 
           f=$(mktemp)
 
-          nix eval '.#nixosConfigurations.${{ matrix.system }}.config.system.build.toplevel' 
+          nix eval '.#nixosConfigurations.${{ matrix.system }}.config.system.build.toplevel' \
             --json \
             --option warn-dirty false \
             2> >(tee "$f")
