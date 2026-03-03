@@ -20,4 +20,21 @@ jobs:
         uses: cachix/install-nix-action@v30
 
       - name: valuate ${{ matrix.system }} system configuration
-        run: nix eval '.#nixosConfigurations.${{ matrix.system }}.config.system.build.toplevel' --json > /dev/null
+        run: |
+          set -euo pipefail
+
+          f=$(mktemp)
+
+          nix eval '.#nixosConfigurations.${{ matrix.system }}.config.system.build.toplevel' 
+            --json \
+            --option warn-dirty false \
+            2> >(tee "$f")
+
+          status=$?
+
+          # Evaluation produced stderr output: warnings present
+          if [ -s "$f" ]; then
+            exit 1
+          fi
+
+          exit $status
