@@ -19,22 +19,23 @@ jobs:
       - name: Install Nix
         uses: cachix/install-nix-action@v30
 
-      - name: valuate ${{ matrix.system }} system configuration
+      - name: Evaluate ${{ matrix.system }} system configuration
         run: |
           set -euo pipefail
 
           f=$(mktemp)
+          filter = "^(copying path|unpacking '|fetching git input)"
 
           nix eval ".#nixosConfigurations.${{ matrix.system }}.config.system.build.toplevel" \
-          --json \
-          --option warn-dirty false \
-          2> >(tee >(grep --line-buffered -v -E "^(copying path|unpacking '|fetching git input)" > "$f") >&2)
+            --json \
+            --option warn-dirty false \
+            2> >(tee >(grep --line-buffered -vE "$filter"  > "$f") >&2)
 
           status=$?
 
           # Evaluation produced stderr output: warnings present
           if [ -s "$f" ]; then
-          exit 1
+            exit 1
           fi
 
           exit $status
