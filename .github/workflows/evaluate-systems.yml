@@ -28,7 +28,7 @@ jobs:
           nix eval '.#nixosConfigurations.${{ matrix.system }}.config.system.build.toplevel' \
             --json \
             --option warn-dirty false \
-            2> >(tee "$f")
+            2> >(grep -v -E "^(copying path|unpacking ')" | tee "$f")
 
           status=$?
 
