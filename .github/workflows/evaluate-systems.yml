@@ -24,7 +24,7 @@ jobs:
           set -euo pipefail
 
           f=$(mktemp)
-          filter = "^(copying path|unpacking '|fetching git input)"
+          filter="^(copying path|unpacking '|fetching git input)"
 
           nix eval ".#nixosConfigurations.${{ matrix.system }}.config.system.build.toplevel" \
             --json \
