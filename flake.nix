@@ -42,6 +42,11 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    hyprsplit = {
+      url = "github:shezdy/hyprsplit";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     nur.url = "github:nix-community/NUR";
 
     vscode-server.url = "github:nix-community/nixos-vscode-server";
