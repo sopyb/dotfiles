@@ -42,8 +42,8 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    hyprsplit = {
-      url = "github:shezdy/hyprsplit";
+    split-monitor-workspaces = {
+      url = "github:zjeffer/split-monitor-workspaces";
       inputs.hyprland.follows = "hyprland";
     };
 

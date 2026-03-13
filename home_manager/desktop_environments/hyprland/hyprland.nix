@@ -18,17 +18,18 @@ in
     enable = true;
 
     plugins = 
-        with inputs.hyprsplit.packages.${pkgs.stdenv.hostPlatform.system};
+        with inputs.split-monitor-workspaces.packages.${pkgs.stdenv.hostPlatform.system};
         with inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}; [
-      hyprsplit
+      split-monitor-workspaces
       hyprexpo
     ];
 
     settings = {
       plugin = {
         split-monitor-workspaces = {
-          count = 10;
+          count = 9;
           enable_notifications = 1;
+          monitor_priority = "eDP-1, HDMI-A-1, DP-2";
         };
 
         hyprexpo = {
@@ -205,10 +206,10 @@ in
         "$mod SHIFT, f, fullscreen, 1"
         "$mod, v, togglefloating"
 
-        "$mod ALT, right, workspace, e+1"
-        "$mod ALT, left,  workspace, e-1"
-        # "$mod ALT, right, split:workspace, e+1"
-        # "$mod ALT, left,  split:workspace, e-1"
+        # "$mod ALT, down, workspace, e+1"
+        # "$mod ALT, up,  workspace, e-1"
+        "$mod ALT, down, split-workspace, e+1"
+        "$mod ALT, up,  split-workspace, e-1"
 
       ] ++ (builtins.concatLists (builtins.genList
         (i:
@@ -216,10 +217,10 @@ in
             ws = i + 1;
           in
           [
-            # "$mod, code:1${toString i}, split:workspace, ${toString ws}"
-            "$mod, code:1${toString i}, workspace, ${toString ws}"
-            # "$mod SHIFT, code:1${toString i}, split:movetoworkspace, ${toString ws}"
-            "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+            "$mod, code:1${toString i}, split-workspace, ${toString ws}"
+            # "$mod, code:1${toString i}, workspace, ${toString ws}"
+            "$mod SHIFT, code:1${toString i}, split-movetoworkspace, ${toString ws}"
+            # "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
           ]
         )
         9)) ++ [
