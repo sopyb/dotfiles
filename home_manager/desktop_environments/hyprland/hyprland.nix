@@ -17,12 +17,12 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
 
-    plugins = 
-        with inputs.split-monitor-workspaces.packages.${pkgs.stdenv.hostPlatform.system};
-        with inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}; [
-      split-monitor-workspaces
-      hyprexpo
-    ];
+    plugins =
+      with inputs.split-monitor-workspaces.packages.${pkgs.stdenv.hostPlatform.system};
+      with inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}; [
+        split-monitor-workspaces
+        hyprexpo
+      ];
 
     settings = {
       plugin = {
