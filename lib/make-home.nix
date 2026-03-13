@@ -29,7 +29,6 @@ in
     ./machine-options.nix
     ./home-manager-options.nix
     ../home_manager/modules/common.nix
-    inputs.zen-browser.homeModules.beta
   ]
 
   # Machine type home configuration
