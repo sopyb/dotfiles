@@ -161,9 +161,9 @@ in
 
       bindr = [
         "$mod, SUPER_L,     exec, ${anyrun.cmd.toggle}"
-        "CAPS, Caps_Lock,   exec, ${swayosd.cmd.capsLock}"
-        "MOD2, code:77,     exec, ${swayosd.cmd.numLock}"
-        "    , Scroll_Lock, exec, ${swayosd.cmd.scrollLock}"
+        # "CAPS, Caps_Lock,   exec, ${swayosd.cmd.capsLock}"
+        # "MOD2, code:77,     exec, ${swayosd.cmd.numLock}"
+        # "    , Scroll_Lock, exec, ${swayosd.cmd.scrollLock}"
       ];
 
       bindm = [

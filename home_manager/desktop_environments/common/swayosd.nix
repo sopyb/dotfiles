@@ -3,7 +3,7 @@
     server = "swayosd-server";
     volumeUp = "swayosd-client --output-volume raise --max-volume 175";
     volumeDown = "swayosd-client --output-volume lower --max-volume 175";
-    volumeMute = "swayosd-client --output-volume mute-toggle";
+    volumeMute = "swayosd-client --output-volume mute-toggle --max-volume 175";
     micMute = "swayosd-client --input-volume mute-toggle";
     brightnessUp = "swayosd-client --brightness +10";
     brightnessDown = "swayosd-client --brightness -10";
