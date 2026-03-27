@@ -50,6 +50,7 @@
     # media creation
     custom.davinci-resolve-studio
     krita
+    inkscape
     obs-studio
 
     blender
