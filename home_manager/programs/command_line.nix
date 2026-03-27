@@ -43,6 +43,9 @@
     nixpkgs-fmt
     nil
 
+    # bluetooth stuff
+    bluetuith
+
     # Work stuff
     # picocom
   ];
