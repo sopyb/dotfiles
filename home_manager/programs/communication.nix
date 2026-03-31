@@ -6,6 +6,7 @@ in
 {
   home.packages = with pkgs; [
     element-desktop
+    custom.commet-chat
     teams-for-linux
     thunderbird
     slack
