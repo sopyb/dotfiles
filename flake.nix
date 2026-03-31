@@ -5,10 +5,14 @@
     nixpkgs.url = "github:nixos/nixpkgs/0c46193f275d8fdfe9af421ab541fead2d0ab276";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
+    nur.url = "github:nix-community/NUR";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -46,14 +50,6 @@
       url = "github:zjeffer/split-monitor-workspaces";
       inputs.hyprland.follows = "hyprland";
     };
-
-    nur.url = "github:nix-community/NUR";
-
-    vscode-server.url = "github:nix-community/nixos-vscode-server";
-
-    vgpu4nixos.url = "github:mrzenc/vgpu4nixos";
-
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs = { self, home-manager, nixpkgs, nixpkgs-stable, ... } @ inputs:
