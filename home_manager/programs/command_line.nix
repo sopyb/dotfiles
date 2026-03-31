@@ -21,6 +21,7 @@
     poppler-utils
     pulsemixer
     jq
+    yq
 
     # nix stuff
     nix-prefetch-github
