@@ -1,3 +1,7 @@
+# Commet chat package (horrible btw)
+# Keep track of https://github.com/NixOS/nixpkgs/pull/491888
+# TODO: Replace when merged into nixpkgs
+
 { pkgs }:
 
 pkgs.stdenv.mkDerivation rec {
