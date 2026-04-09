@@ -11,6 +11,8 @@
     mpv
     yt-dlp
     pear-desktop
+    chatterino7
+    easyeffects
 
     # browsers
     google-chrome
