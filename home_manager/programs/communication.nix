@@ -9,6 +9,7 @@ in
     custom.commet-chat
     teams-for-linux
     thunderbird
+    signal-desktop
     slack
     vesktop
     zapzap
