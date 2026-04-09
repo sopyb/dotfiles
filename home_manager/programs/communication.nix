@@ -5,8 +5,8 @@ let
 in
 {
   home.packages = with pkgs; [
-    element-desktop
     custom.commet-chat
+    element-desktop
     teams-for-linux
     thunderbird
     signal-desktop
