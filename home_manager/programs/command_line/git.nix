@@ -37,6 +37,7 @@ in
 
     signing = {
       key = machineVars.gitSigningKey;
+      format = "openpgp";
       signByDefault = machineVars.gitSigning;
     };
 
