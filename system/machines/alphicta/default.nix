@@ -44,6 +44,7 @@
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/f0362a99-b3b1-4fce-bbb5-c4a63e1b9c12";
+    fsType = "btrfs";
     neededForBoot = true;
     options = [ "subvol=@" "noatime" "compress=zstd:3" "space_cache=v2" ];
   };
