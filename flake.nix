@@ -2,7 +2,7 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/0c46193f275d8fdfe9af421ab541fead2d0ab276";
+    nixpkgs.url = "github:nixos/nixpkgs/";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
     nur.url = "github:nix-community/NUR";
@@ -39,7 +39,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland/v0.54.2";
+    hyprland.url = "github:hyprwm/Hyprland/v0.54.3-b";
 
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
