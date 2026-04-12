@@ -19,12 +19,12 @@ in
     # Rust toolchain
     rustup
   ] ++ utils.addJetbrainsPlugins [
-    android-studio
-    jetbrains.clion ## llvm & university work
-    # jetbrains.webstorm ## random web projects - Portfolio time
-    jetbrains.rust-rover ## sheesh
-    jetbrains.pycharm ## not python... NOT PYTHON
-    # jetbrains.phpstorm ## Universuty work
+    # android-studio
+    # jetbrains.clion ## llvm & university work
+    jetbrains.webstorm ## random web projects - Portfolio time
+    # jetbrains.rust-rover ## sheesh
+    # jetbrains.pycharm ## not python... NOT PYTHON
+    jetbrains.phpstorm ## Universuty work
     jetbrains.idea ## University work
     # jetbrains.datagrip ## University work
     # jetbrains.goland
