@@ -21,7 +21,7 @@ in
       with inputs.split-monitor-workspaces.packages.${pkgs.stdenv.hostPlatform.system};
       with inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}; [
         split-monitor-workspaces
-        hyprexpo
+        # hyprexpo 
       ];
 
     settings = {
@@ -32,13 +32,13 @@ in
           monitor_priority = "eDP-1, HDMI-A-1, DP-2";
         };
 
-        hyprexpo = {
-          columns = 3;
-          gap_size = 5;
-          bg_col = "rgb(111111)";
-          workspace_method = "center current";
-          gesture_distance = 300;
-        };
+        # hyprexpo = {
+        #   columns = 3;
+        #   gap_size = 5;
+        #   bg_col = "rgb(111111)";
+        #   workspace_method = "center current";
+        #   gesture_distance = 300;
+        # };
       };
 
       env = [
@@ -131,9 +131,9 @@ in
         "3, vertical, workspace"
       ];
 
-      hyprexpo-gesture = [
-        "4, vertical, expo"
-      ];
+      # hyprexpo-gesture = [
+      #   "4, vertical, expo"
+      # ];
 
       misc = {
         disable_hyprland_logo = true;
@@ -185,7 +185,7 @@ in
         "$mod ALT, down,  resizeactive, 0 10"
 
         # Overview
-        "$mod, tab, hyprexpo:expo, toggle"
+        # "$mod, tab, hyprexpo:expo, toggle"
 
         # Lock
         "$mod, l, exec, hyprlock"
