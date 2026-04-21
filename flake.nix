@@ -124,7 +124,7 @@
               features = {
                 virtualization = true;
                 deckmode = true;
-                noDGPUspecialization = true;
+                noDGPUspecialization = false; #TODO fix
               };
               desktopEnvironment = {
                 enable = true;
