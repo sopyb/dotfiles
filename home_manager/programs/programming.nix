@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 let
-  utils = import ./programming/utils.nix { inherit pkgs; };
+  utils = import ./programming/utils.nix { inherit inputs pkgs; };
 in
 {
   imports = [
@@ -20,7 +20,7 @@ in
     rustup
   ] ++ utils.addJetbrainsPlugins [
     # android-studio
-    # jetbrains.clion ## llvm & university work
+    jetbrains.clion ## llvm & university work
     jetbrains.webstorm ## random web projects - Portfolio time
     # jetbrains.rust-rover ## sheesh
     # jetbrains.pycharm ## not python... NOT PYTHON

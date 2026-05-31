@@ -1,12 +1,14 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 let
+  inherit (inputs.nix-jetbrains-plugins.lib) buildIdeWithPlugins;
+
   addJetbrainsPlugins = ideList:
     map
       (ide:
-        pkgs.jetbrains.plugins.addPlugins ide [
-          # "github-copilot"
-          # "ideavim"
+        buildIdeWithPlugins pkgs ide [
+          "com.github.copilot"
+          "IdeaVIM"
         ]
       )
       ideList;
