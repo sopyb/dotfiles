@@ -46,7 +46,7 @@
         efi.efiSysMountPoint = "/boot/EFI";
       };
 
-      kernelPackages = lib.mkDefault pkgs.linuxPackages_6_18;
+      kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
       plymouth = {
         enable = true;
