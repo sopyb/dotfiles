@@ -3,7 +3,7 @@
 {
   home = {
     packages = with pkgs; [
-      nodejs_20
+      nodejs_26
     ];
 
     file.".config/zsh/.p10k.zsh".text = builtins.readFile ./p10k.zsh;
