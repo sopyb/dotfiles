@@ -17,7 +17,7 @@
     };
     open = lib.mkDefault false;
     nvidiaSettings = lib.mkDefault true;
-    package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.beta;
+    package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.latest;
   };
 
   services.xserver = {
