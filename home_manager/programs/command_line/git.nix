@@ -18,7 +18,7 @@ in
 
       core = {
         autocrlf = "input";
-        # editor = "vim";
+        editor = "micro";
       };
 
       # url = {
