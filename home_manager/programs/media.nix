@@ -19,7 +19,6 @@
     firefox-devedition
     vivaldi
     vivaldi-ffmpeg-codecs
-    ladybird
 
     # game launchers
     heroic
