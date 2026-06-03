@@ -46,30 +46,30 @@ in
 
     fwupd.enable = true;
 
-    
-      wivrn = {
-        enable = true;
-        openFirewall = true;
 
-        autoStart = true;
+    wivrn = {
+      enable = true;
+      openFirewall = true;
 
-        package = (pkgs.wivrn.override { cudaSupport = true; });
-      };
+      autoStart = true;
+
+      package = (pkgs.wivrn.override { cudaSupport = true; });
+    };
   };
 
   systemd.services."wivrn-adb-tunnel" = {
-      description = "WiVRn ADB reverse tunnel (used by udev)";
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStartPre = "${pkgs.coreutils}/bin/sleep 3";
-        ExecStart = pkgs.writeShellScript "wivrn-adb-tunnel" ''
-          set -euo pipefail
-          serial=$(${lsusb} -vd 2833: | grep iSerial | awk '{print $3}' | head -n1 || true)
-          [ -n "$serial" ] || { echo "device not found"; exit 1; }
-          ${adb} -s "$serial" reverse tcp:9757 tcp:9757
-        '';
-      };
+    description = "WiVRn ADB reverse tunnel (used by udev)";
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 3";
+      ExecStart = pkgs.writeShellScript "wivrn-adb-tunnel" ''
+        set -euo pipefail
+        serial=$(${lsusb} -vd 2833: | grep iSerial | awk '{print $3}' | head -n1 || true)
+        [ -n "$serial" ] || { echo "device not found"; exit 1; }
+        ${adb} -s "$serial" reverse tcp:9757 tcp:9757
+      '';
     };
+  };
 
 
   security = {
