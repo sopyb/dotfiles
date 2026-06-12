@@ -52,6 +52,11 @@
       url = "github:kalsvik/split-monitor-workspaces";
       inputs.hyprland.follows = "hyprland";
     };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, home-manager, nixpkgs, nixpkgs-stable, ... } @ inputs:
