@@ -5,9 +5,10 @@ let
   # Map desktop environment names to their home-manager module paths
   desktopEnvironmentHomeModules = {
     hyprland = ../home_manager/desktop_environments/hyprland/hyprland.nix;
+    niri = ../home_manager/desktop_environments/niri/niri.nix;
   };
 
-  waylandWindowManagers = [ "hyprland" ];
+  waylandWindowManagers = [ "hyprland" "niri" ];
 
   # Import home modules for enabled desktop environments
   importDesktopEnvironmentHomes =

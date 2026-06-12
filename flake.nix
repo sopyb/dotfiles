@@ -139,7 +139,7 @@
               };
               desktopEnvironment = {
                 enable = true;
-                types = [ "hyprland" "cosmic" ];
+                types = [ "hyprland" "niri" "cosmic" ];
                 displayManager = "ly";
               };
             };
