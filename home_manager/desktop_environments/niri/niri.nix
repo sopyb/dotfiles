@@ -204,7 +204,7 @@ in
         Mod+N { spawn-sh "noctalia msg panel-toggle control-center"; }    
         Mod+M { spawn-sh "noctalia msg settings-toggle"; }
         
-        Mod+L { spawn "loginctl" "lock-session"; }
+        Mod+L { spawn-sh "noctalia msg noctalia msg session lock"; }
         Print { screenshot-screen; }
         Mod+Shift+Print { screenshot-window; }
         Mod+Shift+S { screenshot; }
@@ -279,10 +279,10 @@ in
         XF86MonBrightnessUp   allow-when-locked=true { spawn-sh "noctalia msg brightness-up"; }
         XF86MonBrightnessDown allow-when-locked=true { spawn-sh "noctalia msg brightness-down"; }
 
-        XF86AudioNext  allow-when-locked=true { spawn-sh "playerctl next"; }
-        XF86AudioPrev  allow-when-locked=true { spawn-sh "playerctl previous"; }
-        XF86AudioPlay  allow-when-locked=true { spawn-sh "playerctl play-pause"; }
-        XF86AudioPause allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+        XF86AudioPrev  allow-when-locked=true { spawn-sh "noctalia msg media previous"; }
+        XF86AudioNext  allow-when-locked=true { spawn-sh "noctalia msg media next"; }
+        XF86AudioPlay  allow-when-locked=true { spawn-sh "noctalia msg media toggle"; }
+        XF86AudioPause allow-when-locked=true { spawn-sh "noctalia msg media toggle"; }
 
         Mod+Shift+M { quit; }
         Mod+Shift+P { power-off-monitors; }
