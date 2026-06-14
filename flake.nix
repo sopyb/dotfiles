@@ -93,7 +93,7 @@
         };
         overlays = [
           inputs.nur.overlays.default
-          inputs.niri.overlays.niri 
+          inputs.niri.overlays.niri
           overlaysModule
         ];
       };
