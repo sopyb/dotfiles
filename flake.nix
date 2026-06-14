@@ -48,6 +48,11 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     niri-scratchpad = {
       url = "github:argosnothing/niri-scratchpad-rs";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -88,6 +93,7 @@
         };
         overlays = [
           inputs.nur.overlays.default
+          inputs.niri.overlays.niri 
           overlaysModule
         ];
       };
@@ -149,7 +155,7 @@
               };
               desktopEnvironment = {
                 enable = true;
-                types = [ "hyprland" "niri" "cosmic" ];
+                types = [ "niri" "gnome" ];
                 displayManager = "noctalia-greeter";
               };
             };

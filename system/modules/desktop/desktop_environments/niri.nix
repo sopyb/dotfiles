@@ -1,7 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
-  programs.niri.enable = true;
+  imports = [ inputs.niri.nixosModules.niri ];
+
+  programs.niri = {
+    enable = true;
+    package = pkgs.niri-unstable;
+  };
 
   boot.kernelParams = [
     "nvidia_drm.fbdev=1"
