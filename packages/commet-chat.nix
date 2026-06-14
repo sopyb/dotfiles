@@ -6,7 +6,7 @@
 
 pkgs.stdenv.mkDerivation rec {
   pname = "commet";
-  version = "0.4.1";
+  version = "0.4.2+hotfix.2";
 
   src = pkgs.fetchurl {
     url = "https://github.com/commetchat/commet/releases/download/v${version}/commet-ubuntu-24.04-x64.deb";
