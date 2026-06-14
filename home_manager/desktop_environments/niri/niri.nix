@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, lib, ... }:
 
 let
   wattbar = import ../common/wattbar.nix;
@@ -168,6 +168,10 @@ in
     layer-rule {
         match namespace="^noctalia-backdrop"
         place-within-backdrop true
+    }
+
+    xwayland-satellite {
+        path "${lib.getExe pkgs.xwayland-satellite}"
     }
 
     debug {
