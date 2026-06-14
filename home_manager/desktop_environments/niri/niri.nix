@@ -11,6 +11,7 @@ in
 
   home.packages = with pkgs; [
     hyprpicker
+    inputs.niri-scratchpad.packages.${pkgs.system}.default
   ];
 
   # Noctalia shell (bar, launcher, notifications, OSD, lockscreen)
@@ -132,12 +133,19 @@ in
     screenshot-path "~/Pictures/Screenshots/Screenshot_%Y-%m-%d_%H-%M-%S.png"
 
     spawn-at-startup "noctalia"
+    spawn-at-startup "niri-scratchpad" "daemon"
     spawn-at-startup "wattbar" "-b" "l" "--theme" "catppuccin"
 
-    spawn-at-startup "discord"
-    spawn-at-startup "zapzap"
-    spawn-at-startup "signal-desktop"
-    spawn-at-startup "pear-desktop"
+    workspace "1" { }
+    workspace "2" { }
+    workspace "3" { }
+    workspace "4" { }
+    workspace "5" { }
+    workspace "6" { }
+    workspace "7" { }
+    workspace "8" { }
+    workspace "9" { }
+    workspace "stash" { }
 
     hotkey-overlay {
         skip-at-startup
@@ -159,10 +167,12 @@ in
         default-window-height { fixed 920; }
     }
 
-    // Discord, zapzap, signal on workspace 1 (replaces Hyprland special:z)
+    // Scratchpad apps: open floating so they behave like overlays
     window-rule {
-        match app-id=r#"discord|zapzap|signal-desktop|pear-desktop"#
-        open-on-workspace "1"
+        match app-id=r#"^(discord|com\.rtosta\.zapzap|signal|com\.github\.th_ch\.youtube_music)$"#
+        open-floating true
+        default-column-width { proportion 0.95; }
+        default-window-height { proportion 0.95; }
     }
 
     layer-rule {
@@ -183,6 +193,12 @@ in
         Mod+W { spawn "zen-beta"; }
         Mod+E { spawn "thunderbird"; }
         Mod+R { spawn "thunar"; }
+
+        // Scratchpads (niri-scratchpad-rs)
+        Mod+Z { spawn "niri-scratchpad" "target" "--spawn" "discord" "appid" "discord"; }
+        Mod+X { spawn "niri-scratchpad" "target" "--spawn" "zapzap" "appid" "com.rtosta.zapzap"; }
+        Mod+Shift+X { spawn "niri-scratchpad" "target" "--spawn" "signal-desktop" "appid" "signal"; }
+        Mod+A { spawn "niri-scratchpad" "target" "--spawn" "pear-desktop" "appid" "com.github.th_ch.youtube_music"; }
 
         Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
         Mod+N { spawn-sh "noctalia msg panel-toggle control-center"; }    
