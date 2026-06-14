@@ -12,7 +12,7 @@ in
     signal-desktop
     slack
     vesktop
-    zapzap
+    stable.zapzap
     zoom-us
     # zulip
   ];
