@@ -48,6 +48,11 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    niri-scratchpad = {
+      url = "github:argosnothing/niri-scratchpad-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     split-monitor-workspaces = {
       url = "github:kalsvik/split-monitor-workspaces";
       inputs.hyprland.follows = "hyprland";
@@ -55,6 +60,11 @@
 
     noctalia = {
       url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    noctalia-greeter = {
+      url = "github:noctalia-dev/noctalia-greeter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -140,7 +150,7 @@
               desktopEnvironment = {
                 enable = true;
                 types = [ "hyprland" "niri" "cosmic" ];
-                displayManager = "ly";
+                displayManager = "noctalia-greeter";
               };
             };
           };

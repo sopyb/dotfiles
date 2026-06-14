@@ -18,6 +18,7 @@ let
     sddm = ../system/modules/desktop/display_managers/sddm.nix;
     ly = ../system/modules/desktop/display_managers/ly.nix;
     cosmic-greeter = ../system/modules/desktop/display_managers/cosmic-greeter.nix;
+    noctalia-greeter = ../system/modules/desktop/display_managers/noctalia-greeter.nix;
   };
 
   # Import desktop environments from the list

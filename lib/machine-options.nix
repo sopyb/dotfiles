@@ -65,7 +65,7 @@ in
         };
 
         displayManager = mkOption {
-          type = types.nullOr (types.enum [ "sddm" "ly" "cosmic-greeter" ]);
+          type = types.nullOr (types.enum [ "sddm" "ly" "cosmic-greeter" "noctalia-greeter" ]);
           default = null;
           description = "Display manager to use";
           example = "sddm";
