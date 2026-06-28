@@ -16,10 +16,9 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" "sdhci_pci" "vfio-pci" "vfio" "kvmfr" "ec_sys" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" "sdhci_pci" "ec_sys" ];
 
   boot.extraModprobeConfig = ''
-    options kvmfr static_size_mb=32
     options ec_sys write_support=Y
   '';
 
@@ -27,18 +26,8 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [
     "kvm-amd"
-    # Virt
-    "vfio-pci"
-    "vfio"
-    "kvmfr"
     "ec_sys"
   ];
-
-
-  boot.extraModulePackages = with config.boot.kernelPackages; [
-    config.boot.kernelPackages.kvmfr
-  ];
-
 
   boot.supportedFilesystems = [ "btrfs" "ext4" "vfat" ];
 

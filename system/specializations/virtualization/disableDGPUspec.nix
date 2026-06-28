@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   specialisation = {
@@ -11,6 +11,15 @@
           boot.loader.grub.configurationName = ''dGPU Disabled" --class "nixos'';
           boot.kernelParams = [ "amd_iommu=on" "pcie_aspm=off" ];
 
+          boot.initrd.availableKernelModules = [ "vfio-pci" "vfio" "kvmfr" ];
+          boot.initrd.kernelModules = [ "vfio-pci" "vfio" "kvmfr" ];
+
+          boot.extraModprobeConfig = ''
+            options kvmfr static_size_mb=32
+            options ec_sys write_support=Y
+          '';
+
+          boot.extraModulePackages = with config.boot.kernelPackages; [ kvmfr ]; 
 
           # Alphicta
           boot.initrd.systemd.services.disable-dgpu-vfio-bind = {
