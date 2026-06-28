@@ -44,7 +44,6 @@
     };
 
     settings = {
-      "background_opacity_inactive_transparent" = 0.5;
       "background_opacity" = 0.7;
       "scrollback_lines" = 10000;
       "enable_audio_bell" = false;
@@ -53,7 +52,6 @@
       "enabled_layouts" = "splits";
       "window_border_width" = "1pt";
     };
-
 
     themeFile = "Catppuccin-Macchiato";
   };
