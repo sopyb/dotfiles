@@ -5,7 +5,7 @@ let
     "owner" = "sopyb";
     "repo" = "mpv";
     "rev" = "tap";
-    "hash" = "sha256-fLgSbaj8WNea+Bj9boTtEy988GOI/+yK2QsSNf9kXRc=";
+    "hash" = "sha256-leuBvjccmg7PN14IWzdvY+377oFzblLz+u3uGfSxOcg=";
   };
 in
 pkgs.mpv-unwrapped.overrideAttrs (old: {
