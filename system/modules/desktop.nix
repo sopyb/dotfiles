@@ -8,6 +8,9 @@
     ./programs.nix
     ./services.nix
     ./desktop/limits.nix
+
+    # Program hooks
+    ./gamemode.nix
   ];
 
   environment.systemPackages = with pkgs; [

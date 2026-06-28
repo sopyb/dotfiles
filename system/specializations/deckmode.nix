@@ -8,6 +8,7 @@
         imports = [
           ../machines/alphicta
           ../modules/common.nix
+          ../modules/gamemode.nix
         ];
 
         config = {

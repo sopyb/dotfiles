@@ -5,9 +5,6 @@
     ./nix_settings.nix
     ./users.nix
     ./containers.nix
-
-    # Program hooks
-    ./gamemode.nix
   ];
 
   i18n.defaultLocale = "en_US.UTF-8";
