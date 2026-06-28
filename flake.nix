@@ -220,8 +220,8 @@
               features = { };
               desktopEnvironment = {
                 enable = true;
-                types = [ "xfce" ];
-                displayManager = "ly";
+                types = [ "gnome" ];
+                displayManager = "gdm";
               };
             };
           };
