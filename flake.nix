@@ -156,7 +156,7 @@
               desktopEnvironment = {
                 enable = true;
                 types = [ "niri" "gnome" ];
-                displayManager = "noctalia-greeter";
+                displayManager = "gdm";
               };
             };
           };
