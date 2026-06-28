@@ -3,18 +3,37 @@
 {
   imports = [
     ../../modules/boot.nix
+    ../../modules/server/services.nix
   ];
 
   environment.systemPackages = with pkgs; [
-    pkgs.custom.mpv-unwrapped
+    custom.mpv-unwrapped
+
+    yt-dlp
   ];
 
   virtualisation.vmVariant = {
     virtualisation = {
+      qemu = {
+        enableSharedMemory = true;
+
+
+        options = [
+          ''-display gtk,gl=on''
+          ''-device virtio-vga-gl''
+        ];
+      };
+
+      forwardPorts = [
+        { from = "host"; host.port = 2222; guest.port = 22; }
+      ];
+
       diskSize = 32 * 1024;
       memorySize = 16 * 1024;
       cores = 8;
     };
+
+    networking.firewall.enable = false;
   };
 
   # disable pipewire and pulseaudio so no audio can be played from the vm
