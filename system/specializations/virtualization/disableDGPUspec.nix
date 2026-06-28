@@ -19,7 +19,7 @@
             options ec_sys write_support=Y
           '';
 
-          boot.extraModulePackages = with config.boot.kernelPackages; [ kvmfr ]; 
+          boot.extraModulePackages = with config.boot.kernelPackages; [ kvmfr ];
 
           # Alphicta
           boot.initrd.systemd.services.disable-dgpu-vfio-bind = {
