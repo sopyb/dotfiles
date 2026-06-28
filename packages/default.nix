@@ -6,5 +6,6 @@
   wattbar = pkgs.callPackage ./wattbar.nix { };
 
   # thesis
+  mpv-unwrapped = pkgs.callPackage ./tap/mpv-unwrapped.nix { };
   kitty = pkgs.callPackage ./tap/kitty.nix { };
 }

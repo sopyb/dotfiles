@@ -1,8 +1,12 @@
-{ lib, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
     ../../modules/boot.nix
+  ];
+
+  environment.systemPackages = with pkgs; [
+    pkgs.custom.mpv-unwrapped
   ];
 
   virtualisation.vmVariant = {

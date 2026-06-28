@@ -8,7 +8,7 @@
 
   home.packages = with pkgs; [
     # media
-    mpv
+    custom.mpv-unwrapped
     yt-dlp
     pear-desktop
     chatterino7
