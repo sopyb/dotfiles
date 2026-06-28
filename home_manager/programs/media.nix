@@ -63,5 +63,6 @@
     # openboard
     libreoffice-qt6-fresh
     onlyoffice-desktopeditors
+    zotero
   ];
 }
