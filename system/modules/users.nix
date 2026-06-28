@@ -18,6 +18,7 @@
 
     users.users.sopy = {
       isNormalUser = true;
+      initialPassword = "";
       useDefaultShell = true;
       description = "sopy";
       extraGroups = [ "networkmanager" "wheel" "dialout" "plugdev" "adbusers" "gamemode" "video" "docker" "podman" "kvm" "libvirtd" "input" "render" ];
