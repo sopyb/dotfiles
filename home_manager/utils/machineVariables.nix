@@ -18,6 +18,10 @@ let
       gitSigningKey = "0x";
       gitSigning = false;
     };
+    lamsurrus = {
+      gitSigningKey = "0x";
+      gitSigning = false;
+    };
   };
 in
 {

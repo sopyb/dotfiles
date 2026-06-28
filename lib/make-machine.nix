@@ -34,6 +34,7 @@ let
   # Check machine type
   isDesktop = machine.type == "desktop" || machine.type == "hybrid";
   isServer = machine.type == "server" || machine.type == "hybrid";
+  isMinimal = machine.type == "minimal";
 in
 {
   imports = [
@@ -44,7 +45,7 @@ in
   # Machine type modules
   ++ optional isDesktop ../system/modules/desktop.nix
   ++ optional isServer ../system/modules/server.nix
-
+  ++ optional isMinimal ../system/modules/minimal.nix
   # Feature modules
   ++ optional (machine.features.virtualization or false) ../system/modules/virtualization.nix
   ++ optional (machine.features.ollama or false) ../system/modules/ollama.nix

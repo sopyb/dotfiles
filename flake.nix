@@ -209,6 +209,23 @@
             };
           };
         };
+
+        lamsurrus = mkMachine {
+          name = "lamsurrus";
+          hardwareConfig = ./system/machines/lamsurrus;
+          machineConfig = {
+            machine = {
+              name = "lamsurrus";
+              type = "minimal";
+              features = { };
+              desktopEnvironment = {
+                enable = true;
+                types = [ "xfce" ];
+                displayManager = "ly";
+              };
+            };
+          };
+        };
       };
     };
 }

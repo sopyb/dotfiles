@@ -13,9 +13,9 @@ in
       };
 
       type = mkOption {
-        type = types.enum [ "desktop" "server" "hybrid" ];
+        type = types.enum [ "desktop" "server" "hybrid" "minimal" ];
         default = "desktop";
-        description = "The type of the machine (desktop, server, or hybrid)";
+        description = "The type of the machine (desktop, server, hybrid, or minimal)";
       };
 
       features = {
