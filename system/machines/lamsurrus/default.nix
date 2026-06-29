@@ -8,7 +8,6 @@
 
   environment.systemPackages = with pkgs; [
     custom.mpv
-    custom.youtube-tui
 
     yt-dlp
   ];

@@ -9,7 +9,6 @@
   home.packages = with pkgs; [
     # media
     custom.mpv
-    custom.youtube-tui
     yt-dlp
     pear-desktop
     chatterino7
