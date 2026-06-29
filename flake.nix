@@ -227,5 +227,12 @@
           };
         };
       };
+
+      packages = lib.genAttrs ["x86_64-linux" "aarch64-linux"] (system:
+        let
+          pkgs = pkgsForSystem system;
+        in
+        pkgs.custom
+      );
     };
 }
