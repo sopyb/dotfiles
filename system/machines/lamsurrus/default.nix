@@ -8,6 +8,7 @@
 
   environment.systemPackages = with pkgs; [
     custom.mpv
+    custom.mpv-music
 
     yt-dlp
   ];

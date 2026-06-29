@@ -9,4 +9,5 @@
   kitty = pkgs.callPackage ./tap/kitty.nix { };
   mpv-unwrapped = pkgs.callPackage ./tap/mpv-unwrapped.nix { };
   mpv = pkgs.callPackage ./tap/mpv.nix { };
+  mpv-music = pkgs.callPackage ./tap/mpv-music.nix { };
 }
