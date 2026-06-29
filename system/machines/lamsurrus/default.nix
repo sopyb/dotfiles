@@ -8,7 +8,6 @@
 
   environment.systemPackages = with pkgs; [
     custom.mpv
-    custom.youtube-music-cli
     custom.youtube-tui
 
     yt-dlp
@@ -40,4 +39,10 @@
 
   # disable pipewire and pulseaudio so no audio can be played from the vm
   services.pipewire.enable = lib.mkForce false;
+
+  # enable screen sharing for the vm
+  services.gnome.gnome-remote-desktop.enable = true;
+  systemd.services.gnome-remote-desktop = {
+    wantedBy = [ "graphical.target" ];
+  };
 }
