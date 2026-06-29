@@ -5,7 +5,7 @@ let
     "owner" = "sopyb";
     "repo" = "kitty";
     "rev" = "tap";
-    "hash" = "sha256-2O4m1NW+q2E+HM9TaHdrJLvNf14PIvg68YZM84/46A4=";
+    "hash" = "sha256-74N2Md1jMZ4VDRam/2J4tbLztPWO+O2lcHkBtLk9YY8=";
   };
 
   goModules = (pkgs.buildGo126Module {
