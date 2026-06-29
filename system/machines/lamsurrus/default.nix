@@ -7,7 +7,7 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    custom.mpv-unwrapped
+    custom.mpv
 
     yt-dlp
   ];
