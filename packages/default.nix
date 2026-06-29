@@ -9,5 +9,6 @@
   kitty = pkgs.callPackage ./tap/kitty.nix { };
   mpv-unwrapped = pkgs.callPackage ./tap/mpv-unwrapped.nix { };
   mpv = pkgs.callPackage ./tap/mpv.nix { };
+  youtube-music-cli = pkgs.callPackage ./tap/youtube-music-cli.nix { };
   youtube-tui = pkgs.callPackage ./tap/youtube-tui.nix { };
 }
