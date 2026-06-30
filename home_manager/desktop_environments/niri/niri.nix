@@ -11,7 +11,7 @@ in
 
   home.packages = with pkgs; [
     hyprpicker
-    inputs.niri-scratchpad.packages.${pkgs.system}.default
+    inputs.niri-scratchpad.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   # Noctalia shell (bar, launcher, notifications, OSD, lockscreen)

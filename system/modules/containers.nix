@@ -1,4 +1,4 @@
-{ pkgs, system, inputs, ... }:
+{ pkgs, ... }:
 
 {
   virtualisation = {
