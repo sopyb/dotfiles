@@ -98,14 +98,13 @@
         ];
       };
 
-      mkMachine = { name, hardwareConfig, machineConfig, system ? "x86_64-linux" }:
+      mkMachine = { name, machineConfig, system ? "x86_64-linux" }:
         let
           machinePackages = pkgsForSystem system;
         in
         lib.nixosSystem {
           modules = [
-            # Machine configuration
-            hardwareConfig
+            (self + /machines/${name})
             ./lib/make-machine.nix
             machineConfig
             { nixpkgs.pkgs = machinePackages; }
@@ -143,7 +142,6 @@
       nixosConfigurations = {
         alphicta = mkMachine {
           name = "alphicta";
-          hardwareConfig = ./machines/alphicta;
           machineConfig = {
             machine = {
               name = "alphicta";
@@ -164,7 +162,6 @@
 
         bethium = mkMachine {
           name = "bethium";
-          hardwareConfig = ./machines/bethium;
           machineConfig = {
             machine = {
               name = "bethium";
@@ -181,7 +178,6 @@
 
         lamsurrus = mkMachine {
           name = "lamsurrus";
-          hardwareConfig = ./machines/lamsurrus;
           machineConfig = {
             machine = {
               name = "lamsurrus";
@@ -199,7 +195,6 @@
         omegantes = mkMachine {
           name = "omegantes";
           system = "aarch64-linux";
-          hardwareConfig = ./machines/omegantes;
           machineConfig = {
             machine = {
               name = "omegantes";
@@ -212,7 +207,6 @@
 
         zetalyeh = mkMachine {
           name = "zetalyeh";
-          hardwareConfig = ./machines/zetalyeh;
           machineConfig = {
             machine = {
               name = "zetalyeh";
