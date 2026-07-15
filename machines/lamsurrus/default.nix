@@ -2,7 +2,7 @@
 
 {
   imports = [
-    (self + /system/modules/boot.nix)
+    (self + /system/modules/features/boot.nix)
     (self + /system/modules/server/services.nix)
   ];
 

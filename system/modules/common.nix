@@ -2,9 +2,9 @@
 
 {
   imports = [
-    ./nix_settings.nix
-    ./users.nix
-    ./containers.nix
+    ./features/nix_settings.nix
+    ./features/users.nix
+    ./features/containers.nix
   ];
 
   i18n.defaultLocale = "en_US.UTF-8";

@@ -5,20 +5,20 @@ let
 
   # Map desktop environment names to their module paths
   desktopEnvironmentModules = {
-    cosmic = self + /system/modules/desktop/desktop_environments/cosmic.nix;
-    gnome = self + /system/modules/desktop/desktop_environments/gnome.nix;
-    hyprland = self + /system/modules/desktop/desktop_environments/hyprland.nix;
-    niri = self + /system/modules/desktop/desktop_environments/niri.nix;
-    plasma = self + /system/modules/desktop/desktop_environments/plasma.nix;
-    xfce = self + /system/modules/desktop/desktop_environments/xfce.nix;
+    cosmic = self + /system/desktop/desktop_environments/cosmic.nix;
+    gnome = self + /system/desktop/desktop_environments/gnome.nix;
+    hyprland = self + /system/desktop/desktop_environments/hyprland.nix;
+    niri = self + /system/desktop/desktop_environments/niri.nix;
+    plasma = self + /system/desktop/desktop_environments/plasma.nix;
+    xfce = self + /system/desktop/desktop_environments/xfce.nix;
   };
 
   # Map display manager names to their module paths
   displayManagerModules = {
-    sddm = self + /system/modules/desktop/display_managers/sddm.nix;
-    ly = self + /system/modules/desktop/display_managers/ly.nix;
-    cosmic-greeter = self + /system/modules/desktop/display_managers/cosmic-greeter.nix;
-    noctalia-greeter = self + /system/modules/desktop/display_managers/noctalia-greeter.nix;
+    sddm = self + /system/desktop/display_managers/sddm.nix;
+    ly = self + /system/desktop/display_managers/ly.nix;
+    cosmic-greeter = self + /system/desktop/display_managers/cosmic-greeter.nix;
+    noctalia-greeter = self + /system/desktop/display_managers/noctalia-greeter.nix;
   };
 
   # Import desktop environments from the list
@@ -47,8 +47,8 @@ in
   ++ optional isServer (self + /system/modules/server.nix)
   ++ optional isMinimal (self + /system/modules/minimal.nix)
   # Feature modules
-  ++ optional (machine.features.virtualization or false) (self + /system/modules/virtualization.nix)
-  ++ optional (machine.features.ollama or false) (self + /system/modules/ollama.nix)
+  ++ optional (machine.features.virtualization or false) (self + /system/modules/features/virtualization.nix)
+  ++ optional (machine.features.ollama or false) (self + /system/modules/features/ollama.nix)
 
   # Desktop environments and display manager
   ++ importDesktopEnvironments

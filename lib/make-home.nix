@@ -26,12 +26,12 @@ in
 {
   imports = [
     ./options/machine-options.nix
-    (self + /home/modules/common.nix)
+    (self + /home/programs/base)
   ]
 
   # Machine type home configuration
-  ++ lib.optional isDesktop (self + /home/modules/desktop.nix)
-  ++ lib.optional isServer (self + /home/modules/server.nix)
+  ++ lib.optional isDesktop (self + /home/programs/desktop)
+  ++ lib.optional isServer (self + /home/programs/base)
 
   # Common wayland utilities (anyrun, swayosd, swaync)
   ++ lib.optional hasWaylandWM (self + /home/desktop/common/wayland.nix)

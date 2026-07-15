@@ -2,7 +2,7 @@
 
 {
   imports = [
-    (self + /home/modules/programs/command_line)
+    (self + /home/programs/command_line)
   ];
 
   config.home = {

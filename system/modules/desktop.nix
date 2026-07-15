@@ -1,16 +1,16 @@
-{ pkgs, ... }:
+{ pkgs, self, ... }:
 
 {
   imports = [
     ./common.nix
-    ./boot.nix
-    ./fonts.nix
-    ./programs.nix
-    ./services.nix
-    ./desktop/limits.nix
+    ./features/boot.nix
+    ./features/fonts.nix
+    ./features/programs.nix
+    ./features/services.nix
+    (self + /system/desktop/limits.nix)
 
     # Program hooks
-    ./gamemode.nix
+    ./features/gamemode.nix
   ];
 
   environment.systemPackages = with pkgs; [
