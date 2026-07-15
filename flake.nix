@@ -74,149 +74,22 @@
     };
   };
 
-  outputs = { self, home-manager, nixpkgs, nixpkgs-stable, ... } @ inputs:
+  outputs = { self, ... } @ inputs:
     let
-      lib = nixpkgs.lib;
-
-      overlaysModule = import ./overlays/default.nix { inherit inputs; };
-
-      pkgsForSystem = system: import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-          nvidia.acceptLicense = true;
-          android_sdk.accept_license = true;
-
-          permittedInsecurePackages = [
-            "electron-39.8.10"
-          ];
-        };
-        overlays = [
-          inputs.nur.overlays.default
-          inputs.niri.overlays.niri
-          overlaysModule
-        ];
-      };
-
-      mkMachine = { name, machineConfig, system ? "x86_64-linux" }:
-        let
-          machinePackages = pkgsForSystem system;
-        in
-        lib.nixosSystem {
-          modules = [
-            (self + /machines/${name})
-            ./lib/make-machine.nix
-            machineConfig
-            { nixpkgs.pkgs = machinePackages; }
-          ];
-
-          specialArgs = {
-            inherit inputs system home-manager;
-            root = self;
-            machine = machineConfig.machine;
-          };
-        };
+      builders = import ./lib/builders.nix { inherit inputs self; };
+      inherit (builders) mkMachine pkgsForSystem;
     in
     {
       nixosConfigurations = {
-        alphicta = mkMachine {
-          name = "alphicta";
-          machineConfig = {
-            machine = {
-              name = "alphicta";
-              type = "desktop";
-              features = {
-                virtualization = true;
-                deckmode = true;
-                noDGPUspecialization = true;
-              };
-              desktopEnvironment = {
-                enable = true;
-                types = [ "niri" "gnome" ];
-                displayManager = "gdm";
-              };
-              variables = {
-                gitSigningKey = "0xF23DB4349DDE0FAA";
-                gitSigning = true;
-              };
-            };
-          };
-        };
-
-        bethium = mkMachine {
-          name = "bethium";
-          machineConfig = {
-            machine = {
-              name = "bethium";
-              type = "desktop";
-              features = { };
-              desktopEnvironment = {
-                enable = true;
-                types = [ "gnome" ];
-                displayManager = "none";
-              };
-              variables = {
-                gitSigningKey = "0x9807678BAB0693F4";
-                gitSigning = true;
-              };
-            };
-          };
-        };
-
-        lamsurrus = mkMachine {
-          name = "lamsurrus";
-          machineConfig = {
-            machine = {
-              name = "lamsurrus";
-              type = "minimal";
-              features = { };
-              desktopEnvironment = {
-                enable = true;
-                types = [ "gnome" ];
-                displayManager = "gdm";
-              };
-              variables = { };
-            };
-          };
-        };
-
-        omegantes = mkMachine {
-          name = "omegantes";
-          system = "aarch64-linux";
-          machineConfig = {
-            machine = {
-              name = "omegantes";
-              type = "server";
-              features = { };
-              desktopEnvironment.enable = false;
-              variables = { };
-            };
-          };
-        };
-
-        zetalyeh = mkMachine {
-          name = "zetalyeh";
-          machineConfig = {
-            machine = {
-              name = "zetalyeh";
-              type = "hybrid";
-              features = { };
-              desktopEnvironment = {
-                enable = true;
-                types = [ "xfce" ];
-                displayManager = "ly";
-              };
-              variables = { };
-            };
-          };
-        };
+        alphicta  = mkMachine { name = "alphicta"; };
+        bethium   = mkMachine { name = "bethium"; };
+        lamsurrus = mkMachine { name = "lamsurrus"; };
+        omegantes = mkMachine { name = "omegantes"; system = "aarch64-linux"; };
+        zetalyeh  = mkMachine { name = "zetalyeh"; };
       };
 
-      packages = lib.genAttrs [ "x86_64-linux" "aarch64-linux" ] (system:
-        let
-          pkgs = pkgsForSystem system;
-        in
-        pkgs.custom
+      packages = inputs.nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ] (system:
+        (pkgsForSystem system).custom
       );
     };
 }
