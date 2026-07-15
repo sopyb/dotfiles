@@ -38,7 +38,7 @@ let
 in
 {
   imports = [
-    ./machine-options.nix
+    ./options/machine-options.nix
 
     ../system/modules/common.nix
   ]
