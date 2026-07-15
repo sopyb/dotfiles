@@ -1,11 +1,11 @@
 { inputs, pkgs, ... }:
 
 let
-  utils = import ./programming/utils.nix { inherit inputs pkgs; };
+  utils = import ./utils.nix { inherit inputs pkgs; };
 in
 {
   imports = [
-    ./programming/vscode.nix
+    ./vscode.nix
   ];
 
 

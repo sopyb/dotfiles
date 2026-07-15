@@ -4,10 +4,10 @@
   imports = [
     ./common.nix
 
-    ../programs/communication.nix
-    ../programs/media.nix
-    ../programs/misc.nix
-    ../programs/programming.nix
+    ../programs/communication
+    ../programs/media
+    ../programs/misc
+    ../programs/programming
   ];
 
   services.udiskie = {

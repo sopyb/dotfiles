@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../programs/command_line.nix
+    ../programs/command_line
   ];
 
   config.home = {
