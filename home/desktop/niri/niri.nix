@@ -1,7 +1,7 @@
 { inputs, pkgs, lib, self, ... }:
 
 let
-  wattbar = import self + /home/desktop/common/wattbar.nix;
+  wattbar = import (self + /home/desktop/common/wattbar.nix);
 in
 {
   imports = [

@@ -1,10 +1,10 @@
 { inputs, pkgs, self, ... }:
 
 let
-  anyrun = import self + /home/desktop/common/anyrun.nix;
-  swayosd = import self + /home/desktop/common/swayosd.nix;
-  swaync = import self + /home/desktop/common/swaync.nix;
-  wattbar = import self + /home/desktop/common/wattbar.nix;
+  anyrun = import (self + /home/desktop/common/anyrun.nix);
+  swayosd = import (self + /home/desktop/common/swayosd.nix);
+  swaync = import (self + /home/desktop/common/swaync.nix);
+  wattbar = import (self + /home/desktop/common/wattbar.nix);
 in
 {
   home.packages = with pkgs; [

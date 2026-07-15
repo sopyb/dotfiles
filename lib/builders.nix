@@ -17,17 +17,17 @@ let
     overlays = [
       inputs.nur.overlays.default
       inputs.niri.overlays.niri
-      (import (self + /overlays/default.nix) { inherit inputs; })
+      (import (self + /overlays/default.nix) { inherit inputs self; })
     ];
   };
 
   mkMachine = { name, system ? "x86_64-linux" }:
     let
-      machineConfig = import (self + /machines/${name}/config.nix);
+      machineConfig = import (self + "/machines/${name}/config.nix");
     in
     lib.nixosSystem {
       modules = [
-        (self + /machines/${name})
+        (self + "/machines/${name}")
         (self + /lib/make-machine.nix)
         { nixpkgs.pkgs = pkgsForSystem system; }
       ];
