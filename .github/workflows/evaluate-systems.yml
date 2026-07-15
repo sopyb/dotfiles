@@ -2,7 +2,6 @@ name: Evaluate System Configs
 
 on: [push, pull_request]
 
-
 jobs:
   evaluate:
     strategy:
@@ -40,7 +39,7 @@ jobs:
           esac
 
           f=$(mktemp)
-          filter="^(copying path|unpacking '|fetching git input)"
+          filter="^(copying path|unpacking '|fetching git input|warning: download buffer)"
 
           nix eval ".#nixosConfigurations.${{ matrix.system }}.$evalTarget" \
             --json \
