@@ -81,11 +81,11 @@
     in
     {
       nixosConfigurations = {
-        alphicta  = mkMachine { name = "alphicta"; };
-        bethium   = mkMachine { name = "bethium"; };
+        alphicta = mkMachine { name = "alphicta"; };
+        bethium = mkMachine { name = "bethium"; };
         lamsurrus = mkMachine { name = "lamsurrus"; };
         omegantes = mkMachine { name = "omegantes"; system = "aarch64-linux"; };
-        zetalyeh  = mkMachine { name = "zetalyeh"; };
+        zetalyeh = mkMachine { name = "zetalyeh"; };
       };
 
       packages = inputs.nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ] (system:
