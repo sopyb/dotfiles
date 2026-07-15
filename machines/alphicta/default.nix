@@ -130,9 +130,13 @@
     };
   };
 
+  environment.systemPackages = with pkgs; [
+    custom.victus-fan-max
+  ];
+
   programs.gamemodeCommands = {
     start = [
-      "systemd-run --user --unit=alphicta-fan-max --property=KillSignal=SIGTERM ${./fan-max.sh}  2>/dev/null || true"
+      "systemd-run --user --unit=alphicta-fan-max --property=KillSignal=SIGTERM ${lib.getExe pkgs.custom.victus-fan-max}  2>/dev/null || true"
     ];
     end = [
       "systemctl --user stop alphicta-fan-max 2>/dev/null || true"

@@ -3,6 +3,7 @@
 {
   commet-chat = pkgs.callPackage ./commet-chat.nix { };
   davinci-resolve-studio = pkgs.callPackage ./davinci-resolve-studio.nix { };
+  victus-fan-max = pkgs.callPackage ./victus-fan-max.nix { };
   wattbar = pkgs.callPackage ./wattbar.nix { };
   vesktop = pkgs.callPackage ./vesktop.nix { };
 
