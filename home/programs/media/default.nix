@@ -2,8 +2,8 @@
 
 {
   imports = [
-    # ./media/spicetify.nix
-    ./media/zen-browser.nix
+    # ./spicetify.nix
+    ./zen-browser.nix
   ];
 
   home.packages = with pkgs; [
