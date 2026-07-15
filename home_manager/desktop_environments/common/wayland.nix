@@ -15,6 +15,7 @@ in
   ];
 
   home.pointerCursor = {
+    enable = true;
     package = pkgs.catppuccin-cursors.macchiatoLavender;
     name = "catppuccin-macchiato-lavender-cursors";
     size = 24;
