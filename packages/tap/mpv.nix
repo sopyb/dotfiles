@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> { } }:
+{ pkgs }:
 
 pkgs.mpv.override {
   mpv-unwrapped = pkgs.callPackage ./mpv-unwrapped.nix { };

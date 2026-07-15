@@ -1,6 +1,4 @@
-{
-  pkgs
-}:
+{ pkgs }:
 
 let
   mpv = pkgs.callPackage ./mpv.nix { };
@@ -18,11 +16,11 @@ pkgs.rustPlatform.buildRustPackage rec {
 
   cargoHash = "sha256-AxOgcTfmJoImQZu4H6z1MTo02NAA1QtHOd2jW8Bi+gk=";
 
-  buildFeatures = [];
+  buildFeatures = [ ];
 
   nativeBuildInputs = with pkgs; [ pkg-config makeWrapper ];
 
-  buildInputs = [];
+  buildInputs = [ ];
 
   postInstall = ''
     wrapProgram $out/bin/mpv-music \
