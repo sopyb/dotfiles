@@ -1,10 +1,10 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, self, ... }:
 
 let
-  anyrun = import ../common/anyrun.nix;
-  swayosd = import ../common/swayosd.nix;
-  swaync = import ../common/swaync.nix;
-  wattbar = import ../common/wattbar.nix;
+  anyrun = import self + /home/desktop/common/anyrun.nix;
+  swayosd = import self + /home/desktop/common/swayosd.nix;
+  swaync = import self + /home/desktop/common/swaync.nix;
+  wattbar = import self + /home/desktop/common/wattbar.nix;
 in
 {
   home.packages = with pkgs; [
@@ -275,7 +275,7 @@ in
     };
   };
 
-  home.file.".config/hypr/bg.png".source = ../common/bg.png;
+  home.file.".config/hypr/bg.png".source = self + /home/desktop/common/bg.png;
 
   services = {
     hyprpaper = {

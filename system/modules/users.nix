@@ -1,10 +1,6 @@
 { pkgs, ... }:
 
 {
-  imports = [
-    #    ../../dotfiles_secrets/users/passwords.nix
-  ];
-
   options.sopy.users = { };
 
   config = {

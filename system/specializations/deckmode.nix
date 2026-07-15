@@ -7,8 +7,8 @@
       configuration = {
         imports = [
           (self + /machines/alphicta)
-          ../modules/common.nix
-          ../modules/gamemode.nix
+          (self + /system/modules/common.nix)
+          (self + /system/modules/gamemode.nix)
         ];
 
         config = {

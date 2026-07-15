@@ -1,7 +1,7 @@
-{ inputs, pkgs, lib, ... }:
+{ inputs, pkgs, lib, self, ... }:
 
 let
-  wattbar = import ../common/wattbar.nix;
+  wattbar = import self + /home/desktop/common/wattbar.nix;
 in
 {
   imports = [
@@ -43,7 +43,7 @@ in
   };
 
   # Wallpaper
-  home.file.".config/niri/bg.png".source = ../common/bg.png;
+  home.file.".config/niri/bg.png".source = self + /home/desktop/common/bg.png;
 
   # Niri config
   xdg.configFile."niri/config.kdl".text = ''

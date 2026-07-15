@@ -1,13 +1,13 @@
-{ ... }:
+{ self, ... }:
 
 {
   imports = [
-    ./common.nix
+    (self + /home/modules/common.nix)
 
-    ../programs/communication
-    ../programs/media
-    ../programs/misc
-    ../programs/programming
+    (self + /home/modules/programs/communication)
+    (self + /home/modules/programs/media)
+    (self + /home/modules/programs/misc)
+    (self + /home/modules/programs/programming)
   ];
 
   services.udiskie = {

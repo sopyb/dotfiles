@@ -1,9 +1,9 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, self, ... }:
 
 {
   imports = [
-    ../system/modules/boot.nix
-    ../system/modules/server/services.nix
+    (self + /system/modules/boot.nix)
+    (self + /system/modules/server/services.nix)
   ];
 
   environment.systemPackages = with pkgs; [

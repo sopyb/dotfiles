@@ -1,8 +1,8 @@
-{ ... }:
+{ self, ... }:
 
 {
   imports = [
-    ../programs/command_line
+    (self + /home/modules/programs/command_line)
   ];
 
   config.home = {
