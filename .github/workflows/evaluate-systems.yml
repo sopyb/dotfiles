@@ -11,12 +11,12 @@ jobs:
             type: system
           - system: bethium
             type: system
-          - system: zetalyeh
-            type: system
-          - system: omegantes
-            type: system
           - system: lamsurrus
             type: vm
+          - system: omegantes
+            type: system
+          - system: zetalyeh
+            type: system
       fail-fast: false
     runs-on: 'ubuntu-latest'
     steps:

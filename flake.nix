@@ -179,18 +179,18 @@
           };
         };
 
-        zetalyeh = mkMachine {
-          name = "zetalyeh";
-          hardwareConfig = ./system/machines/zetalyeh;
+        lamsurrus = mkMachine {
+          name = "lamsurrus";
+          hardwareConfig = ./system/machines/lamsurrus;
           machineConfig = {
             machine = {
-              name = "zetalyeh";
-              type = "hybrid";
+              name = "lamsurrus";
+              type = "minimal";
               features = { };
               desktopEnvironment = {
                 enable = true;
-                types = [ "xfce" ];
-                displayManager = "ly";
+                types = [ "gnome" ];
+                displayManager = "gdm";
               };
             };
           };
@@ -210,18 +210,18 @@
           };
         };
 
-        lamsurrus = mkMachine {
-          name = "lamsurrus";
-          hardwareConfig = ./system/machines/lamsurrus;
+        zetalyeh = mkMachine {
+          name = "zetalyeh";
+          hardwareConfig = ./system/machines/zetalyeh;
           machineConfig = {
             machine = {
-              name = "lamsurrus";
-              type = "minimal";
+              name = "zetalyeh";
+              type = "hybrid";
               features = { };
               desktopEnvironment = {
                 enable = true;
-                types = [ "gnome" ];
-                displayManager = "gdm";
+                types = [ "xfce" ];
+                displayManager = "ly";
               };
             };
           };
