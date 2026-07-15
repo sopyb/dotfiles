@@ -46,7 +46,7 @@
     mangohud
 
     # wine stuff
-    bottles
+    stable.bottles
     protontricks
 
     # media creation
