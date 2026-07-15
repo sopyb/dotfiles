@@ -9,8 +9,7 @@
     thunderbird
     signal-desktop
     slack
-    vesktop
-    stable.zapzap
+    zapzap
     zoom-us
     # zulip
   ];
