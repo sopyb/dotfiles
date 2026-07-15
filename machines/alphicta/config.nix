@@ -4,7 +4,7 @@
     type = "desktop";
     features = {
       virtualization = true;
-      deckmode = true;
+      deckmode = false;
       noDGPUspecialization = true;
     };
     desktopEnvironment = {

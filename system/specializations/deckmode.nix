@@ -1,4 +1,4 @@
-{ pkgs, system, ... }:
+{ pkgs, self, system, ... }:
 
 {
   specialisation = {
@@ -6,7 +6,7 @@
       inheritParentConfig = false;
       configuration = {
         imports = [
-          ../machines/alphicta
+          (self + /machines/alphicta)
           ../modules/common.nix
           ../modules/gamemode.nix
         ];
