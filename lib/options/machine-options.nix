@@ -71,6 +71,20 @@ in
           example = "sddm";
         };
       };
+
+      variables = {
+        gitSigningKey = mkOption {
+          type = types.str;
+          default = "";
+          description = "GPG key ID for git commit signing";
+        };
+
+        gitSigning = mkOption {
+          type = types.bool;
+          default = false;
+          description = "Whether to sign git commits by default";
+        };
+      };
     };
   };
 }

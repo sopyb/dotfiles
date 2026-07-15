@@ -1,9 +1,5 @@
-{ config, lib, pkgs, machineName, ... }:
+{ config, pkgs, ... }:
 
-let
-  machineUtils = import ../../utils/machineVariables.nix { inherit lib config; };
-  machineVars = machineUtils.getMachineVariables machineName;
-in
 {
   programs.git = {
     enable = true;
@@ -29,9 +25,9 @@ in
     };
 
     signing = {
-      key = machineVars.gitSigningKey;
+      key = config.machine.variables.gitSigningKey;
       format = "openpgp";
-      signByDefault = machineVars.gitSigning;
+      signByDefault = config.machine.variables.gitSigning;
     };
 
     lfs.enable = true;

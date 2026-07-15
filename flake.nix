@@ -108,32 +108,11 @@
             ./lib/make-machine.nix
             machineConfig
             { nixpkgs.pkgs = machinePackages; }
-            # nixpkgs.nixosModules.readOnlyPkgs
-
-            # Home Manager
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = {
-                  inherit inputs system;
-                  machineName = name;
-                  machine = machineConfig.machine;
-                };
-                backupFileExtension = "old";
-
-                users.sopy = {
-                  imports = [
-                    ./lib/make-home.nix
-                  ];
-                };
-              };
-            }
           ];
 
           specialArgs = {
-            inherit inputs system;
+            inherit inputs system home-manager;
+            root = self;
             machine = machineConfig.machine;
           };
         };
@@ -156,6 +135,10 @@
                 types = [ "niri" "gnome" ];
                 displayManager = "gdm";
               };
+              variables = {
+                gitSigningKey = "0xF23DB4349DDE0FAA";
+                gitSigning = true;
+              };
             };
           };
         };
@@ -171,6 +154,10 @@
                 enable = true;
                 types = [ "gnome" ];
                 displayManager = "none";
+              };
+              variables = {
+                gitSigningKey = "0x9807678BAB0693F4";
+                gitSigning = true;
               };
             };
           };
@@ -188,6 +175,7 @@
                 types = [ "gnome" ];
                 displayManager = "gdm";
               };
+              variables = { };
             };
           };
         };
@@ -201,6 +189,7 @@
               type = "server";
               features = { };
               desktopEnvironment.enable = false;
+              variables = { };
             };
           };
         };
@@ -217,6 +206,7 @@
                 types = [ "xfce" ];
                 displayManager = "ly";
               };
+              variables = { };
             };
           };
         };

@@ -1,11 +1,9 @@
-{ lib, inputs, machine, machineName, ... }:
+{ lib, inputs, machine, root, ... }:
 let
-  machineVars = (import ../home/utils/machineVariables.nix { inherit lib; }).getMachineVariables machineName;
-
   # Map desktop environment names to their home-manager module paths
   desktopEnvironmentHomeModules = {
-    hyprland = ../home/desktop/hyprland/hyprland.nix;
-    niri = ../home/desktop/niri/niri.nix;
+    hyprland = root + /home/desktop/hyprland/hyprland.nix;
+    niri = root + /home/desktop/niri/niri.nix;
   };
 
   waylandWindowManagers = [ "hyprland" "niri" ];
@@ -28,22 +26,20 @@ in
 {
   imports = [
     ./options/machine-options.nix
-    ./options/home-manager-options.nix
-    ../home/modules/common.nix
+    (root + /home/modules/common.nix)
   ]
 
   # Machine type home configuration
-  ++ lib.optional isDesktop ../home/modules/desktop.nix
-  ++ lib.optional isServer ../home/modules/server.nix
+  ++ lib.optional isDesktop (root + /home/modules/desktop.nix)
+  ++ lib.optional isServer (root + /home/modules/server.nix)
 
   # Common wayland utilities (anyrun, swayosd, swaync)
-  ++ lib.optional hasWaylandWM ../home/desktop/common/wayland.nix
+  ++ lib.optional hasWaylandWM (root + /home/desktop/common/wayland.nix)
 
   # Desktop environment specific configs
   ++ importDesktopEnvironmentHomes;
 
   config = {
     machine = machine;
-    machineVariables = machineVars;
   };
 }
