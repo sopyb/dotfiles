@@ -8,10 +8,15 @@ jobs:
       matrix:
         include:
           - system: alphicta
+            type: system
           - system: bethium
+            type: system
           - system: zetalyeh
+            type: system
           - system: omegantes
+            type: system
           - system: lamsurrus
+            type: vm
       fail-fast: false
     runs-on: 'ubuntu-latest'
     steps:
@@ -20,14 +25,20 @@ jobs:
       - name: Install Nix
         uses: cachix/install-nix-action@v30
 
-      - name: Evaluate ${{ matrix.system }} system configuration
+      - name: Evaluate ${{ matrix.system }} (${{ matrix.type }}) system configuration
         run: |
           set -euo pipefail
+
+          case "${{ matrix.type }}" in
+            system) evalTarget="config.system.build.toplevel" ;;
+            vm)     evalTarget="config.system.build.vm" ;;
+            *)      echo "Unknown type: ${{ matrix.type }}"; exit 1 ;;
+          esac
 
           f=$(mktemp)
           filter="^(copying path|unpacking '|fetching git input)"
 
-          nix eval ".#nixosConfigurations.${{ matrix.system }}.config.system.build.toplevel" \
+          nix eval ".#nixosConfigurations.${{ matrix.system }}.$evalTarget" \
             --json \
             --option warn-dirty false \
             2> >(tee >(grep --line-buffered -vE "$filter"  > "$f") >&2)
