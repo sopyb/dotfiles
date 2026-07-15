@@ -2,9 +2,6 @@ name: Evaluate System Configs
 
 on: [push, pull_request]
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
-  cancel-in-progress: true
 
 jobs:
   evaluate:
@@ -23,6 +20,9 @@ jobs:
             type: system
       fail-fast: false
     runs-on: 'ubuntu-latest'
+    if: >
+      github.event_name == 'push' ||
+      github.event.pull_request.head.repo.full_name != github.repository
     steps:
       - uses: actions/checkout@v4
 
