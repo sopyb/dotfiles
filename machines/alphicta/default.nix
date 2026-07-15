@@ -6,12 +6,12 @@
 {
   imports =
     [
-      ../../../system/hardware/amdgpu.nix
-      ../../../system/hardware/nvidia_proprietary.nix
-      # ../../../system/hardware/nvidia_mesa_nvk.nix
-      ../../../system/hardware/bluetooth.nix
-      ../../../system/hardware/controllers.nix
-      ../../../system/hardware/openTabletDriver.nix
+      ../../system/hardware/amdgpu.nix
+      ../../system/hardware/nvidia_proprietary.nix
+      # ../../system/hardware/nvidia_mesa_nvk.nix
+      ../../system/hardware/bluetooth.nix
+      ../../system/hardware/controllers.nix
+      ../../system/hardware/openTabletDriver.nix
       inputs.nixos-hardware.nixosModules.common-cpu-amd
       (modulesPath + "/installer/scan/not-detected.nix")
     ];

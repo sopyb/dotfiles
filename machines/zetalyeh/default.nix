@@ -6,8 +6,8 @@
 {
   imports =
     [
-      ../../../system/hardware/nvidia_proprietary.nix
-      ../../../system/hardware/nvidia_proprietary_470.nix
+      ../../system/hardware/nvidia_proprietary.nix
+      ../../system/hardware/nvidia_proprietary_470.nix
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 

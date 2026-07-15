@@ -6,7 +6,7 @@
 {
   imports =
     [
-      ../../../system/hardware/openTabletDriver.nix
+      ../../system/hardware/openTabletDriver.nix
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 

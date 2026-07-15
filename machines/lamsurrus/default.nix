@@ -2,8 +2,8 @@
 
 {
   imports = [
-    ../../modules/boot.nix
-    ../../modules/server/services.nix
+    ../system/modules/boot.nix
+    ../system/modules/server/services.nix
   ];
 
   environment.systemPackages = with pkgs; [
