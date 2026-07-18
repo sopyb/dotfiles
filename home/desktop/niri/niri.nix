@@ -132,6 +132,8 @@ in
 
     screenshot-path "~/Pictures/Screenshots/Screenshot_%Y-%m-%d_%H-%M-%S.png"
 
+    spawn-at-startup "dbus-update-activation-environment" "--all"
+    spawn-at-startup "/usr/libexec/xdg-desktop-portal" "-r"
     spawn-at-startup "noctalia"
     spawn-at-startup "niri-scratchpad" "daemon"
     spawn-at-startup "wattbar" "-b" "l" "--theme" "catppuccin"
@@ -186,6 +188,9 @@ in
 
     debug {
         honor-xdg-activation-with-invalid-serial
+        force-pipewire-invalid-modifier
+        wait-for-frame-completion-before-queueing
+        render-drm-device "/dev/dri/by-path/pci-0000:07:00.0-render"
     }
 
     binds {
