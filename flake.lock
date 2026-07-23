@@ -33,6 +33,26 @@
         "type": "github"
       }
     },
+    "emerald-launcher": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784393959,
+        "narHash": "sha256-gNVbyHkgR1F6EJrRpw8wRxlJ0yHcqMg4CTOnk1Q3/FI=",
+        "owner": "LCE-Hub",
+        "repo": "LCE-Emerald-Launcher",
+        "rev": "19380b0585fc9d281fca5a6926d3ccc35b7f1130",
+        "type": "github"
+      },
+      "original": {
+        "owner": "LCE-Hub",
+        "repo": "LCE-Emerald-Launcher",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -940,6 +960,7 @@
     },
     "root": {
       "inputs": {
+        "emerald-launcher": "emerald-launcher",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",
