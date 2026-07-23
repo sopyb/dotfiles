@@ -7,6 +7,7 @@
     ./features/fonts.nix
     ./features/programs.nix
     ./features/services.nix
+    ./features/networking.nix
     (self + /system/desktop/limits.nix)
 
     # Program hooks

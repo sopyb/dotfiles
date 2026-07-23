@@ -5,14 +5,6 @@ let
   lsusb = "${pkgs.usbutils}/bin/lsusb";
 in
 {
-  networking = {
-    wireless.iwd.enable = true;
-    networkmanager = {
-      enable = true;
-      wifi.backend = "iwd";
-    };
-  };
-
   services = {
     mullvad-vpn = {
       enable = true;
@@ -50,7 +42,6 @@ in
     };
 
     fwupd.enable = true;
-
 
     wivrn = {
       enable = true;
