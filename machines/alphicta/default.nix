@@ -56,6 +56,20 @@
     options = [ "noatime" "compress=zstd:3" "space_cache=v2" ];
   };
 
+  fileSystems."/home/sopy/Games" = {
+    device = "/dev/disk/by-uuid/f0362a99-b3b1-4fce-bbb5-c4a63e1b9c12";
+    fsType = "btrfs";
+    neededForBoot = true;
+    options = [ "subvol=@games" "noatime" "compress=zstd:3" "space_cache=v2" ];
+  };
+
+  fileSystems."/home/sopy/Torrents" = {
+    device = "/dev/disk/by-uuid/f0362a99-b3b1-4fce-bbb5-c4a63e1b9c12";
+    fsType = "btrfs";
+    neededForBoot = true;
+    options = [ "subvol=@torrents" "noatime" "compress=zstd:3" "space_cache=v2" ];
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/f0362a99-b3b1-4fce-bbb5-c4a63e1b9c12";
     fsType = "btrfs";
