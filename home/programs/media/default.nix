@@ -6,7 +6,7 @@
     ./zen-browser.nix
   ];
 
-  home.packages = with pkgs; [
+  home.packages = with pkgs; with kdePackages;[
     # media
     custom.mpv
     custom.mpv-music
@@ -51,7 +51,9 @@
     protontricks
 
     # media creation
+    ardour
     custom.davinci-resolve-studio
+    kdenlive
     krita
     inkscape
     obs-studio
