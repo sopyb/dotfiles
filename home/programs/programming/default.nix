@@ -10,22 +10,22 @@ in
 
 
   home.packages = with pkgs; [
-    arduino-ide
+    # arduino-ide
     # nur.repos.xddxdd.mtkclient
 
     # python stuff TwT
-    poetry
+    # poetry
 
     # Rust toolchain
     rustup
   ] ++ utils.addJetbrainsPlugins [
     # android-studio
     jetbrains.clion ## llvm & university work
-    jetbrains.webstorm ## random web projects - Portfolio time
+    # jetbrains.webstorm ## random web projects - Portfolio time
     # jetbrains.rust-rover ## sheesh
     # jetbrains.pycharm ## not python... NOT PYTHON
-    jetbrains.phpstorm ## Universuty work
-    jetbrains.idea ## University work
+    # jetbrains.phpstorm ## Universuty work
+    # jetbrains.idea ## University work
     # jetbrains.datagrip ## University work
     # jetbrains.goland
     # jetbrains.rider
