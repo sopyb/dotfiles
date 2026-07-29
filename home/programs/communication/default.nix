@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     custom.commet-chat
-    custom.vesktop
+    custom.equicord
     element-desktop
     teams-for-linux
     thunderbird

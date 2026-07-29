@@ -52,13 +52,13 @@
 
     # media creation
     ardour
-    custom.davinci-resolve-studio
+    # custom.davinci-resolve-studio
     kdenlive
     krita
     inkscape
     obs-studio
 
-    blender
+    stable.blender
     # unityhub
     godot
 

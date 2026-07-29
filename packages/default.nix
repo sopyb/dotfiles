@@ -3,9 +3,9 @@
 {
   commet-chat = pkgs.callPackage ./commet-chat.nix { };
   davinci-resolve-studio = pkgs.callPackage ./davinci-resolve-studio.nix { };
+  equicord = pkgs.callPackage ./equicord.nix { };
   victus-fan-max = pkgs.callPackage ./victus-fan-max.nix { };
   wattbar = pkgs.callPackage ./wattbar.nix { };
-  vesktop = pkgs.callPackage ./vesktop.nix { };
 
   # thesis
   kitty = pkgs.callPackage ./tap/kitty.nix { };

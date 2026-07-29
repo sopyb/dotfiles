@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 (pkgs.discord.override {
-  withVencord = true;
+  withEquicord = true;
   desktopName = "Clementine";
 }).overrideAttrs (oldAttrs: {
   desktopItem = pkgs.makeDesktopItem {
