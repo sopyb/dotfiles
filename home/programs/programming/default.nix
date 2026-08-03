@@ -28,6 +28,6 @@ in
     # jetbrains.idea ## University work
     # jetbrains.datagrip ## University work
     # jetbrains.goland
-    # jetbrains.rider
+    jetbrains.rider ## I guess we are doing Avicii invector mods now
   ];
 }
