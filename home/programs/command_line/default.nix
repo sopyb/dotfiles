@@ -24,9 +24,10 @@
     yq
 
     # nix stuff
+    cachix
     nix-prefetch-github
     nix-prefetch-git
-    cachix
+    nix-tree
 
     # android screneshare stuff
     android-tools
