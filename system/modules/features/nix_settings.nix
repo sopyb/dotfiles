@@ -31,7 +31,7 @@
       options = "--delete-older-than 7d --keep 5";
     };
 
-    package = pkgs.lix;
+    package = pkgs.nix; # keep track of tvix
 
     extraOptions = ''
       experimental-features = nix-command flakes
