@@ -9,7 +9,7 @@
     };
     desktopEnvironment = {
       enable = true;
-      types = [ "niri" "gnome" ];
+      types = [ "gnome" ];
       displayManager = "gdm";
     };
     variables = {
