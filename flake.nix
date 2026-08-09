@@ -21,18 +21,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    kwin-effects-forceblur = {
-      url = "github:taj-ny/kwin-effects-forceblur";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    minesddm = {
-      url = "github:Davi-S/sddm-theme-minesddm";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -80,6 +70,11 @@
 
     musnix = {
       url = "github:musnix/musnix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    aerothemeplasma-nix = {
+      url = "github:nyakase/aerothemeplasma-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

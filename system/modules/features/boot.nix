@@ -53,7 +53,7 @@
         themePackages = with pkgs; [
           plymouth-blahaj-theme
         ];
-        theme = "blahaj";
+        theme = lib.mkDefault "blahaj";
       };
 
 
