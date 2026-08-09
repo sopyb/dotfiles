@@ -9,8 +9,8 @@
     };
     desktopEnvironment = {
       enable = true;
-      types = [ "gnome" ];
-      displayManager = "gdm";
+      types = [ "plasma" ];
+      displayManager = "sddm";
     };
     variables = {
       gitSigningKey = "0xF23DB4349DDE0FAA";
