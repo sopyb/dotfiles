@@ -10,6 +10,8 @@
 
   environment.systemPackages = with pkgs; with kdePackages; [
     krohnkite
+
+    custom.linver
   ];
 
   programs.aeroshell = {
