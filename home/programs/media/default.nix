@@ -25,7 +25,7 @@
     heroic
     # itch
     prismlauncher
-    emerald-legacy-launcher
+    # emerald-legacy-launcher
     samrewritten
     steam
 
