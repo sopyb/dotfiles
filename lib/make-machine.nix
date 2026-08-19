@@ -72,7 +72,7 @@ in
       extraSpecialArgs = {
         inherit inputs self machine;
       };
-      backupFileExtension = "old";
+      backupFileExtension = "old.bak";
 
       users.sopy = {
         imports = [ (self + /lib/make-home.nix) ];
