@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-26.05";
+    nixpkgs-fork.url = "github:nixos/nixpkgs/master";
 
     nur.url = "github:nix-community/NUR";
 

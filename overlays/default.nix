@@ -7,4 +7,9 @@ final: prev: {
     system = final.stdenv.hostPlatform.system;
     config = { allowUnfree = final.config.allowUnfree or false; };
   };
+
+  fork = import inputs.nixpkgs-fork {
+    system = final.stdenv.hostPlatform.system;
+    config = { allowUnfree = final.config.allowUnfree or false; };
+  };
 }

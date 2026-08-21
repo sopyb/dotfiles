@@ -766,6 +766,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-fork": {
+      "locked": {
+        "lastModified": 1787297994,
+        "narHash": "sha256-dvWHlemRH+9E2WlNGeeH7xjUFSAE+WjB7pN7cj9ZCHQ=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "2d76d3a6af5fe39e740713fc3cabb3d59d825a0b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1777168982,
@@ -986,6 +1002,7 @@
         "nix-jetbrains-plugins": "nix-jetbrains-plugins",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_5",
+        "nixpkgs-fork": "nixpkgs-fork",
         "nixpkgs-stable": "nixpkgs-stable_2",
         "noctalia": "noctalia",
         "noctalia-greeter": "noctalia-greeter",
