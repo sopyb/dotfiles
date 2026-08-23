@@ -16,7 +16,6 @@ let
     };
     overlays = [
       (import (self + /overlays/default.nix) { inherit inputs self; })
-      inputs.emerald-launcher.overlays.default
       inputs.niri.overlays.niri
       inputs.nur.overlays.default
       inputs.sopypkgs.overlays.default
