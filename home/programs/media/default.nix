@@ -25,7 +25,7 @@
     heroic
     # itch
     prismlauncher
-    fork.emerald-legacy-launcher
+    sopy.emerald-legacy-launcher
     samrewritten
     steam
 
