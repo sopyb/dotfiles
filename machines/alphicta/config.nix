@@ -6,6 +6,7 @@
       virtualization = true;
       deckmode = false;
       noDGPUspecialization = true;
+      ollama = true;
     };
     desktopEnvironment = {
       enable = true;
