@@ -28,6 +28,7 @@
     emerald-legacy-launcher
     samrewritten
     steam
+    moonlight-qt
 
     # mod managers
     olympus
