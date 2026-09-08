@@ -5,9 +5,9 @@
 
 {
   imports =
-    [ 
-    (self + /system/hardware/nvidia_proprietary.nix)
-    (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (self + /system/hardware/nvidia_proprietary.nix)
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];

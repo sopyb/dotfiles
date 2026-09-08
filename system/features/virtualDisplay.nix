@@ -8,7 +8,7 @@
   ];
 
   hardware.firmware = [
-    (pkgs.runCommand "virtualDisplayEDID" {} ''
+    (pkgs.runCommand "virtualDisplayEDID" { } ''
       mkdir -p $out/lib/firmware/edid
       cp ${./virtualDisplayEDID.bin} $out/lib/firmware/edid/virtualDisplayEDID.bin
     '')

@@ -45,7 +45,7 @@ in
       };
 
       specializations = {
-        deckmode =  mkEnableOption "Whether to enable Steam Deck mode";
+        deckmode = mkEnableOption "Whether to enable Steam Deck mode";
         noDedicatedGPU = mkEnableOption "Specialization with the dGPU setup for passthrough";
       };
 
