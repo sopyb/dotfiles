@@ -22,6 +22,7 @@ You can update the pinned flake packages with `nix flake update`.
 
 ## Todo:
 - Rewrite deckmode specialization to be more system agnostic and actually functional instead of barely functional --- deprecated till them
+- Fix noDedicatedGPU specialization :3
 
 ## License
 

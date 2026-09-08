@@ -55,8 +55,8 @@ in
   ++ importDisplayManager
 
   # Specializations
-  ++ optional (machine.features.deckmode or false) (self + /system/specializations/deckmode.nix)
-  ++ optional (machine.features.noDGPUspecialization or false) (self + /system/specializations/virtualization/disableDGPUspec.nix)
+  ++ optional (machine.specializations.deckmode or false) (self + /system/specializations/deckmode)
+  ++ optional (machine.specializations.noDedicatedGPU or false) (self + /system/specializations/noDedicatedGPU)
 
   # Home Manager
   ++ [ home-manager.nixosModules.home-manager ];
