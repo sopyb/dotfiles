@@ -1,7 +1,7 @@
 { lib, ... }:
 
 let
-  inherit (lib) mkOption types;
+  inherit (lib) mkOption mkEnableOption types;
 in
 {
   options = {
@@ -18,44 +18,8 @@ in
         description = "The type of the machine (desktop, server, hybrid, or minimal)";
       };
 
-      features = {
-        virtualization = mkOption {
-          type = types.bool;
-          default = false;
-          description = "Whether to enable virtualization support";
-        };
-
-        ollama = mkOption {
-          type = types.bool;
-          default = false;
-          description = "Whether to enable Ollama AI service";
-        };
-
-        gaming = mkOption {
-          type = types.bool;
-          default = false;
-          description = "Whether to enable gaming support";
-        };
-
-        deckmode = mkOption {
-          type = types.bool;
-          default = false;
-          description = "Whether to enable Steam Deck mode";
-        };
-
-        noDGPUspecialization = mkOption {
-          type = types.bool;
-          default = false;
-          description = "Whether to configure Windows VM";
-        };
-      };
-
       desktopEnvironment = {
-        enable = mkOption {
-          type = types.bool;
-          default = false;
-          description = "Whether to enable desktop environment";
-        };
+        enable = mkEnableOption "Whether to enable desktop environment";
 
         types = mkOption {
           type = types.listOf (types.enum [ "cosmic" "gnome" "hyprland" "niri" "plasma" "xfce" ]);
@@ -72,6 +36,24 @@ in
         };
       };
 
+      features = {
+        ollama = mkEnableOption "Whether to enable Ollama AI service";
+        sshd = mkEnableOption "Whether to enable sshd";
+        sunshine = mkEnableOption "Whether to enable sunshine";
+        virtualDisplay = mkEnableOption "Whether to add a virtual display";
+        virtualization = mkEnableOption "Whether to enable virtualization support";
+      };
+
+      specializations = {
+        deckmode =  mkEnableOption "Whether to enable Steam Deck mode";
+        noDedicatedGPU = mkEnableOption "Specialization with the dGPU setup for passthrough";
+      };
+
+      tweaks = {
+        noFirewall = mkEnableOption "Whether to disable the firewall on the machine";
+        noSleep = mkEnableOption "Whether to disable sleep on the machine";
+      };
+
       variables = {
         gitSigningKey = mkOption {
           type = types.str;
@@ -79,10 +61,13 @@ in
           description = "GPG key ID for git commit signing";
         };
 
-        gitSigning = mkOption {
-          type = types.bool;
-          default = false;
-          description = "Whether to sign git commits by default";
+        gitSigning = mkEnableOption "Whether to sign git commits by default";
+
+        dGpuPciId = mkOption {
+          type = types.nullOr types.str;
+          default = null;
+          example = "0000:01:00.0";
+          description = "PCI bus ID of the dedicated GPU to unbind in this specialisation";
         };
       };
     };
