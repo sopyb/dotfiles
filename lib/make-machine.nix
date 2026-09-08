@@ -46,9 +46,11 @@ in
   ++ optional isDesktop (self + /system/modules/desktop.nix)
   ++ optional isServer (self + /system/modules/server.nix)
   ++ optional isMinimal (self + /system/modules/minimal.nix)
+
   # Feature modules
-  ++ optional (machine.features.virtualization or false) (self + /system/modules/features/virtualization.nix)
-  ++ optional (machine.features.ollama or false) (self + /system/modules/features/ollama.nix)
+  ++ optional (machine.features.virtualization or false) (self + /system/features/virtualization.nix)
+  ++ optional (machine.features.ollama or false) (self + /system/features/ollama.nix)
+  ++ optional (machine.features.sshd or false) (self + /system/features/sshd.nix)
 
   # Desktop environments and display manager
   ++ importDesktopEnvironments
