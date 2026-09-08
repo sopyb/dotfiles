@@ -5,8 +5,8 @@
     features = { };
     desktopEnvironment = {
       enable = true;
-      types = [ "xfce" ];
-      displayManager = "ly";
+      types = [ "plasma" ];
+      displayManager = "sddm";
     };
     variables = { };
   };
