@@ -17,7 +17,24 @@
       initialPassword = "";
       useDefaultShell = true;
       description = "sopy";
-      extraGroups = [ "networkmanager" "wheel" "dialout" "plugdev" "adbusers" "gamemode" "video" "docker" "podman" "kvm" "libvirtd" "input" "render" "audio" "rtkit" ];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "dialout"
+        "plugdev"
+        "adbusers"
+        "gamemode"
+        "video"
+        "docker"
+        "podman"
+        "kvm"
+        "libvirtd"
+        "input"
+        "uinput"
+        "render"
+        "audio"
+        "rtkit"
+      ];
       shell = pkgs.zsh;
     };
 
