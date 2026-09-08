@@ -12,7 +12,7 @@ echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf
 ## Rebuild system
 Available devices:
 - alphicta (my Victus 16-e0003nq laptop)
-- omegantes (Oracle Cloud ARM vps)
+- zetalyeh (ryzen 9 5900x - 3080 pc)
 
 ```bash
 sudo nixos-rebuild switch --flake .#<hostname>
