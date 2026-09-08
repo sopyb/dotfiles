@@ -1,10 +1,9 @@
 { pkgs, ... }:
 
 {
-  boot.kernelModules = [ "vkms" ];
-
   boot.kernelParams = [
-    "drm.edid_firmware=Virtual-1:edid/virtualDisplayEDID.bin"
+    "drm.edid_firmware=DP-1:edid/virtualDisplayEDID.bin"
+    "video=DP-1:e"
   ];
 
   hardware.firmware = [
