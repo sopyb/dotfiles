@@ -13,7 +13,7 @@
     modesetting.enable = lib.mkDefault true;
     powerManagement = {
       enable = lib.mkDefault true;
-      finegrained = lib.mkDefault true;
+      finegrained = lib.mkDefault false;
     };
     open = lib.mkDefault false;
     nvidiaSettings = lib.mkDefault true;
