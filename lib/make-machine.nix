@@ -63,6 +63,7 @@ in
   ++ optional (machine.specializations.noDedicatedGPU or false) (self + /system/specializations/noDedicatedGPU)
 
   # Tweaks
+  ++ optional (machine.tweaks.autoLogin or false) (self + /system/tweaks/autoLogin.nix)
   ++ optional (machine.tweaks.noFirewall or false) (self + /system/tweaks/noFirewall.nix)
   ++ optional (machine.tweaks.noSleep or false) (self + /system/tweaks/noSleep.nix)
 

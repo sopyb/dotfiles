@@ -50,6 +50,7 @@ in
       };
 
       tweaks = {
+        autoLogin = mkEnableOption "Whether to login automatically on the machine";
         noFirewall = mkEnableOption "Whether to disable the firewall on the machine";
         noSleep = mkEnableOption "Whether to disable sleep on the machine";
       };
