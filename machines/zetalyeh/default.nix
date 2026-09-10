@@ -10,6 +10,7 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
+  environment.systemPackages = [ pkgs.btrfs-progs ];
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
@@ -54,6 +55,34 @@
     device = "/dev/disk/by-uuid/7A05-B6D5";
     fsType = "vfat";
     options = [ "fmask=0077" "dmask=0077" ];
+  };
+
+  fileSystems."/mnt/storage" = {
+    device = "/dev/disk/by-uuid/589e0547-cc38-447f-8300-ed20b505b99e";
+    fsType = "btrfs";
+    options = [
+      "subvol=@data"
+      "compress=zstd"
+      "noatime"
+      "autodefrag"
+      "space_cache=v2"
+    ];
+  };
+
+  fileSystems."/mnt/storage/.snapshots" = {
+    device = "/dev/disk/by-uuid/589e0547-cc38-447f-8300-ed20b505b99e";
+    fsType = "btrfs";
+    options = [
+      "subvol=@snapshots"
+      "compress=zstd"
+      "noatime"
+    ];
+  };
+
+  services.btrfs.autoScrub = {
+    enable = true;
+    interval = "monthly";
+    fileSystems = [ "/" "/mnt/storage" ];
   };
 
   swapDevices = [ ];
