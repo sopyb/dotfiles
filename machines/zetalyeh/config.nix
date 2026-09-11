@@ -8,6 +8,7 @@
       displayManager = "sddm";
     };
     features = {
+      immich = true;
       ollama = true;
       sshd = true;
       sunshine = true;
@@ -24,8 +25,12 @@
       noDedicatedGPU = false;
     };
     variables = {
+      dGpuPciId = "0000:01:00.0";
       gitSigningKey = "";
       gitSigning = false;
+      paths = {
+        immich = "/mnt/storage/immich";
+      };
     };
   };
 }

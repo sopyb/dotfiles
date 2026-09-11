@@ -37,6 +37,7 @@ in
       };
 
       features = {
+        immich = mkEnableOption "Whether to enable immich service";
         ollama = mkEnableOption "Whether to enable Ollama AI service";
         sshd = mkEnableOption "Whether to enable sshd";
         sunshine = mkEnableOption "Whether to enable sunshine";
@@ -56,6 +57,13 @@ in
       };
 
       variables = {
+        dGpuPciId = mkOption {
+          type = types.nullOr types.str;
+          default = null;
+          example = "0000:01:00.0";
+          description = "PCI bus ID of the dedicated GPU to unbind in this specialisation";
+        };
+
         gitSigningKey = mkOption {
           type = types.str;
           default = "";
@@ -64,11 +72,13 @@ in
 
         gitSigning = mkEnableOption "Whether to sign git commits by default";
 
-        dGpuPciId = mkOption {
-          type = types.nullOr types.str;
-          default = null;
-          example = "0000:01:00.0";
-          description = "PCI bus ID of the dedicated GPU to unbind in this specialisation";
+        paths = {
+          immich = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            example = "/mnt";
+            description = "PCI bus ID of the dedicated GPU to unbind in this specialisation";
+          };
         };
       };
     };
