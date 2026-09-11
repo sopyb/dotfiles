@@ -49,6 +49,7 @@ in
 
   # Feature modules
   ++ optional (machine.features.immich or false) (self + /system/features/immich.nix)
+  ++ optional (machine.features.nginx or false) (self + /system/features/nginx.nix)
   ++ optional (machine.features.ollama or false) (self + /system/features/ollama.nix)
   ++ optional (machine.features.sshd or false) (self + /system/features/sshd.nix)
   ++ optional (machine.features.sunshine or false) (self + /system/features/sunshine.nix)

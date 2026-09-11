@@ -38,6 +38,7 @@ in
 
       features = {
         immich = mkEnableOption "Whether to enable immich service";
+        nginx = mkEnableOption "Whether to enable the nginx service";
         ollama = mkEnableOption "Whether to enable Ollama AI service";
         sshd = mkEnableOption "Whether to enable sshd";
         sunshine = mkEnableOption "Whether to enable sunshine";
@@ -71,6 +72,17 @@ in
         };
 
         gitSigning = mkEnableOption "Whether to sign git commits by default";
+
+        nginx = {
+          domain = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            example = "example.com";
+            description = "TLD to use for services";
+          };
+
+          ssl = mkEnableOption "Whether to issue ssl certs for the domains";
+        };
 
         paths = {
           immich = mkOption {

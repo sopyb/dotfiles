@@ -9,6 +9,7 @@
     };
     features = {
       immich = true;
+      nginx = true;
       ollama = true;
       sshd = true;
       sunshine = true;
@@ -28,6 +29,10 @@
       dGpuPciId = "0000:01:00.0";
       gitSigningKey = "";
       gitSigning = false;
+      nginx = {
+        domain = "sopy.one";
+        ssl = true;
+      };
       paths = {
         immich = "/mnt/storage/immich";
       };
