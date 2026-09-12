@@ -48,6 +48,7 @@ in
   ++ optional isMinimal (self + /system/modules/minimal.nix)
 
   # Feature modules
+  ++ optional (machine.features.authentik or false) (self + /system/features/authentik.nix)
   ++ optional (machine.features.immich or false) (self + /system/features/immich.nix)
   ++ optional (machine.features.nginx or false) (self + /system/features/nginx.nix)
   ++ optional (machine.features.ollama or false) (self + /system/features/ollama.nix)

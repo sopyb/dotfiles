@@ -37,6 +37,7 @@ in
       };
 
       features = {
+        authentik = mkEnableOption "Whether to enable authentik service";
         immich = mkEnableOption "Whether to enable immich service";
         nginx = mkEnableOption "Whether to enable the nginx service";
         ollama = mkEnableOption "Whether to enable Ollama AI service";
@@ -85,11 +86,17 @@ in
         };
 
         paths = {
+          authentik = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            example = "/mnt";
+            description = "Place to store authentik files";
+          };
           immich = mkOption {
             type = types.nullOr types.str;
             default = null;
             example = "/mnt";
-            description = "PCI bus ID of the dedicated GPU to unbind in this specialisation";
+            description = "Place to store immich files";
           };
         };
       };

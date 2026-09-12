@@ -8,6 +8,7 @@
       displayManager = "sddm";
     };
     features = {
+      authentik = true;
       immich = true;
       nginx = true;
       ollama = true;
@@ -34,6 +35,7 @@
         ssl = true;
       };
       paths = {
+        authentik = "/mnt/storage/authentik";
         immich = "/mnt/storage/immich";
       };
     };
