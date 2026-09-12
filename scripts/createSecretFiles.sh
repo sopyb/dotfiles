@@ -1,9 +1,10 @@
-#!/usr/bin/env bash
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p openssl coreutils
 set -euo pipefail
 
 # General
 SECRETS_DIR=/var/lib/secrets
-AUTHELIA_DIR="$SECRETS_DIR/authelia"
+sudo install -d -m 770 -o root -g users $SECRETS_DIR
 
 create_with_content() {
   local file="$1"
@@ -55,9 +56,10 @@ gen_rsa() {
 create_with_content "$SECRETS_DIR/cloudflare" acme acme 600 \
   "CLOUDFLARE_DNS_API_TOKEN="
 
-# Authelia
-gen_secret  "$AUTHELIA_DIR/jwt"          authelia authelia 400
-gen_secret  "$AUTHELIA_DIR/session"      authelia authelia 400
-gen_secret  "$AUTHELIA_DIR/storage"      authelia authelia 400
-gen_secret  "$AUTHELIA_DIR/oidc-hmac"    authelia authelia 400
-gen_rsa     "$AUTHELIA_DIR/oidc-issuer"  authelia authelia 400
+# Authentik
+create_with_content "$SECRETS_DIR/authentik" authentik authentik 600 \
+"$(cat <<_EOF_
+AUTHENTIK_SECRET_KEY=$(openssl rand -base64 60)
+AUTHENTIK_EMAIL__PASSWORD=
+_EOF_
+)"
