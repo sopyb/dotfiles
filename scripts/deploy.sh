@@ -19,7 +19,7 @@ log "Copying configuration to remote host..."
 rsync -avz --filter=':- .gitignore' --exclude '.git/' $ROOT/ $TARGET_HOST:$REMOTE_DIR/
 
 log "Building configuration on remote host..."
-ssh $TARGET_HOST "cd $REMOTE_DIR && sudo nixos-rebuild switch --flake '.#$SYSTEM' --show-trace --verbose"
+ssh -t $TARGET_HOST "cd $REMOTE_DIR && sudo nixos-rebuild switch --flake '.#$SYSTEM' --show-trace --verbose"
 
 log "Cleaning up files on remote host..."
 ssh $TARGET_HOST "rm -rf $REMOTE_DIR"
