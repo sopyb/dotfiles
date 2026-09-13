@@ -24,6 +24,12 @@
       enable = true;
       recommendedProxySettings = true;
       recommendedTlsSettings = lib.mkIf config.machine.variables.nginx.ssl true;
+
+      virtualHosts."_" = {
+        default = true;
+        rejectSSL = config.machine.variables.nginx.ssl;
+        locations."/".return = "444";
+      };
     };
   };
 }
