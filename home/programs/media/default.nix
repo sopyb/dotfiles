@@ -8,8 +8,7 @@
 
   home.packages = with pkgs; with kdePackages;[
     # media
-    custom.mpv
-    custom.mpv-music
+    mpv
     yt-dlp
     pear-desktop
     chatterino7

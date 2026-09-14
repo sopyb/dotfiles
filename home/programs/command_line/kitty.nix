@@ -10,7 +10,7 @@
 
   programs.kitty = {
     enable = true;
-    package = pkgs.custom.kitty;
+    package = pkgs.kitty;
 
     font = {
       package = pkgs.nerd-fonts.jetbrains-mono;
