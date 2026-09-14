@@ -65,7 +65,7 @@
     # documents
     obsidian
     # openboard
-    libreoffice-qt6-fresh
+    libreoffice-qt-stable
     onlyoffice-desktopeditors
     zotero
   ];
