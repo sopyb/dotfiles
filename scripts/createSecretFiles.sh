@@ -63,3 +63,6 @@ AUTHENTIK_SECRET_KEY=$(openssl rand -base64 60)
 AUTHENTIK_EMAIL__PASSWORD=
 _EOF_
 )"
+
+# NextCloud
+gen_secret "$SECRETS_DIR/nextcloud-admin-pwd" nextcloud nextcloud 640

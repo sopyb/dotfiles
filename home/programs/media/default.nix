@@ -32,6 +32,7 @@
     # mod managers
     olympus
     r2modman
+    bs-manager
 
     # emulators
     # xemu

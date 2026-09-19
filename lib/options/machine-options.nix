@@ -39,6 +39,7 @@ in
       features = {
         authentik = mkEnableOption "Whether to enable authentik service";
         immich = mkEnableOption "Whether to enable immich service";
+        nextcloud = mkEnableOption "Whether to enable the nextcloud service";
         nginx = mkEnableOption "Whether to enable the nginx service";
         ollama = mkEnableOption "Whether to enable Ollama AI service";
         sshd = mkEnableOption "Whether to enable sshd";
