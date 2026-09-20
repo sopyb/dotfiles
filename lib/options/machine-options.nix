@@ -99,6 +99,12 @@ in
             example = "/mnt";
             description = "Place to store immich files";
           };
+          nextcloud = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            example = "/mnt";
+            description = "Place to store nextcloud files";
+          };
         };
       };
     };

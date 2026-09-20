@@ -4,7 +4,7 @@ set -euo pipefail
 
 # General
 SECRETS_DIR=/var/lib/secrets
-sudo install -d -m 770 -o root -g users $SECRETS_DIR
+sudo install -d -m 771 -o root -g users $SECRETS_DIR
 
 create_with_content() {
   local file="$1"
@@ -66,3 +66,8 @@ _EOF_
 
 # NextCloud
 gen_secret "$SECRETS_DIR/nextcloud-admin-pwd" nextcloud nextcloud 640
+
+# OnlyOffice
+create_with_content "$SECRETS_DIR/onlyoffice-nonce" onlyoffice nginx 640 \
+  "set \$secure_link_secret \"$(openssl rand -hex 32)\";"
+gen_secret "$SECRETS_DIR/onlyoffice-jwt" onlyoffice onlyoffice 640

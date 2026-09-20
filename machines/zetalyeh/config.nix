@@ -38,6 +38,7 @@
       paths = {
         authentik = "/mnt/storage/authentik";
         immich = "/mnt/storage/immich";
+        nextcloud = "/mnt/storage/nextcloud";
       };
     };
   };
