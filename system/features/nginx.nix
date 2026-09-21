@@ -25,6 +25,8 @@
       recommendedProxySettings = true;
       recommendedTlsSettings = lib.mkIf config.machine.variables.nginx.ssl true;
 
+      defaultListenAddresses = [ "0.0.0.0" "[::]" ];
+
       virtualHosts."_" = {
         default = true;
         rejectSSL = config.machine.variables.nginx.ssl;
