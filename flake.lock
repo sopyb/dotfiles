@@ -895,6 +895,26 @@
         "type": "github"
       }
     },
+    "nix-overleaf": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1760790372,
+        "narHash": "sha256-7xrWNq9ACRT2bV9G9L8H6G3a/XpzxK68dd3yPCX/AkQ=",
+        "owner": "Adega318",
+        "repo": "nix-overleaf",
+        "rev": "64504f83b40072ce7fd154e66208fef9818148bd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Adega318",
+        "repo": "nix-overleaf",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "inputs": {
         "nixpkgs": "nixpkgs_4"
@@ -1259,6 +1279,7 @@
         "niri": "niri",
         "niri-scratchpad": "niri-scratchpad",
         "nix-jetbrains-plugins": "nix-jetbrains-plugins",
+        "nix-overleaf": "nix-overleaf",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-stable": "nixpkgs-stable_2",
