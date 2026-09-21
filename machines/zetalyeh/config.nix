@@ -12,6 +12,7 @@
       immich = true;
       nextcloud = true;
       nginx = true;
+      overleaf = true;
       ollama = true;
       sshd = true;
       sunshine = true;
@@ -39,6 +40,7 @@
         authentik = "/mnt/storage/authentik";
         immich = "/mnt/storage/immich";
         nextcloud = "/mnt/storage/nextcloud";
+        overleaf = "/mnt/storage/overleaf";
       };
     };
   };

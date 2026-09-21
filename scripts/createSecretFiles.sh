@@ -12,7 +12,7 @@ create_with_content() {
   local group="$3"
   local mode="$4"
   local content="$5"
-  if [ -f "$file" ]; then
+  if [ -s "$file" ]; then
     echo "skip($file): already exists"
     return
   fi
@@ -67,7 +67,15 @@ _EOF_
 # NextCloud
 gen_secret "$SECRETS_DIR/nextcloud-admin-pwd" nextcloud nextcloud 640
 
-# OnlyOffice
-create_with_content "$SECRETS_DIR/onlyoffice-nonce" onlyoffice nginx 640 \
-  "set \$secure_link_secret \"$(openssl rand -hex 32)\";"
-gen_secret "$SECRETS_DIR/onlyoffice-jwt" onlyoffice onlyoffice 640
+# Overleaf
+create_with_content "$SECRETS_DIR/overleaf-env" root root 600 \
+"$(cat <<_EOF_
+OVERLEAF_INVITE_TOKEN_SECRET=$(openssl rand -base64 32)
+OVERLEAF_OIDC_CLIENT_ID=
+OVERLEAF_OIDC_CLIENT_SECRET=
+OVERLEAF_EMAIL_SMTP_PASS=
+GITHUB_SYNC_CLIENT_ID=
+GITHUB_SYNC_CLIENT_SECRET=
+GITHUB_TOKEN_CIPHER_PASSWORD=$(openssl rand -hex 32)
+_EOF_
+)"

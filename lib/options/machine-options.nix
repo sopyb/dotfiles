@@ -41,6 +41,7 @@ in
         immich = mkEnableOption "Whether to enable immich service";
         nextcloud = mkEnableOption "Whether to enable the nextcloud service";
         nginx = mkEnableOption "Whether to enable the nginx service";
+        overleaf = mkEnableOption "Whether to enable the overleaf service";
         ollama = mkEnableOption "Whether to enable Ollama AI service";
         sshd = mkEnableOption "Whether to enable sshd";
         sunshine = mkEnableOption "Whether to enable sunshine";
@@ -104,6 +105,12 @@ in
             default = null;
             example = "/mnt";
             description = "Place to store nextcloud files";
+          };
+          overleaf = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            example = "/mnt";
+            description = "Place to store overleaf files";
           };
         };
       };

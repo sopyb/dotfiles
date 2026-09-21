@@ -82,6 +82,11 @@
       url = "github:nix-community/authentik-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-overleaf = {
+      url = "github:Adega318/nix-overleaf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, ... } @ inputs:
