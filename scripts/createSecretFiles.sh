@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i bash -p openssl coreutils
+#!nix-shell -i bash -p openssl coreutils wireguard-tools
 set -euo pipefail
 
 # General
@@ -12,6 +12,7 @@ create_with_content() {
   local group="$3"
   local mode="$4"
   local content="$5"
+  # -s checks if file exists AND is not empty
   if [ -s "$file" ]; then
     echo "skip($file): already exists"
     return
@@ -79,3 +80,16 @@ GITHUB_SYNC_CLIENT_SECRET=
 GITHUB_TOKEN_CIPHER_PASSWORD=$(openssl rand -hex 32)
 _EOF_
 )"
+
+# Wireguard
+WIREGUARD_SECRETS="${SECRETS_DIR}/wireguard"
+sudo install -d -m 771 -o root -g users "$WIREGUARD_SECRETS"
+
+if [ -s "${WIREGUARD_SECRETS}/private" ]; then
+  echo "skip(${WIREGUARD_SECRETS}/private): already exists"
+else
+  ( umask 077; wg genkey | sudo tee "${WIREGUARD_SECRETS}/private" >/dev/null )
+  sudo chmod 600 "${WIREGUARD_SECRETS}/private"
+  sudo cat "${WIREGUARD_SECRETS}/private" | wg pubkey | sudo tee "${WIREGUARD_SECRETS}/public" >/dev/null
+  echo "created(${WIREGUARD_SECRETS}/private and public)"
+fi

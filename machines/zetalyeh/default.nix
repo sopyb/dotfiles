@@ -89,27 +89,42 @@
 
   # setup wireguard
   networking.wireguard.interfaces.wg0 = {
-    ips = [ "10.10.0.2/24" ];
-    privateKeyFile = "/var/lib/secrets/wireguard/private.key";
+    ips = [ "10.10.0.2/24" "fd10:10::2/64" ];
+    privateKeyFile = "/var/lib/secrets/wireguard/private";
     peers = [{
-      publicKey = "1aSWFrOHqqLRX6IUvB4NQjeinBZQT6lHh+02ZUaf2FY=";
-      endpoint = "130.61.209.240:51820";
-      allowedIPs = [ "0.0.0.0/0" ];
+      publicKey = "EnJ4geT4GKXCX/ubVEMFCVAIJExzYFTgdESqCWOEyDc=";
+      endpoint = "yotemensus.sopy.one:51820";
+      allowedIPs = [ "0.0.0.0/0" "::/0" ];
       persistentKeepalive = 25;
     }];
 
     postSetup = ''
-      ip route replace default via 10.10.0.1 dev wg0 table 200 || true
       ip rule add from 10.10.0.2 table 200 || true
+      ip route replace default via 10.10.0.1 dev wg0 table 200 || true
+      ip -6 rule add from fd10:10::2 table 200 || true
+      ip -6 route replace default via fd10:10::1 dev wg0 table 200 || true
     '';
 
     postShutdown = ''
       ip rule del from 10.10.0.2 table 200 || true
       ip route del default via 10.10.0.1 dev wg0 table 200 || true
+      ip -6 rule del from fd10:10::2 table 200 || true
+      ip -6 route del default via fd10:10::1 dev wg0 table 200 || true
     '';
 
     allowedIPsAsRoutes = false;
   };
+
+  boot.kernel.sysctl = {
+    "net.ipv4.conf.all.rp_filter" = 2;
+    "net.ipv4.conf.default.rp_filter" = 2;
+    "net.ipv4.conf.wg0.rp_filter" = 2;
+    "net.ipv6.conf.all.rp_filter" = 2;
+    "net.ipv6.conf.default.rp_filter" = 2;
+    "net.ipv6.conf.wg0.rp_filter" = 2;
+  };
+
+  networking.firewall.checkReversePath = "loose";
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

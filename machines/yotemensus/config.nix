@@ -6,6 +6,11 @@
     features = {
       sshd = true;
     };
+
+    tweaks = {
+      noSleep = true;
+    };
+
     variables = { };
   };
 }
