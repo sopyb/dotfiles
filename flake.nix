@@ -100,7 +100,7 @@
         bethium = mkMachine { name = "bethium"; };
         lamsurrus = mkMachine { name = "lamsurrus"; };
         omegantes = mkMachine { name = "omegantes"; system = "aarch64-linux"; };
-        yotemensus = mkMachine { name = "yotemensus"; };
+        yotemen = mkMachine { name = "yotemen"; };
         zetalyeh = mkMachine { name = "zetalyeh"; };
       };
 
