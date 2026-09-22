@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i bash -p openssl coreutils wireguard-tools
+#!nix-shell -i bash -p openssl coreutils wireguard-tools libargon2
 set -euo pipefail
 
 # General
@@ -80,6 +80,28 @@ GITHUB_SYNC_CLIENT_SECRET=
 GITHUB_TOKEN_CIPHER_PASSWORD=$(openssl rand -hex 32)
 _EOF_
 )"
+
+# Vaultwarden
+VAULTWARDEN_SECRET="${SECRETS_DIR}/vaultwarden"
+VAULTWARDEN_RAW_PWD="${SECRETS_DIR}/vaultwarden-admin-pwd"
+
+if [ -s "$VAULTWARDEN_SECRET" ]; then
+  echo "skip($VAULTWARDEN_SECRET): already exists"
+else
+  VW_RAW_PASSWORD=$(openssl rand -base64 24)
+  VW_PHC_HASH=$(echo -n "$VW_RAW_PASSWORD" | argon2 "$(openssl rand -base64 32)" -e -id -k 65540 -t 3 -p 4)
+
+  create_with_content "$VAULTWARDEN_SECRET" vaultwarden vaultwarden 600 \
+"$(cat <<_EOF_
+ADMIN_TOKEN=${VW_PHC_HASH}
+SMTP_PASSWORD=
+SSO_AUTHORITY=
+SSO_CLIENT_ID=
+SSO_CLIENT_SECRET=
+_EOF_
+)"
+  create_with_content "$VAULTWARDEN_RAW_PWD" root root 600 "$VW_RAW_PASSWORD"
+fi
 
 # Wireguard
 WIREGUARD_SECRETS="${SECRETS_DIR}/wireguard"

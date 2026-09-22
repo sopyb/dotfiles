@@ -45,6 +45,7 @@ in
         ollama = mkEnableOption "Whether to enable Ollama AI service";
         sshd = mkEnableOption "Whether to enable sshd";
         sunshine = mkEnableOption "Whether to enable sunshine";
+        vaultwarden = mkEnableOption "Whether to enable vaultwarden";
         virtualDisplay = mkEnableOption "Whether to add a virtual display";
         virtualization = mkEnableOption "Whether to enable virtualization support";
       };
@@ -111,6 +112,12 @@ in
             default = null;
             example = "/mnt";
             description = "Place to store overleaf files";
+          };
+          vaultwarden = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            example = "/mnt";
+            description = "Place to store vaultwarden files";
           };
         };
       };

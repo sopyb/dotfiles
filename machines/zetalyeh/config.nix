@@ -16,6 +16,7 @@
       ollama = true;
       sshd = true;
       sunshine = true;
+      vaultwarden = true;
       virtualDisplay = true;
       virtualization = false;
     };
@@ -41,6 +42,7 @@
         immich = "/mnt/storage/immich";
         nextcloud = "/mnt/storage/nextcloud";
         overleaf = "/mnt/storage/overleaf";
+        vaultwarden = "/mnt/storage/vaultwarden";
       };
     };
   };
