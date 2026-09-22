@@ -64,9 +64,47 @@ in
   systemd.tmpfiles.rules = [
     "d ${dataDir} 0755 overleaf overleaf -"
     "d ${dataDir}/data 0755 overleaf overleaf -"
+    "d ${dataDir}/data/compiles 0755 overleaf-compiler overleaf-compiler -"
     "d ${dataDir}/mongo_data 0755 overleaf overleaf -"
     "d ${dataDir}/redis_data 0755 overleaf overleaf -"
   ];
+
+  # Setup rootless containers user
+  users.groups.overleaf-compiler = { };
+  users.users.overleaf-compiler = {
+    isSystemUser = true;
+    group = "overleaf-compiler";
+    home = "/var/lib/overleaf-compiler";
+    createHome = true;
+    subUidRanges = [{ startUid = 300000; count = 65536; }];
+    subGidRanges = [{ startGid = 300000; count = 65536; }];
+  };
+
+  systemd.sockets.overleaf-compiler-podman = {
+    wantedBy = [ "sockets.target" ];
+    socketConfig = {
+      ListenStream = "/run/overleaf-compiler/podman.sock";
+      RuntimeDirectory = "overleaf-compiler";
+      RuntimeDirectoryMode = "0755";
+      SocketUser = "overleaf-compiler";
+      SocketGroup = "overleaf-compiler";
+      SocketMode = "0666";
+    };
+  };
+
+  systemd.services.overleaf-compiler-podman = {
+    requires = [ "overleaf-compiler-podman.socket" ];
+    after = [ "overleaf-compiler-podman.socket" ];
+    serviceConfig = {
+      Type = "simple";
+      User = "overleaf-compiler";
+      Group = "overleaf-compiler";
+      ExecStart = "${pkgs.podman}/bin/podman system service --time=0";
+    };
+  };
+
+  systemd.services.podman-sharelatex.after = [ "overleaf-compiler-podman.service" ];
+  systemd.services.podman-sharelatex.requires = [ "overleaf-compiler-podman.service" ];
 
   # Override containers
   virtualisation.oci-containers.containers = {
@@ -104,7 +142,10 @@ in
     sharelatex = lib.mkForce {
       image = "docker.io/overleafcep/sharelatex:6.2.0-ext-v5.0";
       ports = [ "127.0.0.1:${toString port}:80" ];
-      volumes = [ "${dataDir}/data:/var/lib/overleaf" ];
+      volumes = [
+        "${dataDir}/data:/var/lib/overleaf/data"
+        "/run/overleaf-compiler/podman.sock:/var/run/docker.sock:rw"
+      ];
       dependsOn = [ "mongo" "redis" ];
       extraOptions = [ "--network-alias=sharelatex" "--network=overleaf" ];
 
@@ -115,9 +156,15 @@ in
         OVERLEAF_ADMIN_EMAIL = "contact@sopy.one";
         OVERLEAF_SITE_LANGUAGE = "en";
 
-        TEX_LIVE_DOCKER_IMAGE = "quay.io/sharelatex/texlive-full:2026.1";
-        ALL_TEX_LIVE_DOCKER_IMAGES = "quay.io/sharelatex/texlive-full:2026.1,quay.io/sharelatex/texlive-full:2025.1,quay.io/sharelatex/texlive-full:2024.1";
-        ALL_TEX_LIVE_DOCKER_IMAGE_NAMES = "TeX Live 2026.1,TeX Live 2025.1,TeX Live 2024.1";
+        DOCKER_RUNNER = "true";
+        DOCKER_API_VERSION = "1.40";
+        SECCOMP_PROFILE = "unconfined";
+        SANDBOXED_COMPILES = "true";
+        SANDBOXED_COMPILES_SIBLING_CONTAINERS = "true";
+        SANDBOXED_COMPILES_HOST_DIR = "${dataDir}/data/compiles";
+        TEX_LIVE_DOCKER_IMAGE = "ghcr.io/ayaka-notes/texlive-full:2026.1";
+        ALL_TEX_LIVE_DOCKER_IMAGES = "ghcr.io/ayaka-notes/texlive-full:2026.1,ghcr.io/ayaka-notes/texlive-full:2025.1,ghcr.io/ayaka-notes/texlive-full:2024.1";
+        ALL_TEX_LIVE_DOCKER_IMAGE_NAMES = "Texlive 2026,Texlive 2025,Texlive 2024";
 
         # DB
         OVERLEAF_MONGO_URL = "mongodb://mongo/sharelatex";
@@ -127,8 +174,8 @@ in
         # Nginx Proxy
         OVERLEAF_BEHIND_PROXY = "true";
         OVERLEAF_SECURE_COOKIE = "true";
-        TRUSTED_PROXY_IPS = "loopback, 10.88.0.1, 10.88.0.0/16";
-        OVERLEAF_TRUSTED_PROXY_IPS = "loopback, 10.88.0.1, 10.88.0.0/16";
+        TRUSTED_PROXY_IPS = "loopback, 10.89.0.0/24";
+        OVERLEAF_TRUSTED_PROXY_IPS = "loopback, 10.89.0.0/24";
 
         # SMTP
         OVERLEAF_EMAIL_SMTP_HOST = "smtp.purelymail.com";
