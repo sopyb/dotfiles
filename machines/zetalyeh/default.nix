@@ -93,7 +93,7 @@
     privateKeyFile = "/var/lib/secrets/wireguard/private";
     peers = [{
       publicKey = "EnJ4geT4GKXCX/ubVEMFCVAIJExzYFTgdESqCWOEyDc=";
-      endpoint = "yotemensus.sopy.one:51820";
+      endpoint = "yotemen.sopy.one:51820";
       allowedIPs = [ "0.0.0.0/0" "::/0" ];
       persistentKeepalive = 25;
     }];
