@@ -9,11 +9,13 @@ jobs:
         include:
           - system: alphicta
             type: system
-          - system: bethium
-            type: system
-          - system: lamsurrus
-            type: vm
-          - system: omegantes
+          # - system: bethium
+          #   type: system
+          # - system: lamsurrus
+          #   type: vm
+          # - system: omegantes
+          #   type: system
+          - system: yotemen
             type: system
           - system: zetalyeh
             type: system
