@@ -95,6 +95,9 @@ in
   systemd.services.overleaf-compiler-podman = {
     requires = [ "overleaf-compiler-podman.socket" ];
     after = [ "overleaf-compiler-podman.socket" ];
+
+    path = [ "/run/wrappers" ];
+
     serviceConfig = {
       Type = "simple";
       User = "overleaf-compiler";
