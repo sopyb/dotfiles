@@ -26,7 +26,7 @@ in
       enable = true;
       https = true;
       hostName = domain;
-      package = pkgs.nextcloud34;
+      package = pkgs.nextcloud35;
 
       datadir = config.machine.variables.paths.nextcloud;
 
@@ -52,8 +52,7 @@ in
       extraApps = {
         inherit (config.services.nextcloud.package.packages.apps)
           user_oidc calendar contacts dav_push groupfolders
-          notes tasks deck forms polls guests quota_warning
-          richdocuments;
+          notes tasks deck forms polls guests richdocuments;
       };
 
       extraAppsEnable = true;
