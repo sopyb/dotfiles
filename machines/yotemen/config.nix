@@ -1,6 +1,6 @@
 {
   machine = {
-    name = "yotemensus";
+    name = "yotemen";
     type = "server";
     desktopEnvironment.enable = false;
     features = {
