@@ -6,6 +6,10 @@
     features = {
       nginx = true;
       sshd = true;
+      uptime-kuma = true;
+    };
+    tweaks = {
+      noFirewall = true;
     };
     variables = {
       nginx = {

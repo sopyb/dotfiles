@@ -45,6 +45,7 @@ in
         ollama = mkEnableOption "Whether to enable Ollama AI service";
         sshd = mkEnableOption "Whether to enable sshd";
         sunshine = mkEnableOption "Whether to enable sunshine";
+        uptime-kuma =  mkEnableOption "Whether to enable uptime-kuma";
         vaultwarden = mkEnableOption "Whether to enable vaultwarden";
         virtualDisplay = mkEnableOption "Whether to add a virtual display";
         virtualization = mkEnableOption "Whether to enable virtualization support";
