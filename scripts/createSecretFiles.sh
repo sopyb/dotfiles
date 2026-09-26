@@ -6,12 +6,27 @@ set -euo pipefail
 SECRETS_DIR=/var/lib/secrets
 sudo install -d -m 771 -o root -g users $SECRETS_DIR
 
+_check_user_group() {
+  local file="$1"
+  local owner="$2"
+  local group="$3"
+  if ! id -u "$owner" &>/dev/null; then
+    echo "skip($file): user '$owner' does not exist on this machine"
+    return 1
+  fi
+  if ! getent group "$group" &>/dev/null; then
+    echo "skip($file): group '$group' does not exist on this machine"
+    return 1
+  fi
+}
+
 create_with_content() {
   local file="$1"
   local owner="$2"
   local group="$3"
   local mode="$4"
   local content="$5"
+  _check_user_group "$file" "$owner" "$group" || return 0
   # -s checks if file exists AND is not empty
   if [ -s "$file" ]; then
     echo "skip($file): already exists"
@@ -28,6 +43,7 @@ gen_secret() {
   local owner="$2"
   local group="$3"
   local mode="$4"
+  _check_user_group "$file" "$owner" "$group" || return 0
   if [ -f "$file" ]; then
     echo "skip($file): already exists"
     return
@@ -43,6 +59,7 @@ gen_rsa() {
   local owner="$2"
   local group="$3"
   local mode="$4"
+  _check_user_group "$file" "$owner" "$group" || return 0
   if [ -f "$file" ]; then
     echo "skip($file): already exists"
     return
