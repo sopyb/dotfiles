@@ -2,7 +2,9 @@
   machine = {
     name = "omegantes";
     type = "server";
-    features = { };
+    features = {
+      sshd = true;
+    };
     desktopEnvironment.enable = false;
     variables = { };
   };

@@ -1,17 +1,21 @@
 { modulesPath, ... }:
 {
-  imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
+  imports = [
+    (modulesPath + "/profiles/qemu-guest.nix")
+  ];
+
   boot.loader = {
+    efi.efiSysMountPoint = "/boot/efi";
     grub = {
       efiSupport = true;
       efiInstallAsRemovable = true;
       device = "nodev";
     };
-    efi.canTouchEfiVariables = false;
   };
-  fileSystems."/boot" = { device = "/dev/disk/by-uuid/547D-841D"; fsType = "vfat"; };
+
+  fileSystems."/boot/efi" = { device = "/dev/disk/by-uuid/3B65-164A"; fsType = "vfat"; };
   boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "xen_blkfront" ];
   boot.initrd.kernelModules = [ "nvme" ];
-  fileSystems."/" = { device = "/dev/sda1"; fsType = "ext4"; };
+  fileSystems."/" = { device = "/dev/mapper/ocivolume-root"; fsType = "xfs"; };
 
 }

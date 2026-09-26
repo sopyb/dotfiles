@@ -13,8 +13,8 @@ jobs:
           #   type: system
           # - system: lamsurrus
           #   type: vm
-          # - system: omegantes
-          #   type: system
+          - system: omegantes
+            type: system
           - system: yotemen
             type: system
           - system: zetalyeh
