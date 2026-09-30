@@ -14,4 +14,6 @@
       };
     };
   };
+
+  hardware.uinput.enable = true;
 }
