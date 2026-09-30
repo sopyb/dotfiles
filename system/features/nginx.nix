@@ -14,9 +14,11 @@
             domain = "*.${tld}";
             group = "nginx";
 
-            dnsProvider = "cloudflare";
-            environmentFile = "/var/lib/secrets/cloudflare";
-            extraLegoFlags = [ "--dns.resolvers=1.1.1.1:53,8.8.8.8:53" ];
+            dnsProvider = "inwx";
+            environmentFile = "/var/lib/secrets/inwx-secrets";
+            extraLegoFlags = [
+              "--dns.resolvers=1.1.1.1:53,8.8.8.8:53"
+            ];
           };
         }
       );

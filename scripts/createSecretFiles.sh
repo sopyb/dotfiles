@@ -71,8 +71,12 @@ gen_rsa() {
 }
 
 # ACME
-create_with_content "$SECRETS_DIR/cloudflare" acme acme 600 \
-  "CLOUDFLARE_DNS_API_TOKEN="
+create_with_content "$SECRETS_DIR/inwx-secrets" acme nginx 600 \
+"$(cat << _EOF_
+INWX_USERNAME=
+INWX_PASSWORD=
+_EOF_
+)"
 
 # Authentik
 create_with_content "$SECRETS_DIR/authentik" authentik authentik 600 \
