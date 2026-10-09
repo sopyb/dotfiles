@@ -9,7 +9,6 @@
     };
     features = {
       virtualization = true;
-      ollama = true;
     };
     tweaks = {
       noFirewall = true;
