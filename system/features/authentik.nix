@@ -1,5 +1,21 @@
-{ config, inputs, ... }:
+{ config, inputs, pkgs, ... }:
 
+let
+  scope = (inputs.authentik-nix.lib.mkAuthentikScope { inherit pkgs; }).overrideScope (final: prev: {
+    authentikComponents = prev.authentikComponents // {
+      docs = prev.authentikComponents.docs.overrideAttrs (old: {
+        pnpmDeps = old.pnpmDeps.overrideAttrs {
+          outputHash = "sha256-L5MKapTZK4y+bvY6DFP60Og5PIGDApzFVQwu1bNf6FU=";
+        };
+      });
+      frontend = prev.authentikComponents.frontend.overrideAttrs (old: {
+        pnpmDeps = old.pnpmDeps.overrideAttrs {
+          outputHash = "sha256-g8w/3vB/+zcTkxfs9Lb+gtOT/p3eI72jPR5EXo65MLU=";
+        };
+      });
+    };
+  });
+in
 {
   assertions = [
     {
@@ -19,6 +35,8 @@
   services = {
     authentik = {
       enable = true;
+
+      authentikComponents = scope.authentikComponents;
 
       environmentFile = "/var/lib/secrets/authentik";
 
