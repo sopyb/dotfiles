@@ -1,9 +1,10 @@
 { pkgs, ... }:
 
+# TODO: Look into EVDI later
 {
   boot.kernelParams = [
-    "drm.edid_firmware=DP-1:edid/virtualDisplayEDID.bin"
-    "video=DP-1:e"
+    "drm.edid_firmware=DP-4:edid/virtualDisplayEDID.bin"
+    "video=DP-4:e"
   ];
 
   hardware.firmware = [
