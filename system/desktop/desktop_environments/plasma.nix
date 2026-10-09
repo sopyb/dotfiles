@@ -25,5 +25,7 @@
     };
   };
 
+  programs.kdeconnect.enable = true;
+
   services.displayManager.defaultSession = "aerothemeplasma";
 }
