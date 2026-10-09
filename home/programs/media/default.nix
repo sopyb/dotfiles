@@ -68,6 +68,5 @@
     # openboard
     libreoffice-qt-stable
     onlyoffice-desktopeditors
-    zotero
   ];
 }
