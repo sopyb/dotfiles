@@ -10,7 +10,7 @@
     features = {
       authentik = true;
       immich = true;
-      nextcloud = true;
+      nextcloud = false;
       nginx = true;
       overleaf = true;
       ollama = true;
