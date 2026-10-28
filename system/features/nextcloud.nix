@@ -33,7 +33,6 @@ in
       database.createLocally = true;
 
       config = {
-        adminpassFile = "/var/lib/secrets/nextcloud-admin-pwd";
         dbtype = "pgsql";
       };
 
