@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    custom.commet-chat
+    commet-chat
     custom.equicord
     element-desktop
     teams-for-linux

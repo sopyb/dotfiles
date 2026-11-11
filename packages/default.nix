@@ -1,7 +1,6 @@
 { pkgs }:
 
 {
-  commet-chat = pkgs.callPackage ./commet-chat.nix { };
   davinci-resolve-studio = pkgs.callPackage ./davinci-resolve-studio.nix { };
   equicord = pkgs.callPackage ./equicord.nix { };
   linver = pkgs.callPackage ./linver.nix { };
