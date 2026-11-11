@@ -17,7 +17,6 @@ in
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      jack.enable = true;
     };
 
     ratbagd.enable = true;
@@ -68,6 +67,9 @@ in
     };
   };
 
+  environment.systemPackages = with pkgs; [
+    pipewire.jack
+  ];
 
   security = {
     # Pipewire
