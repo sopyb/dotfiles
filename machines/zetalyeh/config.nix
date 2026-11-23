@@ -17,8 +17,8 @@
       sshd = true;
       sunshine = true;
       vaultwarden = true;
-      virtualDisplay = true;
-      virtualization = false;
+      virtualDisplay = false;
+      virtualization = true;
     };
     tweaks = {
       autoLogin = true;
