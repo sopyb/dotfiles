@@ -106,19 +106,19 @@
   programs.hyfetch = {
     enable = true;
     settings = {
-      preset = "rainbow";
+      preset = "transgender";
       mode = "rgb";
       light_dark = "dark";
       lightness = 0.25;
       color_align = {
         mode = "custom";
         custom_colors = {
-          "1" = 2;
-          "2" = 3;
-          "3" = 4;
-          "4" = 5;
-          "5" = 0;
-          "6" = 1;
+          "1" = 0;
+          "2" = 1;
+          "3" = 2;
+          "4" = 0;
+          "5" = 1;
+          "6" = 2;
 
         };
         fore_back = null;
