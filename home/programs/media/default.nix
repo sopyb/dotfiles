@@ -22,7 +22,7 @@
 
     # game launchers
     heroic
-    # itch
+    itch
     prismlauncher
     emerald-legacy-launcher
     samrewritten
